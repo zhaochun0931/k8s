@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kubia-demo
+  name: kubia-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubia-demo
+  template:
+    metadata:
+      labels:
+        app: kubia-demo
+    spec:
+      containers:
+      - image: luksa/kubia:latest
+        name: kubia
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: kubia-demo
+  name: kubia-demo-svc-cip
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kubia-demo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: kubia-demo
+  name: kubia-demo-svc-np
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kubia-demo
+  type: NodePort
+
