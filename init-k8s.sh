@@ -15,3 +15,10 @@ kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/
 # kube-system    kube-proxy-7nkhz                    1/1     Running   0          82s
 # kube-system    kube-scheduler-rabbitmq1            1/1     Running   1          95s
 # root@HOSTNAME:~#
+
+
+
+kubectl describe node NODENAME
+
+# let the master node run the pod
+kubectl taint nodes NODENAME node-role.kubernetes.io/control-plane:NoSchedule-
