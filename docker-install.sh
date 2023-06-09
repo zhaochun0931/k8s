@@ -3,9 +3,9 @@
 apt-get update
 apt-get install ca-certificates curl gnupg -y
 
-sudo install -m 0755 -d /etc/apt/keyrings
+install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
+chmod a+r /etc/apt/keyrings/docker.gpg
 
 
 echo \
@@ -14,10 +14,10 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   
 
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-sudo docker run hello-world
+docker run hello-world
 
 
 
