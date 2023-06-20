@@ -90,6 +90,7 @@ crictl ps
 
 
 
+/etc/crio/crio.conf
 
 
 /etc/cni/net.d/100-crio-bridge.conflist
