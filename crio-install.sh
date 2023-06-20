@@ -74,6 +74,7 @@ crictl pull hello-world
 crictl pull busybox
 
 crictl images
+crictl ps
 
 
 sysctl net.ipv4.ip_forward
