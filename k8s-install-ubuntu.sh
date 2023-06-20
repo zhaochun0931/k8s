@@ -15,3 +15,4 @@ apt-get install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
 
 kubeadm version
+kubeadm config print init-defaults
