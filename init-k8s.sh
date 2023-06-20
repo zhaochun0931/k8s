@@ -34,3 +34,8 @@ kubectl taint nodes NODENAME node-role.kubernetes.io/control-plane:NoSchedule-
 
 
 
+
+
+kubectl cluster-info
+kubeadm token create --print-join-command
+
