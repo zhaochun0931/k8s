@@ -2,7 +2,7 @@
 # https://cri-o.io/
 
 export OS=xUbuntu_22.04
-export CRIO_VERSION=1.27
+export VERSION=1.27
 
 echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
@@ -73,7 +73,7 @@ crictl pull nginx
 crictl pull hello-world
 crictl pull busybox
 
-
+crictl images
 
 
 sysctl net.ipv4.ip_forward
