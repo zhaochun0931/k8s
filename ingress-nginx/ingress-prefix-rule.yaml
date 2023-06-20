@@ -1,3 +1,6 @@
+# kubectl create ingress ing-demo --class=nginx --rule="foo.com/v1*=helloapp-1:8080" --rule="foo.com/v2*=helloapp-2:8080"
+
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
