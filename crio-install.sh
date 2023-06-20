@@ -91,7 +91,7 @@ crictl ps
 
 
 /etc/crio/crio.conf
-
+/etc/crictl.yaml
 
 /etc/cni/net.d/100-crio-bridge.conflist
 /etc/cni/net.d/200-loopback.conflist
