@@ -1,3 +1,5 @@
+kubeadm config print init-defaults
+
 kubeadm init --pod-network-cidr=10.244.0.0/16
 
 
@@ -29,3 +31,6 @@ kubectl describe node NODENAME
 
 # let the master node run the pod
 kubectl taint nodes NODENAME node-role.kubernetes.io/control-plane:NoSchedule-
+
+
+
