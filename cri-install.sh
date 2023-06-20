@@ -65,3 +65,14 @@ crictl pull nginx
 crictl pull hello-world
 crictl pull busybox
 
+
+
+
+sysctl net.ipv4.ip_forward
+sysctl -w net.ipv4.ip_forward=1
+
+modprobe br-netfilter
+sysctl -w net.bridge.bridge-nf-call-iptables=1
+sysctl -w net.bridge.bridge-nf-call-ip6tables=1
+
+
