@@ -1,6 +1,24 @@
 
 # https://cri-o.io/
 
+
+sysctl net.ipv4.ip_forward
+sysctl -w net.ipv4.ip_forward=1
+
+
+modprobe overlay
+modprobe br-netfilter
+sysctl -w net.bridge.bridge-nf-call-iptables=1
+sysctl -w net.bridge.bridge-nf-call-ip6tables=1
+
+
+sysctl -p
+sysctl -p /etc/sysctl.conf
+
+
+
+
+
 export OS=xUbuntu_22.04
 export VERSION=1.27
 
@@ -77,12 +95,6 @@ crictl images
 crictl ps
 
 
-sysctl net.ipv4.ip_forward
-sysctl -w net.ipv4.ip_forward=1
-
-modprobe br-netfilter
-sysctl -w net.bridge.bridge-nf-call-iptables=1
-sysctl -w net.bridge.bridge-nf-call-ip6tables=1
 
 
 
