@@ -38,6 +38,9 @@ systemctl status crio
 
 apt install cri-tools
 crictl info
+crio-status config
+
+
 
 
 
