@@ -30,35 +30,25 @@ curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/
 
 apt-get update
 apt-get install cri-o cri-o-runc -y
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 apt show cri-o
-
 
 systemctl enable crio.service
 systemctl start crio.service
 systemctl status crio
 
-
-
-
-
 apt install cri-tools
-
-
 crictl info
+
+
+
+
+
+
+
+
+
+
+
 
 # crictl info
 {
