@@ -32,6 +32,9 @@ apt-get update
 apt-get install cri-o cri-o-runc -y
 apt show cri-o
 
+rm /etc/cni/net.d/100-crio-bridge.conflist
+rm /etc/cni/net.d/200-loopback.conflist
+
 systemctl enable crio.service
 systemctl start crio.service
 systemctl status crio
@@ -93,5 +96,4 @@ crictl ps
 /etc/crio/crio.conf
 /etc/crictl.yaml
 
-/etc/cni/net.d/100-crio-bridge.conflist
-/etc/cni/net.d/200-loopback.conflist
+
