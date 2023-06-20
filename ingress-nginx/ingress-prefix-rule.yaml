@@ -26,3 +26,13 @@ spec:
               number: 8080
         path: /v2
         pathType: Prefix
+---
+# kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 80:80
+
+# add the "127.0.0.1 foo.com" to the /etc/hosts
+
+# curl foo.com/v1
+# curl foo.com/v1/sfafa
+# curl foo.com/v1/sfafa/vadfafa
+
+# curl foo.com/v2
