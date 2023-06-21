@@ -22,5 +22,9 @@ kubeadm config print init-defaults
 
 
 echo "alias k=kubectl" >> $HOME/.bash_profile
-source  $HOME/.bash_profile
+source $HOME/.bash_profile
+
+echo 
+
+
 
