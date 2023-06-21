@@ -36,7 +36,7 @@ apt show cri-o
 rm /etc/cni/net.d/100-crio-bridge.conflist
 rm /etc/cni/net.d/200-loopback.conflist
 
-/etc/crio/crio.conf
+cat /etc/crio/crio.conf
 
 
 systemctl enable crio.service
