@@ -40,13 +40,4 @@ kubeadm token create --print-join-command
 /etc/kubernetes/manifests/kube-controller-manager.yaml
 /etc/kubernetes/manifests/kube-scheduler.yaml
 
-root@hostname:~# ls -al /etc/kubernetes/manifests
-total 24
-drwxr-xr-x 2 root root 4096 Jun 20 06:44 .
-drwxr-xr-x 4 root root 4096 Jun 20 06:44 ..
--rw------- 1 root root 2373 Jun 20 06:44 etcd.yaml
--rw------- 1 root root 3862 Jun 20 06:44 kube-apiserver.yaml
--rw------- 1 root root 3279 Jun 20 06:44 kube-controller-manager.yaml
--rw------- 1 root root 1463 Jun 20 06:44 kube-scheduler.yaml
-root@hostname:~#
 
