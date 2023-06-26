@@ -22,6 +22,6 @@ spec:
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh", "-c", "apk add --update bind-tools; apk add --update curl; echo i am done > /tmp/xxx"]
+              command: ["/bin/sh", "-c", "apk add --update bind-tools; apk add --update curl"]
         stdin: true
         tty: true
