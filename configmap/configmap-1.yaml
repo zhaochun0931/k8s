@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+data:
+  age: "10"
+  name: xiaoming
+kind: ConfigMap
+metadata:
+  name: configmap-demo
+
+
+
+---
+# kubectl create configmap configmap-demo --from-literal=name=xiaoming --from-literal=age=10 --dry-run=client -o yaml
+  
