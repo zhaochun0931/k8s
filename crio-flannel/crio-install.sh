@@ -51,7 +51,7 @@ crio-status config
 
 
 
-
+# /etc/crictl.yaml
 
 
 
