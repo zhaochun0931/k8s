@@ -33,7 +33,7 @@ curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/
 
 apt-get update
 apt-get install cri-o cri-o-runc -y
-apt show cri-o
+# apt show cri-o
 
 rm /etc/cni/net.d/100-crio-bridge.conflist
 rm /etc/cni/net.d/200-loopback.conflist
