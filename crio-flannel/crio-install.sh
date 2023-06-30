@@ -4,6 +4,8 @@
 
 sysctl net.ipv4.ip_forward
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+sysctl -p /etc/sysctl.conf
+
 
 
 modprobe overlay
@@ -41,7 +43,7 @@ cat /etc/crio/crio.conf
 
 systemctl enable crio.service
 systemctl start crio.service
-systemctl status crio
+#systemctl status crio
 
 apt install cri-tools
 crictl info
@@ -59,44 +61,5 @@ crio-status config
 
 
 
-
-# crictl info
-{
-  "status": {
-    "conditions": [
-      {
-        "type": "RuntimeReady",
-        "status": true,
-        "reason": "",
-        "message": ""
-      },
-      {
-        "type": "NetworkReady",
-        "status": false,
-        "reason": "NetworkPluginNotReady",
-        "message": "Network plugin returns error: No CNI configuration file in /etc/cni/net.d/. Has your network provider started?"
-      }
-    ]
-  },
-  "config": {
-    "sandboxImage": "registry.k8s.io/pause:3.6"
-  }
-}
-#
-
-
-
-
-crictl pull nginx
-crictl pull hello-world
-crictl pull busybox
-
-crictl images
-crictl ps
-
-
-
-
-/etc/crictl.yaml
 
 
