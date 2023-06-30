@@ -16,9 +16,9 @@ apt-mark hold kubelet kubeadm kubectl
 
 kubeadm version
 
-systemctl status kubelet
+# systemctl status kubelet
 
-kubeadm config print init-defaults
+# kubeadm config print init-defaults
 
 
 echo "alias k=kubectl" >> $HOME/.bash_profile
