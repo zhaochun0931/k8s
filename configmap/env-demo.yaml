@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: env-demo
+  name: env-demo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: env-demo
+  template:
+    metadata:
+      labels:
+        app: env-demo
+    spec:
+      containers:
+      - image: alpine
+        imagePullPolicy: Always
+        name: alpine
+        stdin: true
+        tty: true
+        env:
+          - name: ENV1
+            value: value1
+          - name: ENV2
+            value: value2
+
+
+# # kubectl exec -it env-demo-55bd5cd99d-bcwnn -- env | egrep -i env
+# ENV1=value1
+# ENV2=value2
+# #
+# #
