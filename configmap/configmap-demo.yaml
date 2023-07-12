@@ -7,23 +7,34 @@ kind: ConfigMap
 metadata:
   name: configmap-xxx
 
+
+---
+apiVersion: v1
+data:
+  student_age: "20"
+  student_name: xiaoyyy
+kind: ConfigMap
+metadata:
+  name: configmap-yyy
+
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: configmap-demo
-  name: configmap-demo
+    app: env-demo
+  name: env-demo
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: configmap-demo
+      app: env-demo
   template:
     metadata:
       labels:
-        app: configmap-demo
+        app: env-demo
     spec:
       containers:
       - image: alpine
@@ -44,6 +55,38 @@ spec:
                 key: student_age
 
 
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: envfrom-demo
+  name: envfrom-demo
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: envfrom-demo
+  template:
+    metadata:
+      labels:
+        app: envfrom-demo
+    spec:
+      containers:
+      - image: alpine
+        imagePullPolicy: Always
+        name: alpine
+        stdin: true
+        tty: true
+        envFrom:
+          - configMapRef:
+              name: configmap-yyy
+
+
+
+
 # # kubectl exec -it configmap-demo-7848dd95df-jr6p4 -- env | egrep -i env
 # ENV1=xiaoming
 # ENV2=10
@@ -52,4 +95,3 @@ spec:
 
 ---
 # kubectl create configmap configmap-demo --from-literal=student_name=xiaoming --from-literal=student_age=10 --dry-run=client -o yaml
-  
