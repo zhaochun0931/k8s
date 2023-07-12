@@ -87,11 +87,16 @@ spec:
 
 
 
-# # kubectl exec -it configmap-demo-7848dd95df-jr6p4 -- env | egrep -i env
+# # kubectl exec -it env-demo-7848dd95df-jr6p4 -- env | egrep -i env
 # ENV1=xiaoming
 # ENV2=10
 # #
 
+# # k exec -it envfrom-demo-956b46f87-xm5vg -- env | egrep -i student
+# student_age=20
+# student_name=xiaoyyy
+# #
 
 ---
 # kubectl create configmap configmap-demo --from-literal=student_name=xiaoming --from-literal=student_age=10 --dry-run=client -o yaml
+  
