@@ -26,3 +26,10 @@ kubectl exec -it mysql-client -- /bin/sh
 mysql -u root -p -h mysql-set-0.mysql.default.svc.cluster.local
 
 mysql -u root -p -h mysql-set-0.mysql
+
+
+CREATE DATABASE demo;
+show databases;
+use demo;
+
+
