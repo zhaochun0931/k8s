@@ -23,6 +23,18 @@ kubectl annotate storageclass local-path storageclass.kubernetes.io/is-default-c
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 kubectl describe node NODENAME
 
 # let the master node run the pod
