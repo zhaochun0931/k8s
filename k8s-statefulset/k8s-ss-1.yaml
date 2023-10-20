@@ -69,16 +69,29 @@ spec:
 # Create a Client for MySQL
 
 
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: mysql-client
+  namespace: default
 spec:
-  containers:
-  - name: mysql-container
-    image: alpine
-    command: ['sh','-c', "sleep 1800m"]
-    imagePullPolicy: IfNotPresent
-
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-client
+  template:
+    metadata:
+      labels:
+        app: mysql-client
+    spec:
+      containers:
+      - image: ubuntu
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "apt update && apt install -y mysql-client netcat"]
+        name: mysql-client
+        stdin: true
+        tty: true
 
 ---
