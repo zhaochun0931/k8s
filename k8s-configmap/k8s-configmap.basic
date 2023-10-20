@@ -1,0 +1,19 @@
+kubectl create configmap myconfigmap --from-file=myscript.sh
+
+
+$ kkubectl get configmap myconfigmap -o yaml
+apiVersion: v1
+data:
+  myscript.sh: |
+    #!/bin/bash
+    echo "Command 1"
+    echo "Command 2"
+    echo "Command 3"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-10-20T00:52:44Z"
+  name: myconfigmap
+  namespace: default
+  resourceVersion: "19938"
+  uid: a1276468-d333-4220-89b2-d63785597fbc
+$
