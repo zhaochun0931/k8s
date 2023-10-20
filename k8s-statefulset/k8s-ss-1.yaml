@@ -19,7 +19,7 @@ spec:
     matchLabels:
       app: mysql
   serviceName: "mysql"
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
