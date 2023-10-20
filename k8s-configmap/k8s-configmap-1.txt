@@ -17,3 +17,9 @@ metadata:
   resourceVersion: "19938"
   uid: a1276468-d333-4220-89b2-d63785597fbc
 $
+
+
+
+
+
+kubectl create configmap myconfigmap --from-literal=student_name=xiaoming --from-literal=student_age=10 --dry-run=client -o yaml
