@@ -7,3 +7,20 @@ student: # dictionary
   course: # list
     - chinese
     - english
+
+
+
+
+
+
+student:
+  name: xiaoming
+  age: 10
+  course:
+    - english:
+        highscore: 100
+        lowscore: 60
+    - chinese:
+        highscore: 90
+        lowscore: 80
+        
