@@ -1,0 +1,4 @@
+# Space after colon is mandatory to differentiate key and value
+
+name: xiaoming
+age: 10
