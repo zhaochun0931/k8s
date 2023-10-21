@@ -24,3 +24,19 @@ student:
         highscore: 90
         lowscore: 80
         
+
+
+
+
+
+student:
+  name: xiaoming
+  age: 10
+  course:
+    - english:
+        highscore: 100
+        lowscore: 60
+    - chinese:
+        highscore: 90
+        lowscore: 80
+      total: 2
