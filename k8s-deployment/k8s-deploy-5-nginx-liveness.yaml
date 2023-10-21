@@ -22,4 +22,9 @@ spec:
             path: /usr/share/nginx/html/index2.html
             port: 8080
 
-            
+
+
+  # Warning  Unhealthy  114s (x9 over 3m14s)   kubelet            Liveness probe failed: Get "http://10.1.0.97:8080/usr/share/nginx/html/index2.html": dial tcp 10.1.0.97:8080: connect: connection refused
+  # Normal   Killing    114s (x3 over 2m54s)   kubelet            Container nginx failed liveness probe, will be restarted
+
+
