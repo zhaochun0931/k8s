@@ -1,0 +1,9 @@
+# Lists
+# Dash indicates an element of an array
+
+student: # dictionary
+  name: xiaoming
+  age: 10
+  course: # list
+    - chinese
+    - english
