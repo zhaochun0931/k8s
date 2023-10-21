@@ -24,7 +24,9 @@ spec:
 
 
 
-  # Warning  Unhealthy  114s (x9 over 3m14s)   kubelet            Liveness probe failed: Get "http://10.1.0.97:8080/usr/share/nginx/html/index2.html": dial tcp 10.1.0.97:8080: connect: connection refused
-  # Normal   Killing    114s (x3 over 2m54s)   kubelet            Container nginx failed liveness probe, will be restarted
+
+# Liveness:       http-get http://:8080/usr/share/nginx/html/index2.html delay=0s timeout=1s period=10s #success=1 #failure=3
+# Warning  Unhealthy  114s (x9 over 3m14s)   kubelet            Liveness probe failed: Get "http://10.1.0.97:8080/usr/share/nginx/html/index2.html": dial tcp 10.1.0.97:8080: connect: connection refused
+# Normal   Killing    114s (x3 over 2m54s)   kubelet            Container nginx failed liveness probe, will be restarted
 
 
