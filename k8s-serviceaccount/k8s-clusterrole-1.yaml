@@ -41,3 +41,8 @@ subjects:
 # kubectl get clusterrole
 # kubectl get clusterrolebinding
 
+# kubectl create serviceaccount sa-demo
+# kubectl create clusterrole cr-demo --verb=get,list,watch --resource=pods
+# kubectl create clusterrolebinding crb-demo --clusterrole=cr-demo --serviceaccount=ns-demo:sa-demo
+
+
