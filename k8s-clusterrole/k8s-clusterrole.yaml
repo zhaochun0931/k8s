@@ -34,3 +34,10 @@ subjects:
 - kind: ServiceAccount
   name: sa-demo
   namespace: default
+
+
+---
+# kubectl get sa
+# kubectl get clusterrole
+# kubectl get clusterrolebinding
+
