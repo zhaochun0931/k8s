@@ -30,3 +30,11 @@ subjects:
 - kind: ServiceAccount
   name: sa-demo
   namespace: default
+
+
+---
+# kubectl create serviceaccount sa-demo 
+# kubectl create role role1 --verb=list --resource=pods
+# kubectl create rolebinding rb1 --role=role1  --serviceaccount=default:sa-demo
+
+
