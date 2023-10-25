@@ -21,11 +21,11 @@ kubectl annotate storageclass local-path storageclass.kubernetes.io/is-default-c
 
 
 
-
-
-
-
-
+# let the master node run the pod
+for i in $(echo $HOSTNAME)
+do
+kubectl taint nodes $i node-role.kubernetes.io/control-plane:NoSchedule-
+done
 
 
 
@@ -38,12 +38,7 @@ kubectl describe node $i
 done
 
 
-# let the master node run the pod
 
-for i in $(echo $HOSTNAME)
-do
-kubectl taint nodes $i node-role.kubernetes.io/control-plane:NoSchedule-
-done
 
 
 
