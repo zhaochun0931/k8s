@@ -32,10 +32,11 @@ kubectl annotate storageclass local-path storageclass.kubernetes.io/is-default-c
 
 
 
+for i in $(echo $HOSTNAME)
+do
+kubectl describe node $i
+done
 
-
-
-kubectl describe node NODENAME
 
 # let the master node run the pod
 
