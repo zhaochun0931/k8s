@@ -14,10 +14,14 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
-  
+
+kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+
 
 for i in $(echo $HOSTNAME)
 do
 kubectl taint nodes $i node-role.kubernetes.io/control-plane:NoSchedule-
 done
 
+
+kubectl get nodes
