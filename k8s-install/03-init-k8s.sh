@@ -32,6 +32,11 @@ done
 
 
 
+
+kubectl describe node
+
+
+
 for i in $(echo $HOSTNAME)
 do
 kubectl describe node $i
