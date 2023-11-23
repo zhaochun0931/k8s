@@ -1,4 +1,7 @@
-kubectl rollout restart statefulset xxx
+kubectl rollout restart statefulset xxx -n namespace
+
+kubectl rollout status statefulset rabbitmq1-server -n rabbitmq-system
+
 
 
 
