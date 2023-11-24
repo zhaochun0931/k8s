@@ -5,4 +5,8 @@ kubectl rollout status statefulset rabbitmq2-server -n rabbitmq-system
 
 
 
+# show the log of multiple pods
+kubectl logs -f -n rabbitmq-system statefulset.apps/rabbitmq2-server
+kubectl logs -f -n rabbitmq-system statefulset.apps/rabbitmq1-server --all-containers=true
+
 
