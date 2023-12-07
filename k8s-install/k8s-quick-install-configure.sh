@@ -1,6 +1,8 @@
-wget https://raw.githubusercontent.com/zhaochun-vmware/k8s/main/k8s-install/01-crio-install.sh
 
-wget https://raw.githubusercontent.com/zhaochun-vmware/k8s/main/k8s-install/02-k8s-install-ubuntu.sh
+wget https://raw.githubusercontent.com/zhaochun0931/k8s/main/k8s-install/01-crio-install.sh
+
+
+wget https://raw.githubusercontent.com/zhaochun0931/k8s/main/k8s-install/02-k8s-install-ubuntu.sh
 
 bash 01-crio-install.sh
 
