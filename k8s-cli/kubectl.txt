@@ -14,3 +14,14 @@ kubectl uncordon node_name
 
 
 
+kubectl apply -f xxx.yml --record
+
+
+
+
+
+
+kubectl rollout history deployment xxx
+kubectl rollout undo deployment xxx --to-revision=12
+kubectl rollout status deployment xxx
+
