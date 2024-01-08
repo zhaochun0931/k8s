@@ -6,7 +6,7 @@ every Service gets its own stable IP address, DNS name, and port.
 Service uses labels to dynamically associate with a set of Pods.
 
 
-
+Pods and Services are loosely coupled via labels and label selectors.
 
 
 
