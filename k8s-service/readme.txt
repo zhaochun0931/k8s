@@ -9,7 +9,7 @@ Service uses labels to dynamically associate with a set of Pods.
 Pods and Services are loosely coupled via labels and label selectors.
 
 
-
+For a Service to match a set of Pods, and therefore provide stable networking and load-balance, it only needs to match some of the Pods labels.
 
 
 
