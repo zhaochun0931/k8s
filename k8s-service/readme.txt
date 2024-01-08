@@ -19,7 +19,9 @@ Each Service that is created automatically gets an associated Endpoint object. T
 
 
 
-
+When we create a Service object, Kubernetes automatically creates an internal DNS mapping for it. 
+This maps the name of the Service to a VIP. For example, if you create a Service called “hellcat-svc”, Pods in the cluster will be able to resolve “hellcat-svc” to the Service’s VIP. 
+Therefore, as long as you know the name of a Service, you will be able to connect to it by name.
 
 
 
