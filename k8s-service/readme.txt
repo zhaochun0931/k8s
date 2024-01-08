@@ -13,6 +13,16 @@ For a Service to match a set of Pods, and therefore provide stable networking an
 
 
 
+
+
+Each Service that is created automatically gets an associated Endpoint object. This Endpoint object is a dynamic list of all of the Pods that match the Service’s label selector.
+
+
+
+
+
+
+
 kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0 --replicas=3
 kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:2.0 --replicas=3
 
