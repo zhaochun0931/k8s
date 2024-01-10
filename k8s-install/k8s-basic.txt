@@ -11,3 +11,34 @@ At the time of writing, the best way to package and deploy a Kubernetes applicat
 With Deployments, we start out with our application code and we containerize it. Then we define it as a Deployment via a YAML or JSON manifest file. This manifest file tells Kubernetes two important things:
 What our app should look like – what images to use, ports to expose, networks to join, how to perform update etc.
 How many replicas of each part of the app to run (scale)
+
+
+master:
+
+
+kube-apiserver
+The API Server (apiserver) is the frontend into the Kubernetes control plane. You can think of the API server as the brains of the cluster. By default, it exposes a RESTful endpoint on port 443
+
+
+
+
+The cluster store
+If the API Server is the brains of the cluster, the cluster store is its memory, The cluster store is based on etcd, the popular distributed, consistent and watchable key-value store.
+
+
+kube-controller-manager
+They tend to sit in loops and watch for changes – the aim of the game is to make sure the current state of the cluster matches the desired state (more on this shortly).
+
+
+kube-scheduler
+watches for newly created Pods with no assigned node, and selects a node for them to run on
+
+cloud-controller-manager
+
+
+
+
+
+
+
+node:
