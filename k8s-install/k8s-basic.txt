@@ -49,3 +49,13 @@ kube-proxy
 
 Container runtime
 
+
+
+
+
+In Kubernetes, the two concepts work like this:
+1. We declare the desired state of our application (microservice) in a manifest file
+2. We POST it the API server
+3. Kubernetes stores this in the cluster store as the application’s desired state
+4. Kubernetes deploys the application on the cluster
+5. Kubernetes implements watch loops to make sure the cluster doesn’t vary from desired state
