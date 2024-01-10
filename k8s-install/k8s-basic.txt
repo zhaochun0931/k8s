@@ -4,3 +4,10 @@ These small independent services work together to create a meaningful/useful app
 
 In the real world, a football (soccer) team is made up of individuals. No two are the same, and each has a different role to play in the team. 
 Some defend, some attack, some are great at passing, some are great at shooting…. Along comes the coach, and he or she gives everyone a position and organizes them into a team with a plan.
+
+
+
+At the time of writing, the best way to package and deploy a Kubernetes application is via something called a Deployment. 
+With Deployments, we start out with our application code and we containerize it. Then we define it as a Deployment via a YAML or JSON manifest file. This manifest file tells Kubernetes two important things:
+What our app should look like – what images to use, ports to expose, networks to join, how to perform update etc.
+How many replicas of each part of the app to run (scale)
