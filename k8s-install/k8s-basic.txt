@@ -1,0 +1,2 @@
+At the highest level, Kubernetes is an orchestrator of containerized apps. Ideally microservice apps. Microservice app is just a fancy name for an application that’s made up of lots of small and independent parts - we sometimes call these small parts services. 
+These small independent services work together to create a meaningful/useful app.
