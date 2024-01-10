@@ -42,3 +42,10 @@ cloud-controller-manager
 
 
 node:
+
+kubelet
+
+kube-proxy
+
+Container runtime
+
