@@ -39,3 +39,7 @@ Pod theory summary
 .metadata
 .spec
 
+
+
+
+Your Pod has been scheduled on a healthy node in the cluster and is being monitored by the local kubelet process on the node. The kubelet process is the Kubernetes agent running on the node.
