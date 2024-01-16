@@ -30,3 +30,12 @@ Pod theory summary
 2. You can have more than one container in a Pod. Single-container Pods are the most common type, but multi-container Pods are ideal for containers that need to be tightly coupled - maybe they need to share memory or volumes.
 3. Pods get scheduled on nodes – you can’t schedule a single Pod to span multiple nodes.
 4. They get defined declaratively in a manifest file that we POST to the API server and let the scheduler assign them to nodes.
+
+
+
+
+.apiVersion
+.kind
+.metadata
+.spec
+
