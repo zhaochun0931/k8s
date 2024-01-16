@@ -2,3 +2,6 @@ Digging a bit deeper, a Pod is just a shared execution environment for one or mo
 
 
 To deploy a Pod to a Kubernetes cluster we define it in a manifest file and then POST that manifest file to the API server. The master examines it, records it in the cluster store, and the scheduler deploys the Pod to a healthy node with enough available resources.
+
+
+At the highest level, a Pod is a shared execution environment for one or more containers. “shared execution environment” means that all container in a Pod share the IP address, hostname, sockets, memory, volumes, and more, of the Pod they run inside of.
