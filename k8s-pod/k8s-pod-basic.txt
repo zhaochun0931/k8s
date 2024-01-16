@@ -7,3 +7,5 @@ To deploy a Pod to a Kubernetes cluster we define it in a manifest file and then
 At the highest level, a Pod is a shared execution environment for one or more containers. “shared execution environment” means that all container in a Pod share the IP address, hostname, sockets, memory, volumes, and more, of the Pod they run inside of.
 
 Each Pod creates its own network namespace - a single IP address, a single range of ports, and a single routing table. This is true even if the Pod is a multicontainer Pod - each container in a Pod shares the Pods IP, range of ports, and routing table.
+
+At a high level, Control Groups (cgroups) are what stop individual containers from consuming all of the available CPU, RAM and IOPS on a node.
