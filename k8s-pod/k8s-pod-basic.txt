@@ -21,3 +21,12 @@ Pod lifecycle
 The lifecycle of typical Pod goes something like this. You define it in a YAML or JSON manifest file. Then you throw that manifest at the API server and the Pod it defines gets scheduled to a healthy node. 
 Once it’s scheduled to a node, it goes into the pending state while the node downloads images and fires up any containers. The Pod remains in this pending state until all of its resources are up and ready. Once everything’s up and ready, the Pod enters the running state.
 Once it’s completed its task in life, it gets terminated and enters the succeeded state.
+
+
+
+
+Pod theory summary
+1. Pods are the smallest unit of scheduling on Kubernetes
+2. You can have more than one container in a Pod. Single-container Pods are the most common type, but multi-container Pods are ideal for containers that need to be tightly coupled - maybe they need to share memory or volumes.
+3. Pods get scheduled on nodes – you can’t schedule a single Pod to span multiple nodes.
+4. They get defined declaratively in a manifest file that we POST to the API server and let the scheduler assign them to nodes.
