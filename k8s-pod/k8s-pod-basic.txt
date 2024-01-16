@@ -1,0 +1,1 @@
+Digging a bit deeper, a Pod is just a shared execution environment for one or more containers. More often than not, a Pod only has one container.
