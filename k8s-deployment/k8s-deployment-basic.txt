@@ -1,0 +1,2 @@
+More often than not, you’re going to deploy your applications via Deployments rather than ReplicaSets. However, Deployments build on top of ReplicaSets.
+
