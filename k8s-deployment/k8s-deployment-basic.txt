@@ -8,3 +8,13 @@ One ReplicaSet can only manage one Pod type.
 A ReplicaSet defines two important things:
 The Pod template
 The desired number of replicas
+
+
+
+
+Desired state is what you want. Current state is what you’ve got. The aim-ofthe-game is for the two to match - current state should always match desired state.
+
+A declarative model lets you describe your desired state without having to get into the detail of how to get there.
+
+We’ve got two competing models. The declarative model and the imperative model.
+Declarative models are all about describing the end-goal. Imperative models are all about lists of commands that will get you to an end goal.
