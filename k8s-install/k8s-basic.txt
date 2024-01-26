@@ -80,7 +80,32 @@ kube-proxy 可以直接运行在物理机上，也可以以 static pod 或者 da
 
 
 
+
+
+
+
+
+
+
+
 每个Node节点上都运行一个 Kubelet 服务进程，默认监听 10250 端口，接收并执行 Master 发来的指令，管理 Pod 及 Pod 中的容器。每个 Kubelet 进程会在 API Server 上注册所在Node节点的信息，定期向 Master 节点汇报该节点的资源使用情况，并通过 cAdvisor 监控节点和容器的资源.
+
+Kubelet 监听 etcd，所有针对 Pod 的操作都将会被 Kubelet 监听到。如果发现有新的绑定到本节点的 Pod，则按照 Pod 清单的要求创建该 Pod。
+
+如果发现本地的 Pod 被修改，则 Kubelet 会做出相应的修改，比如删除 Pod 中某个容器时，则通过 Docker Client 删除该容器。 如果发现删除本节点的 Pod，则删除相应的 Pod，并通过 Docker Client 删除 Pod 中的容器。
+
+Kubelet 读取监听到的信息，如果是创建和修改 Pod 任务，则执行如下处理：
+
+为该 Pod 创建一个数据目录；
+从 API Server 读取该 Pod 清单；
+为该 Pod 挂载外部卷；
+下载 Pod 用到的 Secret；
+检查已经在节点上运行的 Pod，如果该 Pod 没有容器或 Pause 容器没有启动，则先停止 Pod 里所有容器的进程。如果在 Pod 中有需要删除的容器，则删除这些容器；
+用 “kubernetes/pause” 镜像为每个 Pod 创建一个容器。Pause 容器用于接管 Pod 中所有其他容器的网络。每创建一个新的 Pod，Kubelet 都会先创建一个 Pause 容器，然后创建其他容器。
+为 Pod 中的每个容器做如下处理：
+为容器计算一个 hash 值，然后用容器的名字去 Docker 查询对应容器的 hash 值。若查找到容器，且两者 hash 值不同，则停止 Docker 中容器的进程，并停止与之关联的 Pause 容器的进程；若两者相同，则不做任何处理；
+如果容器被终止了，且容器没有指定的 restartPolicy，则不做任何处理；
+调用 Docker Client 下载容器镜像，调用 Docker Client 运行容器。
 
 
 
