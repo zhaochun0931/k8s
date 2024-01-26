@@ -17,7 +17,29 @@ master:
 
 
 kube-apiserver
+
 The API Server (apiserver) is the frontend into the Kubernetes control plane. You can think of the API server as the brains of the cluster. By default, it exposes a RESTful endpoint on port 443
+
+kube-apiserver 支持同时提供 https（默认监听在 6443 端口）和 http API（默认监听在 127.0.0.1 的 8080 端口），其中 http API 是非安全接口，不做任何认证授权机制，不建议生产环境启用。两个接口提供的 REST API 格式相同
+
+
+在实际使用中，通常通过 kubectl 来访问 apiserver，也可以通过 Kubernetes 各个语言的 client 库来访问 apiserver。在使用 kubectl 时，打开调试日志也可以看到每个 API 调用的格式，比如
+kubectl --v=8 get pods
+
+
+可通过 
+kubectl api-versions 
+和 
+kubectl api-resources
+查询 Kubernetes API 支持的 API 版本以及资源对象
+
+
+
+
+
+
+
+
 
 
 
