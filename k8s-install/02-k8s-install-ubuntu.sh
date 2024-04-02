@@ -1,4 +1,4 @@
-# install k8s on ubuntu linux
+# install k8s on Ubuntu linux 22.04
 
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
