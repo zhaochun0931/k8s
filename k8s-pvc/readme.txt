@@ -16,3 +16,7 @@ $ kubetctl get pv
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM            STORAGECLASS   REASON   AGE
 pvc-9b6d0d2b-0c37-4309-b8d2-745ef0395ca0   1Gi        RWO            Delete           Bound    default/my-pvc   hostpath                7m39s
 $
+
+
+# manually delete pvc
+kubectl delete pvc my-pvc
