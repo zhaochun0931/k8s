@@ -18,5 +18,5 @@ pvc-9b6d0d2b-0c37-4309-b8d2-745ef0395ca0   1Gi        RWO            Delete     
 $
 
 
-# manually delete pvc
+# manually delete pvc, it will also automatically delete the pv 
 kubectl delete pvc my-pvc
