@@ -20,3 +20,19 @@ $
 
 # manually delete pvc, it will also automatically delete the pv 
 kubectl delete pvc my-pvc
+
+
+
+
+
+
+
+
+
+
+In Kubernetes, deleting a Pod does not automatically delete the associated PersistentVolumeClaim (PVC). The PVC will remain intact even after the Pod is deleted. If you want to delete the PVC automatically when the Pod is deleted, you can use a feature called "OwnerReferences" in Kubernetes.
+
+By setting up OwnerReferences between the Pod and the PVC, you can establish a parent-child relationship where the PVC is owned by the Pod. When the Pod is deleted, Kubernetes will automatically delete any resources that are owned by it, including the PVC.
+
+
+
