@@ -28,3 +28,6 @@ done
 
 
 kubectl get nodes
+
+
+echo "K8s installation successfully"
