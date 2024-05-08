@@ -1,3 +1,4 @@
+echo "This script will install k8s on ubuntu 22.04"
 
 wget https://raw.githubusercontent.com/zhaochun0931/k8s/main/k8s-install/01-crio-install.sh
 
