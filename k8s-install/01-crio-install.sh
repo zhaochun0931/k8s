@@ -3,6 +3,7 @@
 # https://cri-o.io/
 
 
+# Enable IPv4 packet forwarding, it persist acrosss reboot
 sysctl net.ipv4.ip_forward
 echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 sysctl -p /etc/sysctl.conf
@@ -12,6 +13,7 @@ sysctl -p /etc/sysctl.conf
 modprobe overlay
 modprobe br-netfilter
 
+# persist across reboot
 echo "net.bridge.bridge-nf-call-iptables=1" >> /etc/sysctl.conf
 echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 
