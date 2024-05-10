@@ -14,6 +14,7 @@ modprobe overlay
 modprobe br-netfilter
 
 # persist across reboot
+# Kubernetes requires that packets traversing a network bridge are processed for filtering and for port forwarding.
 echo "net.bridge.bridge-nf-call-iptables=1" >> /etc/sysctl.conf
 echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
 
