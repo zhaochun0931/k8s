@@ -53,6 +53,7 @@ apt install cri-tools
 crictl info
 crio-status config
 
+crio --version
 
 
 # /etc/crictl.yaml
