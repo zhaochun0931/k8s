@@ -48,6 +48,7 @@ rm /etc/cni/net.d/200-loopback.conflist
 cat /etc/crio/crio.conf
 
 
+# must start the crio service before k8s initialization
 systemctl enable crio.service
 systemctl start crio.service
 #systemctl status crio
