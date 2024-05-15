@@ -11,6 +11,7 @@ sysctl -p /etc/sysctl.conf
 
 
 # The br_netfilter Linux kernel module controls networking, and is useful for bridging traffic between network interfaces
+# This module is required to enable transparent masquerading and to facilitate Virtual Extensible LAN (VxLAN) traffic for communication between Kubernetes pods across the cluster
 
 modprobe overlay
 modprobe br-netfilter
