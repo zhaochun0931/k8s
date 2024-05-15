@@ -10,6 +10,8 @@ sysctl -p /etc/sysctl.conf
 
 
 
+# The br_netfilter Linux kernel module controls networking, and is useful for bridging traffic between network interfaces
+
 modprobe overlay
 modprobe br-netfilter
 
