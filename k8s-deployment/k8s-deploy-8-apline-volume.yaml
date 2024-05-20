@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: busybox
+  template:
+    metadata:
+      labels:
+        app: busybox
+    spec:
+      containers:
+      - image: busybox
+        name: busybox
+        volumeMounts:
+        - mountPath: /tmp/
+          name: my-volume
+        tty: true
+        stdin: true
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh","-c", "echo $(date) hello from poststart >> /tmp/1.txt"]
+          preStop:
+            exec:
+              command: ["/bin/sh","-c", "echo $(date) hello from prestop >> /tmp/1.txt"]
+      volumes:
+      - name: my-volume
+        hostPath:
+          path: /root/yyy
