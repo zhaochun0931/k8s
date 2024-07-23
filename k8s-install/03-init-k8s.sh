@@ -19,6 +19,8 @@ kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/
 # /etc/cni/net.d/10-flannel.conflist
 
 
+
+kubectl get nodes
 kubectl get pods -A
 
 
