@@ -25,7 +25,7 @@ kind: Service
 metadata:
   labels:
     app: kubia-demo
-  name: kubia-demo-svc-cip
+  name: kubia-demo-svc-clusterip
 spec:
   ports:
   - port: 8080
@@ -41,7 +41,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: kubia-demo
-  name: kubia-demo-svc-np
+  name: kubia-demo-svc-nodeport
 spec:
   ports:
   - port: 8080
