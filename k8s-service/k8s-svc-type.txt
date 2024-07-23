@@ -1,0 +1,3 @@
+ClusterIP
+
+this is the default mode. Exposes the Service on a cluster-internal IP only. This means the Service is only accessible within the Kubernetes cluster.
