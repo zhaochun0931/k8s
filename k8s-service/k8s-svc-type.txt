@@ -15,3 +15,43 @@ Exposes the Service on each Node's IP at a static port (NodePort). This means th
 LoadBalancer:
 
 Exposes the Service externally using a cloud provider's load balancer. This means the Service gets a cloud provider's load balancer's IP address. This type requires an external load balancer provisioned by the cloud provider.
+
+
+
+ClusterIP with headless
+
+/ # nslookup hello-world-server-0.hello-world-nodes.default.svc.cluster.local
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+Name:	hello-world-server-0.hello-world-nodes.default.svc.cluster.local
+Address: 10.85.0.8
+
+
+/ #
+/ #
+/ #
+/ # nslookup hello-world-server-1.hello-world-nodes.default.svc.cluster.local
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	hello-world-server-1.hello-world-nodes.default.svc.cluster.local
+Address: 10.85.0.9
+
+/ #
+
+
+/ # nslookup hello-world-nodes.default.svc.cluster.local
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+
+Name:	hello-world-nodes.default.svc.cluster.local
+Address: 10.85.0.8
+Name:	hello-world-nodes.default.svc.cluster.local
+Address: 10.85.0.9
+
+/ #
+
+
