@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alpine-deployment
+  template:
+    metadata:
+      labels:
+        app: alpine-deployment
+    spec:
+      containers:
+      - image: arm64v8/alpine 
+        imagePullPolicy: Always
+        name: alpine
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "apk add --update bind-tools; apk add --update curl"]
+        stdin: true
+        tty: true
