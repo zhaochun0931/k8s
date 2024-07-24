@@ -17,9 +17,5 @@ spec:
       - image: arm64v8/alpine 
         imagePullPolicy: Always
         name: alpine
-        lifecycle:
-          postStart:
-            exec:
-              command: ["/bin/sh", "-c", "apk add --update bind-tools; apk add --update curl"]
         stdin: true
         tty: true
