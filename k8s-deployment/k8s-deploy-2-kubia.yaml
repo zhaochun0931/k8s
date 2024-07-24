@@ -51,3 +51,15 @@ spec:
     app: kubia-demo
   type: NodePort
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service-headless
+spec:
+  clusterIP: None  # This makes the service headless
+  selector:
+    app: kubia-demo  # Select pods with label 'app: my-app'
+  ports:
+    - protocol: TCP
+      port: 8080  # Port on which the service will be accessible
