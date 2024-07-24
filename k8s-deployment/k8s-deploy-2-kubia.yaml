@@ -61,5 +61,6 @@ spec:
   selector:
     app: kubia-demo  # Select pods with label 'app: my-app'
   ports:
-    - protocol: TCP
-      port: 8080  # Port on which the service will be accessible
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
