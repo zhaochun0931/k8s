@@ -1,3 +1,37 @@
+# configure the pre-requsite before installing the CRIO
+
+# Enable IPv4 packet forwarding, it persist acrosss reboot
+sysctl net.ipv4.ip_forward
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
+sysctl -p /etc/sysctl.conf
+
+
+
+# The br_netfilter Linux kernel module controls networking, and is useful for bridging traffic between network interfaces
+# This module is required to enable transparent masquerading and to facilitate Virtual Extensible LAN (VxLAN) traffic for communication between Kubernetes pods across the cluster
+
+modprobe overlay
+modprobe br-netfilter
+
+# persist across reboot
+# Kubernetes requires that packets traversing a network bridge are processed for filtering and for port forwarding.
+echo "net.bridge.bridge-nf-call-iptables=1" >> /etc/sysctl.conf
+echo "net.bridge.bridge-nf-call-ip6tables=1" >> /etc/sysctl.conf
+
+
+sysctl -p
+sysctl -p /etc/sysctl.conf
+
+
+
+
+
+
+# begin to install the CRIO
+
+
+
+
 # Install dependencies for adding the repositories
 apt-get update
 apt-get install -y software-properties-common curl
