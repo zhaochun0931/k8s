@@ -15,7 +15,7 @@ echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.i
 
 
 
-# Install the packages
+# Install the CRIO packages
 apt-get update
 apt-get install -y cri-o
 
