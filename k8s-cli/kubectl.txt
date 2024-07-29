@@ -41,3 +41,12 @@ kube-public       Active   3m
 kube-system       Active   3m
 #
 
+
+
+
+
+# k8s cluster log
+/var/log/pods
+
+
+kubectl get apiservice
