@@ -1,3 +1,5 @@
+# this script will install the latst crio 
+
 # configure the pre-requsite before installing the CRIO
 
 # Enable IPv4 packet forwarding, it persist acrosss reboot
