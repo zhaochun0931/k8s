@@ -31,3 +31,13 @@ kubectl get packagerepository
 kubectl describe packagerepository xxx
 
 
+
+
+#kubectl get ns
+NAME              STATUS   AGE
+default           Active   3m
+kube-node-lease   Active   3m
+kube-public       Active   3m
+kube-system       Active   3m
+#
+
