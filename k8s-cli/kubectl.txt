@@ -23,3 +23,11 @@ kubectl rollout history deployment xxx
 kubectl rollout undo deployment xxx --to-revision=12
 kubectl rollout status deployment xxx
 
+
+
+
+
+kubectl get packagerepository
+kubectl describe packagerepository xxx
+
+
