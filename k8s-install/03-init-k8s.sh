@@ -74,3 +74,12 @@ kubeadm token create --print-join-command
 /etc/kubernetes/manifests/kube-scheduler.yaml
 
 
+
+
+
+
+
+kubectl get events
+
+
+
