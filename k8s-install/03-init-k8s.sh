@@ -49,8 +49,6 @@ done
 
 
 
-kubectl describe node
-
 
 
 for i in $(echo $HOSTNAME)
@@ -66,9 +64,7 @@ done
 
 
 
-kubectl cluster-info
 
-kubeadm token create --print-join-command
 
 
 
@@ -84,7 +80,6 @@ kubeadm token create --print-join-command
 
 
 
-kubectl get events
 
 
 
