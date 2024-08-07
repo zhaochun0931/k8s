@@ -50,9 +50,9 @@ apt-get update
 apt-get install -y software-properties-common curl
 apt-get install -y apt-transport-https ca-certificates curl gpg
 
+
+
 # Add the CRI-O repository
-
-
 curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
 echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/ /" |
@@ -66,7 +66,6 @@ echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.i
 apt-get update
 apt-get install -y cri-o
 systemctl start crio.service
-
 crio --version
 
 
