@@ -41,6 +41,11 @@ done
 
 
 
+# Up till now, the k8s cluster is ready
+
+
+
+
 
 
 
