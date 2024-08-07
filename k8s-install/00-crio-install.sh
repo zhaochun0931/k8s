@@ -29,6 +29,17 @@ sysctl -p /etc/sysctl.conf
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 # begin to install the CRIO
 
 
