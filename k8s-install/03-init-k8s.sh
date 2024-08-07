@@ -20,8 +20,7 @@ kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/
 
 
 
-kubectl get nodes
-kubectl get pods -A
+
 
 
 
