@@ -50,3 +50,24 @@ kube-system       Active   3m
 
 
 kubectl get apiservice
+
+
+
+
+
+
+
+
+kubectl describe node
+
+kubectl get events
+kubectl cluster-info
+kubeadm token create --print-join-command
+
+
+
+
+
+
+
+
