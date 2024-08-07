@@ -21,31 +21,32 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 
+
+# install the k8s
 apt-get update
 apt-get install -y kubelet kubeadm kubectl
 apt-mark hold kubelet kubeadm kubectl
-    
-
-
-
-
-
-
 kubeadm version
+systemctl status kubelet
 
-# systemctl status kubelet
 
-# kubeadm config print init-defaults
+
+
+
+kubeadm config print init-defaults
 
 
 echo "alias k=kubectl" >> $HOME/.bash_profile
 source $HOME/.bash_profile
-
 echo 
 
 
 
-# up till now, the k8s is installed successfully
+# Up till now, the k8s is installed successfully
+# Please then initialize the K8s cluster 
+
+
+
 
 
 
