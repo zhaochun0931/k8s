@@ -60,6 +60,11 @@ done
 
 
 
+kubectl get nodes
+
+
+
+
 
 
 
