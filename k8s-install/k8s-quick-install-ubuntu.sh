@@ -1,12 +1,13 @@
 echo "This script will install k8s on ubuntu 22.04"
 
-wget https://raw.githubusercontent.com/zhaochun0931/k8s/main/k8s-install/01-crio-install.sh
 
-
+echo "download the install script"
+wget https://raw.githubusercontent.com/zhaochun0931/k8s/main/k8s-install/00-crio-install.sh
 wget https://raw.githubusercontent.com/zhaochun0931/k8s/main/k8s-install/02-k8s-install-ubuntu.sh
 
-bash 01-crio-install.sh
 
+echo "begin to install the k8s"
+bash 00-crio-install.sh
 bash 02-k8s-install-ubuntu.sh
 
 kubeadm init --pod-network-cidr=10.244.0.0/16
@@ -18,7 +19,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 
-kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+# kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 
 
 for i in $(echo $HOSTNAME)
