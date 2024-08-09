@@ -14,6 +14,9 @@ bash 03-init-k8s.sh
 
 
 
+rm 00-crio-install.sh
+rm 02-k8s-install-ubuntu.sh
+rm 03-init-k8s.sh
 
 
 # kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
