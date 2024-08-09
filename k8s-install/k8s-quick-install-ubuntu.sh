@@ -5,7 +5,6 @@ echo "download the install script"
 wget https://raw.githubusercontent.com/zhaochun0931/k8s/main/k8s-install/00-crio-install.sh
 wget https://raw.githubusercontent.com/zhaochun0931/k8s/main/k8s-install/02-k8s-install-ubuntu.sh
 
-
 echo "begin to install the k8s"
 bash 00-crio-install.sh
 bash 02-k8s-install-ubuntu.sh
