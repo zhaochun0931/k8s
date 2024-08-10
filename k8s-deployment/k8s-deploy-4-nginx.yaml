@@ -28,7 +28,7 @@ metadata:
   name: nginx-deploy
 spec:
   ports:
-  - nodePort: 32552
+  #- nodePort: 32552
     port: 8080
     protocol: TCP
     targetPort: 80
