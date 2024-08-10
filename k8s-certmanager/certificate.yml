@@ -5,6 +5,8 @@ metadata:
 spec:
   secretName: root-secret
   dnsNames:
-  - "*.default.svc.cluster.local"
+    - example.com
+    - www.example.com
+    - "*.default.svc.cluster.local"
   issuerRef:
     name: selfsigned-issuer
