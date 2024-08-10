@@ -45,10 +45,16 @@ These are resources that represent certificate authorities (CAs) able to sign ce
 
 
 kubectl apply -f issuer.yml
-
 kubectl apply -f clusterissuer.yml
-
 kubectl apply -f certificate.yml
+
+
+kubectl get issuer
+kubectl get clusterissuer
+kubectl get secret
+
+
+
 
 
 
