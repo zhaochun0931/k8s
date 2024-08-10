@@ -1,18 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: nginx-deploy
   name: nginx-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-deploy
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-deploy
+        app: nginx
     spec:
       containers:
       - image: nginx
@@ -23,8 +21,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: nginx-deploy
   name: nginx-svc
 spec:
   ports:
@@ -33,5 +29,5 @@ spec:
      protocol: TCP
      targetPort: 80
   selector:
-    app: nginx-deploy
+    app: nginx
   type: NodePort
