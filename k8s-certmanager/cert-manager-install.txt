@@ -24,3 +24,39 @@ $
 You should see the cert-manager, cert-manager-cainjector, and cert-manager-webhook pods in a Running state. The webhook might take a little longer to successfully provision than the others.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+The first thing you'll need to configure after you've installed cert-manager is an Issuer or a ClusterIssuer. 
+These are resources that represent certificate authorities (CAs) able to sign certificates in response to certificate signing requests.
+
+
+
+
+
+
+kubectl apply -f issuer.yml
+
+kubectl apply -f clusterissuer.yml
+
+kubectl apply -f certificate.yml
+
+
+
+
+
+
+
+openssl x509 -in <(kubectl get secret root-secret -o jsonpath='{.data.tls\.crt}' | base64 -d) -text -noout
+
+
+
