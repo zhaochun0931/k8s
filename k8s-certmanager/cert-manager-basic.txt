@@ -6,3 +6,17 @@ These are resources that represent certificate authorities (CAs) able to sign ce
 
 
 
+kubectl apply -f issuer.yml
+
+kubectl apply -f clusterissuer.yml
+
+kubectl apply -f certificate.yml
+
+
+
+
+
+
+
+openssl x509 -in <(kubectl get secret root-secret -o jsonpath='{.data.tls\.crt}' | base64 -d) -text -noout
+
