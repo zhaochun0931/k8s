@@ -1,0 +1,20 @@
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.2/cert-manager.yaml
+
+
+
+
+
+By default, cert-manager will be installed into the cert-manager namespace.
+
+
+Once you've installed cert-manager, you can verify it is deployed correctly by checking the cert-manager namespace for running pods:
+
+
+kubectl get pods --namespace cert-manager
+
+$ kubectl get pods --namespace cert-manager
+NAME                                     READY   STATUS    RESTARTS   AGE
+cert-manager-6fd987499c-bzmv7            1/1     Running   0          22s
+cert-manager-cainjector-5b94bd6f-bdsb8   1/1     Running   0          22s
+cert-manager-webhook-575479ff47-jbwc5    1/1     Running   0          22s
+$
