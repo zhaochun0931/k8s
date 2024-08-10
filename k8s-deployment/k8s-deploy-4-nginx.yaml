@@ -25,7 +25,7 @@ kind: Service
 metadata:
   labels:
     app: nginx-deploy
-  name: nginx-deploy
+  name: nginx-svc
 spec:
   ports:
   #- nodePort: 32552
