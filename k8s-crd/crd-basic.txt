@@ -8,3 +8,11 @@ kubectl apply -f mycrd.yaml
 kubectl get crd
 
 kubectl describe crd mycustomresources.example.com
+
+
+
+
+
+
+kubectl apply -f mycr.yaml
+kubectl get mycustomresources
