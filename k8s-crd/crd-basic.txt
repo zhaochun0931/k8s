@@ -1,1 +1,10 @@
 A CustomResourceDefinition (CRD) defines the name and structure of your custom resource that you want to add to the cluster.
+
+
+
+
+kubectl apply -f mycrd.yaml
+
+kubectl get crd
+
+kubectl describe crd mycustomresources.example.com
