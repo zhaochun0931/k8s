@@ -58,3 +58,11 @@ sudo systemctl restart kubelet
 
 
 
+
+
+kubeadm version
+kubelet --version
+
+
+
+
