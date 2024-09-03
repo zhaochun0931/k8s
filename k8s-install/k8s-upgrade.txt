@@ -1,1 +1,19 @@
+apt info kubelet
+apt info kubectl
+apt info kubeadm
+
+
+
+sudo apt update
+sudo apt-cache madison kubeadm
+
+
+
+
+
+
+
+
+
+
 
