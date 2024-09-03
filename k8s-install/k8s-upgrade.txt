@@ -13,6 +13,16 @@ sudo apt-cache madison kubeadm
 
 
 
+apt-mark showhold
+
+# apt-mark showhold
+kubeadm
+kubectl
+kubelet
+#
+
+
+
 
 
 
