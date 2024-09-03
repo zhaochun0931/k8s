@@ -36,6 +36,11 @@ apt-mark unhold kubeadm
 apt-get update
 apt-get install -y kubeadm='1.29.8-1.1'
 apt-mark hold kubeadm
+kubeadm upgrade plan
+kubeadm upgrade apply v1.29.8
+
+
+
 
 
 
@@ -62,6 +67,7 @@ sudo systemctl restart kubelet
 
 kubeadm version
 kubelet --version
+kubectl version
 
 
 
