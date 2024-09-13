@@ -18,9 +18,23 @@ An entity that is assigned a set of access permissions scoped to the cluster and
 
 
 RoleBinding:
-associates a subject with a role. A subject can be a user, a group, or a ServiceAccount. Role binding is used to grant permissions to a subject. Role and RoleBinding are used to scope a subject to a specific Kubernetes namespace.
+associates a subject with a role. A subject can be a user, a group, or a ServiceAccount. Role binding is used to grant permissions to a subject. 
+Role and RoleBinding are used to scope a subject to a specific Kubernetes namespace.
 
 
 
 ClusterRoleBinding:
-associates a subject with a ClusterRole. A subject can be a user, a group, or a ServiceAccount. A ClusterRoleBinding is used to grant permissions to a subject. ClusterRole and ClusterRoleBinding are used to scope a subject's access to the cluster which includes all the Kubernetes namespaces inside the cluster.
+associates a subject with a ClusterRole. A subject can be a user, a group, or a ServiceAccount. 
+A ClusterRoleBinding is used to grant permissions to a subject. ClusterRole and ClusterRoleBinding are used to scope a subject's access to the cluster which includes all the Kubernetes namespaces inside the cluster.
+
+
+
+Use Role and a RoleBinding to scope security to a single Kubernetes namespace.
+Use Role and a RoleBinding to scope security to several Kubernetes namespaces.
+Use ClusterRole and ClusterRoleBinding to scope security to all namespaces.
+
+
+
+
+
+
