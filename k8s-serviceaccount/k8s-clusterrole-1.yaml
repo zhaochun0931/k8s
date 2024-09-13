@@ -1,15 +1,14 @@
-
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: sa-demo
+  name: mysa
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: cr-demo
+  name: mycr
 rules:
 - apiGroups:
   - ""
@@ -25,24 +24,18 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: crb-demo
+  name: mycrb
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: cr-demo
+  name: mycr
 subjects:
 - kind: ServiceAccount
-  name: sa-demo
+  name: mysa
   namespace: default
 
 
 ---
-# kubectl get sa
-# kubectl get clusterrole
-# kubectl get clusterrolebinding
 
-# kubectl create serviceaccount sa-demo
-# kubectl create clusterrole cr-demo --verb=get,list,watch --resource=pods
-# kubectl create clusterrolebinding crb-demo --clusterrole=cr-demo --serviceaccount=ns-demo:sa-demo
 
 
