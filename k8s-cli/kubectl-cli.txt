@@ -1,3 +1,16 @@
+kubectl api-versions
+kubectl api-resources
+kubectl cluster-info
+
+
+
+
+
+
+
+
+
+
 kubectl rollout restart statefulset xxx -n namespace
 kubectl rollout status statefulset rabbitmq2-server -n rabbitmq-system
 
@@ -61,7 +74,6 @@ kubectl get apiservice
 kubectl describe node
 
 kubectl get events
-kubectl cluster-info
 kubeadm token create --print-join-command
 
 
