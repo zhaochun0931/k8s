@@ -6,3 +6,15 @@ RBAC authorization uses the rbac.authorization.k8s.io API group to drive authori
 
 
 The RBAC API declares four kinds of Kubernetes object: Role, ClusterRole, RoleBinding and ClusterRoleBinding.
+
+
+Role:
+An entity that is assigned a set of access permissions within a namespace. Roles require the assignment of a Kubernetes namespace.
+
+
+Cluster Role:
+An entity that is assigned a set of access permissions scoped to the cluster and all of its Kubernetes namespaces. ClusterRoles do not have a namespace assigned.
+
+
+
+
