@@ -38,3 +38,24 @@ Use ClusterRole and ClusterRoleBinding to scope security to all namespaces.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+An RBAC rule is made up of three elements: the API group, a verb (i.e., an action), and a target (either a resource name(s) or an API URL). 
+The API group identifies which API group to target. The API group “” (empty string) represents the core Kubernetes API.
+
+
