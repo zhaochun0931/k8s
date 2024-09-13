@@ -27,13 +27,3 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: my-user
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  creationTimestamp: "2024-09-13T14:00:43Z"
-  name: my-sa
-  namespace: default
-
----
