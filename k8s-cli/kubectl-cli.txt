@@ -1,7 +1,8 @@
 kubectl api-versions
 kubectl api-resources
 kubectl cluster-info
-
+kubectl get --raw /apis
+kubectl get --raw /apis | jq
 
 
 
