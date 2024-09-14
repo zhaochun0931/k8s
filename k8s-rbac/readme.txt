@@ -38,3 +38,26 @@ pod-with-sa      1/1     Running   0          2m22s
 pod-without-sa   1/1     Running   0          110s
 / #
 
+
+
+
+
+
+
+
+
+
+
+
+kubectl run pod-without-sa --image=arm64v8/alpine --command sleep -- 24h
+
+
+
+
+
+
+
+
+
+
+
