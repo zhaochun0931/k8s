@@ -43,3 +43,21 @@ Pod theory summary
 
 
 Your Pod has been scheduled on a healthy node in the cluster and is being monitored by the local kubelet process on the node. The kubelet process is the Kubernetes agent running on the node.
+
+
+
+
+
+
+
+
+
+
+
+
+
+kubectl run alpine --image=arm64v8/alpine --command -- sleep 24h
+
+
+
+kubectl run busybox --image=arm64v8/busybox --command -- sleep 1h
