@@ -1,5 +1,11 @@
 The kubelet uses liveness probes to know when to restart a container. 
 
+
+
+
 The kubelet uses readiness probes to know when a container is ready to start accepting traffic. A Pod is considered ready when all of its containers are ready.
 
-The kubelet uses startup probes to know when a container application has started. 
+
+
+
+The kubelet uses startup probes to know when a container application has started. If such a probe is configured, liveness and readiness probes do not start until it succeeds, making sure those probes don't interfere with the application startup.
