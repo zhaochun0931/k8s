@@ -19,3 +19,4 @@ spec:
         name: alpine
         stdin: true
         tty: true
+      serviceAccountName: default
