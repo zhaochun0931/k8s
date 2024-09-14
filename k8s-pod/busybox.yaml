@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+  namespace: default
+spec:
+  containers:
+  - command:
+    - sleep
+    - 1h
+    image: arm64v8/busybox
+    name: busybox
