@@ -46,3 +46,6 @@ The persistentVolumeClaimRetentionPolicy in a StatefulSet configuration determin
 
 
 
+In this example, persistentVolumeClaimRetentionPolicy is set to Retain for both whenDeleted and whenScaled, which means the PVCs are retained when the StatefulSet is deleted or scaled down.
+
+
