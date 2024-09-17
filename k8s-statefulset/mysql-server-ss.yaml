@@ -12,6 +12,9 @@ kind: StatefulSet
 metadata:
   name: mysql-ss
 spec:
+  # persistentVolumeClaimRetentionPolicy:
+  #   whenDeleted: Retain
+  #   whenScaled: Retain
   selector:
     matchLabels:
       app: mysql
