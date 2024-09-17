@@ -5,11 +5,7 @@ metadata:
 type: opaque
 stringData:
   MYSQL_ROOT_PASSWORD: password
-
-
-
 ---
-
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
