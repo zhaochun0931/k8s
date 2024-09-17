@@ -1,5 +1,3 @@
-
-
 https://loft.sh/blog/kubernetes-statefulset-examples-and-best-practices/
 
 
