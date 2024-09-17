@@ -20,7 +20,7 @@ spec:
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh", "-c", "apt update && apt install -y mysql-client netcat"]
+              command: ["/bin/bash", "-c", "apt update && apt install -y mysql-client"]
         name: mysql-client
         stdin: true
         tty: true
