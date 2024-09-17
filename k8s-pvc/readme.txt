@@ -44,8 +44,14 @@ By setting up OwnerReferences between the Pod and the PVC, you can establish a p
 
 The persistentVolumeClaimRetentionPolicy in a StatefulSet configuration determines what happens to the PVCs when the StatefulSet is deleted. By default, the policy is set to Retain, meaning that the PVCs will not be deleted when the StatefulSet is deleted. Instead, they will remain in the cluster, allowing for data recovery or re-use.
 
-
+  # persistentVolumeClaimRetentionPolicy:
+  #   whenDeleted: Retain
+  #   whenScaled: Retain
 
 In this example, persistentVolumeClaimRetentionPolicy is set to Retain for both whenDeleted and whenScaled, which means the PVCs are retained when the StatefulSet is deleted or scaled down.
+
+
+
+
 
 
