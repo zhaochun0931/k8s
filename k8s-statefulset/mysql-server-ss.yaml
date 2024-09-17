@@ -15,6 +15,9 @@ spec:
   # persistentVolumeClaimRetentionPolicy:
   #   whenDeleted: Retain
   #   whenScaled: Retain
+  # persistentVolumeClaimRetentionPolicy:
+  #    whenDeleted: Delete
+  #    whenScaled: Delete
   selector:
     matchLabels:
       app: mysql
