@@ -17,7 +17,7 @@ spec:
       app: mysql
   serviceName: "mysql"
   replicas: 3
-  podManagementPolicy: OrderedReady
+  #podManagementPolicy: OrderedReady
   #podManagementPolicy: Parallel
   template:
     metadata:
