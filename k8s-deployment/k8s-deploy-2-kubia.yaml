@@ -1,18 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: kubia-demo
-  name: kubia-demo
+  name: kubia
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: kubia-demo
+      app: kubia
   template:
     metadata:
       labels:
-        app: kubia-demo
+        app: kubia
     spec:
       containers:
       - image: luksa/kubia:latest
@@ -23,43 +21,38 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: kubia-demo
-  name: kubia-demo-svc-clusterip
+  name: kubia-svc-clusterip
 spec:
   ports:
   - port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    app: kubia-demo
+    app: kubia
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
-  labels:
-    app: kubia-demo
-  name: kubia-demo-svc-nodeport
+  name: kubia-svc-nodeport
 spec:
   ports:
   - port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    app: kubia-demo
+    app: kubia
   type: NodePort
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service-headless
+  name: kubia-svc-headless
 spec:
   clusterIP: None  # This makes the service headless
   selector:
-    app: kubia-demo  # Select pods with label 'app: my-app'
+    app: kubia  # Select pods with label 'app: my-app'
   ports:
   - port: 8080
     protocol: TCP
