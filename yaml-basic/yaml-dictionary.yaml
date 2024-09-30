@@ -1,3 +1,9 @@
 student:
   name: xiaoming
   age: 10
+
+---
+person:
+  name: John Doe
+  age: 30
+  email: john.doe@example.com
