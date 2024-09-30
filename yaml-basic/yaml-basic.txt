@@ -1,0 +1,2 @@
+In YAML, a dictionary (or map) is a data structure that represents a collection of key-value pairs. 
+Each key is unique within the dictionary and is followed by a colon, with the associated value following the colon.
