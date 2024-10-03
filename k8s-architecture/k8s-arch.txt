@@ -22,5 +22,11 @@ Node Components
 
 
 
+Kubernetes Services
+|--- ClusterIP
+|--- NodePort
+|--- LoadBalancer
+|--- ExternalName
+
 
 
