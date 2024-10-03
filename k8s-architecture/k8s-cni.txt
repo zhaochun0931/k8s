@@ -7,3 +7,15 @@ Underlay networks work at the physical level and comprise switches and routers.
 
 Once you’ve specified the type of network configuration type, the container runtime defines the network that containers join. 
 The runtime adds the interface to the container namespace via a call to the CNI plugin and allocates the connected subnetwork routes via calls to the IP Address Management (IPAM) plugin.
+
+
+
+
+
+
+ Network Models Used in CNI
+|--- encapsulated network
+|--- unencapsulated network
+
+
+CNI networks can be implemented using an encapsulated or unencapsulated network model. XLAN is an example of an encapsulated model, while Border Gateway Protocol (BGP) is an example of an unencapsulated model.
