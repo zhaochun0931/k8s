@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
       - name: myweb
-        # image: nginx
         image: luksa/kubia
         ports:
         - containerPort: 8080
@@ -22,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-web-svc
+  name: my-rc-svc
 spec:
   ports:
   - name: tcp
