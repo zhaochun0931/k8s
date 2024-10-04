@@ -1,0 +1,1 @@
+kubectl expose rc my-rc --name my-rc-svc --type=NodePort
