@@ -14,11 +14,6 @@ spec:
     spec:
       containers:
       - name: myweb
-        # image: nginx
         image: luksa/kubia
         ports:
         - containerPort: 8080
----
-
-
-# kubectl expose rc my-rc --name my-rc-svc --type=NodePort
