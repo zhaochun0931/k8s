@@ -15,8 +15,6 @@ spec:
       containers:
       - image: luksa/kubia:latest
         name: kubia
-
-
 ---
 apiVersion: v1
 kind: Service
@@ -29,7 +27,6 @@ spec:
     targetPort: 8080
   selector:
     app: kubia
-
 ---
 apiVersion: v1
 kind: Service
@@ -43,7 +40,6 @@ spec:
   selector:
     app: kubia
   type: NodePort
-
 ---
 apiVersion: v1
 kind: Service
