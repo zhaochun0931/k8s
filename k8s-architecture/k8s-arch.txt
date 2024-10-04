@@ -31,6 +31,23 @@ The kubelet is the primary "node agent" that runs on each node. The kubelet work
 
 
 
+
+
+Pod controller
+--- ReplicationController
+--- ReplicaSet
+--- Deployment
+--- StatefulSet
+--- DaemonSet
+--- Job
+--- CronJob
+
+
+
+
+
+
+
 Kubernetes Services
 |--- ClusterIP
 |--- NodePort
