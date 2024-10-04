@@ -17,6 +17,3 @@ spec:
         image: luksa/kubia:latest
         ports:
           - containerPort: 8080
-
-
-# kubectl expose rs my-rs --name my-rs-svc --type=NodePort
