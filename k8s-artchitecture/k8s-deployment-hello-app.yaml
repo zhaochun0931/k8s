@@ -1,18 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: hello-server
-  name: hello-server
+  name: hello-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: hello-server
+      app: hello-app
   template:
     metadata:
       labels:
-        app: hello-server
+        app: hello-app
     spec:
       containers:
       - image: gcr.io/google-samples/hello-app:1.0
@@ -22,25 +20,20 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: hello-server
-  name: hello-server-svc-np
+  name: hello-app-svc-np
 spec:
   ports:
-  - nodePort: 31248
-    port: 80
+  - port: 80
     protocol: TCP
     targetPort: 8080
   selector:
-    app: hello-server
+    app: hello-app
   type: NodePort
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: hello-server
-  name: hello-server-svc-cip
+  name: hello-app-svc-cip
   namespace: default
 spec:
   ports:
