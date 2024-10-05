@@ -63,3 +63,30 @@ spec:
   - port: 3306
   selector:
     app: mysql
+---
+# Create a Client for MySQL
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-client
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-client
+  template:
+    metadata:
+      labels:
+        app: mysql-client
+    spec:
+      containers:
+      - image: ubuntu
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/bash", "-c", "apt update && apt install -y mysql-client"]
+        name: mysql-client
+        stdin: true
+        tty: true
