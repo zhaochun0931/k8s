@@ -1,20 +1,3 @@
-ClusterIP:
-
-this is the default mode. Exposes the Service on a cluster-internal IP only. This means the Service is only accessible within the Kubernetes cluster.
-
-
-
-NodePort:
-
-Exposes the Service on each Node's IP at a static port (NodePort). This means the Service is accessible from outside the cluster, by requesting <NodeIP>:<NodePort>.
-
-
-
-
-
-LoadBalancer:
-
-Exposes the Service externally using a cloud provider's load balancer. This means the Service gets a cloud provider's load balancer's IP address. This type requires an external load balancer provisioned by the cloud provider.
 
 
 
