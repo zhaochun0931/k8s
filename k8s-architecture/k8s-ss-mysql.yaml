@@ -5,7 +5,6 @@ metadata:
 type: opaque
 stringData:
   MYSQL_ROOT_PASSWORD: password
-
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -54,8 +53,6 @@ spec:
       resources:
         requests:
           storage: 5Gi
-
-
 ---
 apiVersion: v1
 kind: Service
