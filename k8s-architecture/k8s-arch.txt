@@ -58,7 +58,12 @@ Kubernetes Services
 The ClusterIP Service is good for internal-only applications that support other workloads within the cluster. ClusterIP is used by default if you don't explicitly specify a type for a Service.
 
 
-NodePort creates a port mapping on the underlying node that allows the application to be accessed directly with the node IP address and port.
+NodePort creates a port mapping on the underlying node that allows the application to be accessed directly with the node IP address and port. This means the Service is accessible from outside the cluster, by requesting <NodeIP>:<NodePort>.
+
+
+
+
+
 
 
 
