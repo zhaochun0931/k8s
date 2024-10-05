@@ -63,5 +63,7 @@ NodePort creates a port mapping on the underlying node that allows the applicati
 
 
 
+Services operate at Layer 4 (TCP/UDP), while Ingress works at Layer 7 (HTTP/S).
+
 
 
