@@ -33,4 +33,5 @@ $
 
 
 
-kubectl create configmap myconfigmap --from-literal=student_name=xiaoming --from-literal=student_age=10 --dry-run=client -o yaml
+kubectl create configmap my-configmap --from-literal=name=xiaoming --from-literal=age=10
+kubectl create configmap my-configmap --from-literal=name=xiaoming --from-literal=age=10 --dry-run=client -o yaml
