@@ -1,8 +1,32 @@
 apiVersion: v1
-data:
-  age: "10"
-  name: xiaoming
 kind: ConfigMap
 metadata:
   name: my-configmap
   namespace: default
+data:
+  age: "10"
+  name: xiaoming
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-alpine
+  namespace: default
+spec:
+  containers:
+  - args:
+    - sleep
+    - "3600"
+    image: alpine
+    name: my-alpine
+    env:
+    - name: student_name
+      valueFrom:
+        configMapKeyRef:
+          name: my-configmap
+          key: name
+    - name: student_age
+      valueFrom:
+        configMapKeyRef:
+          name: my-configmap
+          key: age
