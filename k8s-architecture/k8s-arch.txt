@@ -46,6 +46,18 @@ Pod controller
 
 
 
+--- stateful application
+--- stateless application
+
+Stateful applications maintain some form of state or data across interactions. They often require persistent storage. Deployed using StatefulSets
+
+Stateless applications do not retain any information about their previous interactions. Each request is treated independently.  Typically deployed using Deployments or ReplicaSets.
+
+
+
+
+
+
 
 
 Kubernetes Services
