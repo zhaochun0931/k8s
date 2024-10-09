@@ -1,0 +1,26 @@
+A StatefulSet is a Kubernetes resource used to manage the deployment and scaling of a set of pods. Unlike Deployments, StatefulSets are used for applications that require stable identities and persistent storage.
+
+--- StatefulSets can be associated with persistent storage using PersistentVolumeClaims (PVCs). Each pod gets its own storage that persists beyond the lifecycle of the pod.
+--- Pods are created, deleted, or scaled in a defined order. For example, when scaling up, pods are created in ascending order (e.g., web-0 before web-1), and when scaling down, pods are terminated in reverse order.
+--- StatefulSets allow you to specify the pod management policy:
+OrderedReady (default): Pods are started in order and only when the previous pod is ready.
+Parallel: All pods are started in parallel, which is faster but may not be suitable for applications needing order.
+
+
+
+
+
+Components of a StatefulSet
+
+--- Spec: Defines the desired state of the StatefulSet, including:
+
+Service Name: Name of the headless service used for stable network identity.
+Replicas: Number of desired pods.
+Selector: Label selector to identify the pods managed by the StatefulSet.
+Template: Pod template defining the container specifications.
+VolumeClaimTemplates: Specifies the PVCs to be created for each pod.
+
+---PersistentVolumeClaims: Automatically created PVCs for each pod based on the volumeClaimTemplates section.
+
+--- Headless Service: A service without a cluster IP, enabling direct access to the individual pods. This is crucial for maintaining stable network identities.
+
