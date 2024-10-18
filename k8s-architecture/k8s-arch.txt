@@ -12,6 +12,25 @@ Control Plane Components
 
 
 
+/etc/kubernetes
+/etc/kubernetes/pki
+
+
+
+
+
+# ls -al /etc/kubernetes/
+total 44
+drwxrwxr-x   4 root root 4096 Oct 18 14:08 .
+drwxr-xr-x 101 root root 4096 Oct 18 14:07 ..
+-rw-------   1 root root 5640 Oct 18 14:08 admin.conf
+-rw-------   1 root root 5672 Oct 18 14:08 controller-manager.conf
+-rw-------   1 root root 1960 Oct 18 14:08 kubelet.conf
+drwxrwxr-x   2 root root 4096 Oct 18 14:08 manifests
+drwxr-xr-x   3 root root 4096 Oct 18 14:08 pki
+-rw-------   1 root root 5624 Oct 18 14:08 scheduler.conf
+#
+
 
 
 Node Components 
