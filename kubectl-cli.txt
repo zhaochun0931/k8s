@@ -116,6 +116,10 @@ kubectl logs -l app.kubernetes.io/instance=cert-manager -n cert-manager
 
 
 
+kubectl patch <resource-type> <resource-name> --type=json -p='[{"op": "remove", "path": "/metadata/finalizers"}]'
+kubectl patch users user-example -n rabbitmq-system --type=json -p='[{"op": "remove", "path": "/metadata/finalizers"}]'
+
+
 
 
 
