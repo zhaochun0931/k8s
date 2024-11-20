@@ -5,6 +5,14 @@ kubectl get --raw /apis
 kubectl get --raw /apis | jq
 
 
+kubectl get all -A
+
+
+
+
+
+
+
 
 
 
@@ -83,6 +91,26 @@ kubeadm token create --print-join-command
 
 kubectl get nodes
 kubectl get pods -A
+
+
+
+
+
+kubectl get pods --show-labels -A
+kubectl get pods -l <label-key>=<label-value>
+
+
+kubectl logs -l <label-key>=<label-value> -n namespace
+
+
+
+
+
+kubectl logs -l app.kubernetes.io/instance=cert-manager -n cert-manager
+
+kubectl logs -l app.kubernetes.io/instance=cert-manager -n cert-manager
+
+
 
 
 
