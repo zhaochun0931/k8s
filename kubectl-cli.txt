@@ -8,6 +8,14 @@ kubectl get --raw /apis | jq
 kubectl get all -A
 
 
+# namespace
+# In a Kubernetes cluster, namespaces provide a way to partition resources and isolate workloads. 
+# They act as virtual clusters within a physical cluster, enabling multiple teams or projects to run independently. 
+kubectl config set-context --current --namespace=<namespace-name>
+kubectl config set-context --current --namespace=rabbitmq-system
+kubectl config set-context --current --namespace=default
+
+
 
 
 
