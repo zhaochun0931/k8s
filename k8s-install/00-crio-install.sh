@@ -75,6 +75,7 @@ crio --version
 
 
 
+journalctl -u kubelet
 
 
 
