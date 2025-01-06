@@ -21,6 +21,9 @@ kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/
 
 
 
+kubectl get nodes
+
+
 echo "K8s installation is successfully and ready"
 
 
