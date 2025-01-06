@@ -16,7 +16,7 @@ bash 03-init-k8s.sh
 
 
 
-# kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 
 
 
