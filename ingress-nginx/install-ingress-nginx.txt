@@ -7,7 +7,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 kubectl get pods --namespace=ingress-nginx
 
-
+kubectl get all -n ingress-nginx
 
 
 
