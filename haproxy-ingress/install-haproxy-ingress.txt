@@ -11,6 +11,13 @@ helm install haproxy-kubernetes-ingress haproxytech/kubernetes-ingress \
 
 
 # uninstall
+
+helm uninstall -n haproxy-controller haproxy-kubernetes-ingress
+
+
+
+
+
 kubectl delete deployment.apps/haproxy-kubernetes-ingress -n haproxy-controller
 kubectl delete service/haproxy-kubernetes-ingress -n haproxy-controller
 
