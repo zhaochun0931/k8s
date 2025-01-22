@@ -19,3 +19,7 @@ kubectl get pods --namespace=ingress-nginx
 
 
 kubectl edit deployment.apps/ingress-nginx-controller -n ingress-nginx
+
+      - args:
+        - /nginx-ingress-controller
+        - --tcp-services-configmap=ingress-nginx/tcp-services
