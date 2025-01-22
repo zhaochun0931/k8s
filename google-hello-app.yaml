@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloweb1
+  name: helloapp1
 spec:
   selector:
     matchLabels:
-      app: hello1
+      app: helloapp1
   template:
     metadata:
       labels:
-        app: hello1
+        app: helloapp1
     spec:
       containers:
       - name: hello-app
@@ -24,15 +24,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloweb2
+  name: helloapp2
 spec:
   selector:
     matchLabels:
-      app: hello2
+      app: helloapp2
   template:
     metadata:
       labels:
-        app: hello2
+        app: helloapp2
     spec:
       containers:
       - name: hello-app
