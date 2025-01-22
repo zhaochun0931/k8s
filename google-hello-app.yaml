@@ -4,6 +4,7 @@ metadata:
   name: helloapp1
   namespace: default
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: helloapp1
@@ -26,6 +27,7 @@ kind: Deployment
 metadata:
   name: helloapp2
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: helloapp2
