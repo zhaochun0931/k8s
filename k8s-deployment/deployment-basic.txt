@@ -49,3 +49,8 @@ ReplicaSets implement a background reconciliation loop that is constantly monito
 If it doesn’t, it wakes up the control-plane and Kubernetes takes steps to fix the situation.
 
 To be crystal clear - Kubernetes is constantly striving for harmony between current state and desired state!
+
+
+
+
+kubectl expose deployment helloapp1 --target-port=8080 --type=NodePort
