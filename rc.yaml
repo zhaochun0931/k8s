@@ -8,7 +8,6 @@ spec:
     app: my-app
   template:
     metadata:
-      name: my-app
       labels:
         app: my-app
     spec:
