@@ -5,15 +5,15 @@ metadata:
 spec:
   replicas: 3
   selector:
-    app: myweb
+    app: my-app
   template:
     metadata:
-      name: myweb
+      name: my-app
       labels:
-        app: myweb
+        app: my-app
     spec:
       containers:
-      - name: myweb
+      - name: my-app
         image: luksa/kubia
         ports:
         - containerPort: 8080
