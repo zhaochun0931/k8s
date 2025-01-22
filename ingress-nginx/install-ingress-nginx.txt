@@ -17,9 +17,28 @@ kubectl get pods --namespace=ingress-nginx
 
 
 
+# enable tcp
+
+https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/
+
+
+
+kubectl apply -f configmap.yaml
 
 kubectl edit deployment.apps/ingress-nginx-controller -n ingress-nginx
 
       - args:
         - /nginx-ingress-controller
         - --tcp-services-configmap=ingress-nginx/tcp-services
+
+
+
+
+kubectl edit service/ingress-nginx-controller -n ingress-nginx
+
+  ports:
+  - appProtocol: amqp
+    name: amqp
+    port: 5672
+    protocol: TCP
+    targetPort: 5672
