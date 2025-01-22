@@ -18,7 +18,7 @@ spec:
         - containerPort: 8080
         resources:
           requests:
-            cpu: 200m
+            cpu: 100m
 ---
 
 apiVersion: apps/v1
@@ -41,4 +41,4 @@ spec:
         - containerPort: 8080
         resources:
           requests:
-            cpu: 200m
+            cpu: 100m
