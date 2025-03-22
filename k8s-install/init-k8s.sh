@@ -18,7 +18,6 @@ kubectl version
 
 
 
-# it will generate below file 
 
 
 
