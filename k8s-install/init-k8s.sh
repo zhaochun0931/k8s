@@ -18,21 +18,6 @@ kubectl version
 
 
 
-
-# To start using your cluster, you need to run the following as a regular user:
-
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-
-
-  
-# only install network plugin in the master node
-# kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
-
-
-
 # it will generate below file 
 # /etc/cni/net.d/10-flannel.conflist
 
@@ -59,30 +44,6 @@ done
 
 
 # Up till now, the k8s cluster is ready
-
-
-
-
-
-
-
-
-
-for i in $(echo $HOSTNAME)
-do
-kubectl describe node $i
-done
-
-
-
-
-kubectl get nodes
-
-
-
-
-
-
 
 
 
