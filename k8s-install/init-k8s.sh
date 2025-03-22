@@ -19,7 +19,6 @@ kubectl version
 
 
 # it will generate below file 
-# /etc/cni/net.d/10-flannel.conflist
 
 
 
