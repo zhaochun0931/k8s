@@ -1,3 +1,7 @@
+kubeadm config print init-defaults
+
+
+
 kubectl api-versions
 kubectl api-resources
 kubectl cluster-info
