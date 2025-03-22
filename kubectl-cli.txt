@@ -88,6 +88,24 @@ kubectl get apiservice
 
 
 
+journalctl -u kubelet
+
+
+
+
+kubectl expose rc replicationcontroller_name --name my-rc-svc --type=NodePort
+kubectl expose rs replicateset_name --name my-rs-svc --type=NodePort
+
+
+
+
+kubectl label pod kubia-545f5f4598-98gch app=kubia --overwrite
+
+
+
+
+
+
 
 
 
