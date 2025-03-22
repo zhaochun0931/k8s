@@ -1,6 +1,22 @@
-# initialize the k8s cluster
-
+# you must specify the --pod-network-cidr option when using the flannel otherwise it will not create the file  /run/flannel/subnet.env
 kubeadm init --pod-network-cidr=10.244.0.0/16
+
+
+
+
+
+# you can just use the following command when using the calico
+kubeadm init
+
+
+kubelet --version
+
+kubeadm version
+
+kubectl version
+
+
+
 
 
 # To start using your cluster, you need to run the following as a regular user:
