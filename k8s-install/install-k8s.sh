@@ -1,3 +1,8 @@
+# install container runtime
+
+# install kubeadm, kubelet, kubctl
+
+
 # you must specify the --pod-network-cidr option when using the flannel otherwise it will not create the file  /run/flannel/subnet.env
 kubeadm init --pod-network-cidr=10.244.0.0/16
 
@@ -7,6 +12,13 @@ kubeadm init --pod-network-cidr=10.244.0.0/16
 
 # you can just use the following command when using the calico
 kubeadm init
+
+
+
+
+
+
+
 
 
 kubelet --version
@@ -39,6 +51,9 @@ kubectl taint nodes $i node-role.kubernetes.io/control-plane:NoSchedule-
 done
 
 
+
+
+# install the CNI
 
 
 # Up till now, the k8s cluster is ready
