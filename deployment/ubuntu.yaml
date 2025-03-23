@@ -19,5 +19,3 @@ spec:
         name: ubuntu
         stdin: true
         tty: true
-
----
