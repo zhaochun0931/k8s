@@ -26,6 +26,25 @@ kubectl get --raw /apis | jq
 kubectl get all -A
 
 
+
+# Lists pods, services, deployments, replica sets, and stateful sets.
+
+kubectl get all --all-namespaces
+
+
+
+
+
+# The 'kubectl get all' command does NOT include ConfigMaps, Secrets, Ingress, CRDs, etc. To list everything, use:
+
+kubectl api-resources --verbs=list -o name
+kubectl get xxx
+
+
+
+
+
+
 # namespace
 # In a Kubernetes cluster, namespaces provide a way to partition resources and isolate workloads. 
 # They act as virtual clusters within a physical cluster, enabling multiple teams or projects to run independently. 
