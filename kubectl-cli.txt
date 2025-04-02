@@ -3,7 +3,15 @@ kubeadm config print init-defaults
 
 
 kubectl api-versions
+
 kubectl api-resources
+
+kubectl api-resources --sort-by=name
+
+
+
+
+
 kubectl cluster-info
 kubectl get --raw /apis
 kubectl get --raw /apis | jq
