@@ -12,6 +12,12 @@ kubectl api-resources --sort-by=name
 kubectl api-resources --sort-by=kind
 
 
+
+
+kubectl get crds
+
+
+
 kubectl cluster-info
 kubectl get --raw /apis
 kubectl get --raw /apis | jq
