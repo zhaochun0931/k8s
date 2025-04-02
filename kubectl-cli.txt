@@ -9,7 +9,7 @@ kubectl api-resources
 kubectl api-resources --sort-by=name
 
 
-
+kubectl api-resources --sort-by=kind
 
 
 kubectl cluster-info
