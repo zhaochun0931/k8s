@@ -9,7 +9,8 @@ docker run -v /host/path:/container/path my-image
 
 
 
-# the docker will create the mydata in the host OS if it does not exist
+# this command will create a new directory called mydata in the current directory if it does not exist and mount it to the /tmp/mydata in the container
+
 docker run -it -v ./mydata:/tmp/mydata alpine
 
 docker run -it -v $(pwd)/mydata:/tmp/mydata alpine
