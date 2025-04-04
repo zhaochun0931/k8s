@@ -10,6 +10,19 @@ docker run -v /host/path:/container/path my-image
 
 
 
+docker run -it -v ./mydata:/tmp/mydata alpine
+
+docker run -it -v $(pwd)/mydata:/tmp/mydata alpine
+
+
+
+
+
+
+
+
+
+
 
 --mount (New Style)
 
