@@ -1,3 +1,4 @@
 {
-    "registry-mirrors": ["<镜像加速器地址>"]
+    "registry-mirrors": ["https://docker.mirrors.sjtug.sjtu.edu.cn"]
+
 }            
