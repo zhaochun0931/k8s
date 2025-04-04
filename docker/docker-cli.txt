@@ -18,9 +18,6 @@ docker cp container:src_path dest_path
 
 
 docker info
-
-
-
 docker version
 docker network list
 
@@ -95,8 +92,7 @@ docker rmi IMAGE_NAME -f
 
 
 
-docker version
-docker info
+
 
 
 
