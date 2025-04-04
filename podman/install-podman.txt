@@ -1,0 +1,21 @@
+apt-get update
+apt-get -y install podman
+podman -v
+
+
+
+
+
+
+
+
+
+
+#first container
+podman run -p 8888:80 docker.io/nginx
+curl localhost:8888
+
+
+
+podman login registry.pivotal.io --username='username' --password='password'
+podman pull registry.pivotal.io/rabbitmq/vmware-rabbitmq-oci:1.5.3
