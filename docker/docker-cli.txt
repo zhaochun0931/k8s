@@ -102,3 +102,11 @@ docker rmi IMAGE_NAME -f
 
 sudo docker run hello-world
 
+
+
+
+
+docker build
+This is the original and most commonly used command.
+
+It’s a shortcut for docker image build.
