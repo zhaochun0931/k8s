@@ -10,8 +10,11 @@ docker cp container:src_path dest_path
 
 
 
+/etc/docker/daemon.json
 
-# docker mirror
+
+
+# docker registory mirror
 
 
 "registry-mirrors": ["https://docker.mirrors.sjtug.sjtu.edu.cn"]
