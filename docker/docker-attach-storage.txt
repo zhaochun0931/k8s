@@ -1,0 +1,18 @@
+In Docker, both --mount and -v (or --volume) are used to attach storage to containers, but they differ in syntax, flexibility, and clarity.
+
+
+-v or --volume (Old Style)
+  
+This is the older, shorter syntax.
+  
+docker run -v /host/path:/container/path my-image
+
+
+
+
+
+--mount (New Style)
+
+docker run --mount type=bind,source=/host/path,target=/container/path my-image
+
+
