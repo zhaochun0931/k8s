@@ -1,3 +1,12 @@
 docker build -t myweb .
 
 docker image build -t myweb .
+
+
+
+
+
+# push the local image to docker hub
+docker login
+docker tag myweb xman1111/myweb
+docker push xman1111/myweb
