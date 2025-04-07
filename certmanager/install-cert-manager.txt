@@ -52,6 +52,7 @@ kubectl apply -f certificate.yml
 kubectl get issuer
 kubectl get clusterissuer
 kubectl get secret
+kubectl get cert
 
 
 
