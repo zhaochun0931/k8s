@@ -37,6 +37,10 @@ These are resources that represent certificate authorities (CAs) able to sign ce
 
 
 
+Create a Self-Signed Issuer
+Create a Certificate Resource
+
+
 
 
 
