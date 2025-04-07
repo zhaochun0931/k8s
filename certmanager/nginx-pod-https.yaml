@@ -19,7 +19,7 @@ spec:
   volumes:
     - name: tls-certs
       secret:
-        secretName: nginx-tls-secret  # Name of the secret containing the TLS certificate
+        secretName: my-tls-secret  # Name of the secret containing the TLS certificate
     - name: nginx-config
       configMap:
         name: nginx-https-config  # ConfigMap containing the Nginx SSL configuration
