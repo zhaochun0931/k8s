@@ -9,4 +9,4 @@ spec:
     - www.example.com
     - "*.default.svc.cluster.local"
   issuerRef:
-    name: selfsigned-issuer
+    name: my-selfsigned-issuer
