@@ -2,9 +2,8 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: my-selfsigned-ca
-  namespace: test
 spec:
-  secretName: root-secret
+  secretName: my-tls-secret
   dnsNames:
     - example.com
     - www.example.com
