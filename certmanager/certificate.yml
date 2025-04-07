@@ -5,6 +5,7 @@ metadata:
 spec:
   secretName: my-tls-secret
   dnsNames:
+    - localhost
     - example.com
     - www.example.com
     - "*.default.svc.cluster.local"
