@@ -37,3 +37,39 @@ mkdir mydata
 docker run -it --mount type=bind,source=./mydata,target=/tmp/mydata alpine
 
 docker run -it --mount type=bind,source=$(pwd)/mydata,target=/tmp/mydata alpine
+
+
+
+
+
+
+
+
+
+
+Bind Mounts and Named Volumes are both used to persist and share data with Docker containers, but they behave quite differently.
+
+
+
+Bind Mount
+
+You link a specific path on your host machine to a path inside the container. Visible and editable directly on your host at ./data
+
+
+volumes:
+  - ./data:/app/data
+
+
+
+
+
+Named Volume
+
+Docker manages the volume and stores it in its own directory under /var/lib/docker/volumes/....
+Stored in Docker's internal volume storage — not easily accessible on the host.
+
+
+
+
+volumes:
+  - my_volume:/app/data
