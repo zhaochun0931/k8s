@@ -1,1 +1,0 @@
-The persistentVolumeReclaimPolicy field is actually not specified within volumeClaimTemplates but rather in the PersistentVolume (PV) specification itself. Kubernetes StatefulSets manage PersistentVolumeClaims (PVCs) through volumeClaimTemplates, but the lifecycle and policies related to the PersistentVolumes are managed separately.
