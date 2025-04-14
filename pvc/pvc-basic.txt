@@ -40,6 +40,9 @@ By setting up OwnerReferences between the Pod and the PVC, you can establish a p
 
 
 
+The persistentVolumeReclaimPolicy field is actually not specified within volumeClaimTemplates but rather in the PersistentVolume (PV) specification itself. Kubernetes StatefulSets manage PersistentVolumeClaims (PVCs) through volumeClaimTemplates, but the lifecycle and policies related to the PersistentVolumes are managed separately.
+
+
 
 
 The persistentVolumeClaimRetentionPolicy in a StatefulSet configuration determines what happens to the PVCs when the StatefulSet is deleted. By default, the policy is set to Retain, meaning that the PVCs will not be deleted when the StatefulSet is deleted. Instead, they will remain in the cluster, allowing for data recovery or re-use.
