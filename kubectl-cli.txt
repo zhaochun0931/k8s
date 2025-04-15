@@ -14,6 +14,17 @@ kubectl api-resources --sort-by=kind
 
 
 
+kubelet --version
+
+kubeadm version
+
+kubectl version
+
+
+
+
+
+
 kubectl get crds
 
 
