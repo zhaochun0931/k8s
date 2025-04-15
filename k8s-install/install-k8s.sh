@@ -4,7 +4,13 @@
 
 
 # you must specify the --pod-network-cidr option when using the flannel otherwise it will not create the file  /run/flannel/subnet.env
+
 kubeadm init --pod-network-cidr=10.244.0.0/16
+
+
+kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///var/run/crio/crio.sock --ignore-preflight-errors=SystemVerification
+
+
 
 
 
