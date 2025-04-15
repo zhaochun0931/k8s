@@ -79,6 +79,21 @@ done
 
 
 
+# enable the non-root user to run the kubectl otherwise it will report the following error:
+
+E0415 06:50:32.030980   26050 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: Get \"http://localhost:8080/api?timeout=32s\": dial tcp 127.0.0.1:8080: connect: connection refused"
+
+
+
+
+
+
+mkdir ~/.kube
+cp /root/.kube/config /home/xiaoming/.kube/
+chown -R xiaoming:xiaoming /home/xiaoming/.kube
+
+
+
 
 
 
