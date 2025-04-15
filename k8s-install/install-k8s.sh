@@ -27,15 +27,12 @@ kubeadm init
 
 
 
-kubelet --version
-
-kubeadm version
-
-kubectl version
 
 
 
 
+
+# install CNI, such as flannel or calico
 
 
 
