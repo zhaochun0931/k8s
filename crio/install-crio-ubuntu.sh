@@ -39,6 +39,7 @@ apt-get install -y cri-o kubelet kubeadm kubectl
 
 # Start CRI-O
 systemctl start crio.service
+systemctl status crio.service
 
 
 
