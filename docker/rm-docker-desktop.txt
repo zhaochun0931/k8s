@@ -1,1 +1,8 @@
 rm -Rf "/Library/Application Support/com.docker.docker/"
+
+/Library/Application Support/com.docker.docker/registry.json
+
+
+
+{"allowedOrgs":["xxx"]}
+
