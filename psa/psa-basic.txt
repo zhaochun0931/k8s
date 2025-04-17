@@ -7,12 +7,12 @@ An overview of the Pod Security Admission Controller, which can enforce the Pod 
 
 
 
-
 kubectl create ns ns1
 
 kubectl label --overwrite ns ns1 \
 pod-security.kubernetes.io/audit=baseline \
-pod-security.kubernetes.io/warn=baseline 
+pod-security.kubernetes.io/warn=baseline \
+pod-security.kubernetes.io/enforce=baseline
 
 
 
