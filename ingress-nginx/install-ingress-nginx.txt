@@ -1,6 +1,4 @@
-https://github.com/kubernetes/ingress-nginx?tab=readme-ov-file
-
-
+https://github.com/kubernetes/ingress-nginx
 
 # install
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0/deploy/static/provider/cloud/deploy.yaml
