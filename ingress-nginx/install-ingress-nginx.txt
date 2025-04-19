@@ -8,8 +8,15 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 kubectl get pods --namespace=ingress-nginx
 
-kubectl get all -n ingress-nginx
+$ kubectl get pods --namespace=ingress-nginx
+NAME                                       READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-fd9zl       0/1     Completed   0          80s
+ingress-nginx-admission-patch-vrqgp        0/1     Completed   1          80s
+ingress-nginx-controller-d8c96cf68-nnwdf   1/1     Running     0          80s
+$
 
+
+kubectl get all -n ingress-nginx
 
 kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
 
