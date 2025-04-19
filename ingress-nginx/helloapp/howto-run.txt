@@ -1,4 +1,4 @@
-# create Exact
+# create Exact rule through CLI
 kubectl create ingress my-ingress --class=nginx --rule="xiaoming.com/v1=helloapp1-svc:8080" --rule="xiaoming.com/v2=helloapp2-svc:8080"
 
 
