@@ -145,4 +145,78 @@ curl --unix-socket /var/run/docker.sock "http://localhost/containers/json?all=tr
 
 
 
+image
+|
+|
+|
+container
+|
+|
+|
+
+
+
+
+
+Docker Hub is the public registry provided by Docker Inc
+
+
+
+/var/lib/docker/
+
+
+
+
+
+
+
+
+Container id:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/lib/systemd/system/docker.service
+
+ExecStart=/usr/bin/dockerd --containerd=/run/containerd/containerd.sock
+
+
+systemctl daemon-reload
+
+
+
+
+
+
+
+
+
+
+/etc/default/docker
+
+DOCKER_OPTS=""
+
+
+/etc/docker/daemon.json
+
+{
+"hosts": ["fd://","unix:///var/run/docker.sock","tcp://0.0.0.0:2376"]
+}
+
+
+
+
 
