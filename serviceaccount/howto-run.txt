@@ -1,1 +1,27 @@
 When you create a pod, you can specify the service account it should use. If you do not specify one, the pod will use the default service account in that namespace.
+
+
+
+
+$ kubectl get pod
+NAME     READY   STATUS    RESTARTS   AGE
+my-pod   1/1     Running   0          8m49s
+$
+
+
+kubectl exec -it my-pod -- bash
+
+
+ls /var/run/secrets/kubernetes.io/serviceaccount/token
+
+
+
+
+TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+API_SERVER=https://kubernetes.default.svc
+CA_CERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+
+
+curl --cacert $CA_CERT -H "Authorization: Bearer $TOKEN" $API_SERVER/api/v1/pods
+
+
