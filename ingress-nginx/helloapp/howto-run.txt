@@ -1,0 +1,35 @@
+# create Exact
+kubectl create ingress my-ingress --class=nginx --rule="xiaoming.com/v1=helloapp1-svc:8080" --rule="xiaoming.com/v2=helloapp2-svc:8080"
+
+
+
+
+
+
+add the following line to /etc/hosts file
+
+127.0.0.1 xiaoming.com
+
+
+
+
+
+$ kubectl get ing
+NAME         CLASS   HOSTS          ADDRESS     PORTS   AGE
+my-ingress   nginx   xiaoming.com   localhost   80      17m
+$
+
+
+$ curl xiaoming.com:80/v1
+Hello, world!
+Version: 1.0.0
+Hostname: helloapp1-7d4449c5cf-tkhrl
+$
+
+
+
+$ curl xiaoming.com:80/v2
+Hello, world!
+Version: 2.0.0
+Hostname: helloapp2-74d9bcb967-c9prk
+$
