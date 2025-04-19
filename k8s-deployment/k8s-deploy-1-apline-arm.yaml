@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: alpine-deployment
-  namespace: default
 spec:
   replicas: 1
   selector:
@@ -14,7 +13,7 @@ spec:
         app: alpine-deployment
     spec:
       containers:
-      - image: arm64v8/alpine 
+      - image: alpine 
         imagePullPolicy: Always
         name: alpine
         stdin: true
