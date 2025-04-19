@@ -1,0 +1,1 @@
+When you create a pod, you can specify the service account it should use. If you do not specify one, the pod will use the default service account in that namespace.
