@@ -110,6 +110,20 @@ sudo docker run hello-world
 
 
 docker build
+
+
+
+
+
+curl --unix-socket /var/run/docker.sock http://localhost/containers/json
+
+
+
+curl --unix-socket /var/run/docker.sock "http://localhost/containers/json?all=true" 
+
+
+
+
 This is the original and most commonly used command.
 
 It’s a shortcut for docker image build.
