@@ -112,6 +112,27 @@ sudo docker run hello-world
 docker build
 
 
+This is the original and most commonly used command.
+
+It’s a shortcut for docker image build.
+
+
+
+
+
+
+
+
+
+
+
+
+/var/run/docker.sock
+
+The docker.sock file is a Unix socket that allows the Docker client to communicate with the Docker daemon. Located at /var/run/docker.sock, it facilitates various commands and API requests for managing containers, images, networks, and volumes.
+
+It acts as a communication endpoint between the Docker client and the Docker daemon.
+
 
 
 
@@ -124,6 +145,4 @@ curl --unix-socket /var/run/docker.sock "http://localhost/containers/json?all=tr
 
 
 
-This is the original and most commonly used command.
 
-It’s a shortcut for docker image build.
