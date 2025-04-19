@@ -1,0 +1,31 @@
+# create the secret
+
+kubectl create secret tls my-tls --cert=server-cert.pem --key=server-key.pem
+
+kubectl get secret
+
+
+
+# apply the ingress-nginx-tls.yaml
+
+
+
+
+# add below line to /etc/hosts
+127.0.0.1 xiaoming.com
+
+
+
+
+
+
+
+$ curl --cacert server-cert.pem  https://xiaoming.com/v1
+Hello, world!
+Version: 1.0.0
+Hostname: helloapp1-995bdcd94-mdpgj
+$ curl --cacert server-cert.pem  https://xiaoming.com/v2
+Hello, world!
+Version: 2.0.0
+Hostname: helloapp2-7d9c9b54d6-rdn7s
+$
