@@ -1,0 +1,3 @@
+The Kubernetes scheduler is a control plane process which assigns Pods to Nodes.
+
+
