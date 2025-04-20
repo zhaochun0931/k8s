@@ -1,0 +1,24 @@
+kubelet --version
+
+
+
+journalctl -u kubelet
+
+
+
+# ss -antlup | egrep -i 10248
+tcp   LISTEN 0      4096       127.0.0.1:10248      0.0.0.0:*    users:(("kubelet",pid=952,fd=17))
+#
+
+
+nc -vz localhost 10248
+
+
+
+
+curl http://localhost:10248/healthz 
+
+
+# curl http://localhost:10248/healthz ; echo
+ok
+#
