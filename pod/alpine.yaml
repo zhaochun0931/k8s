@@ -8,5 +8,6 @@ spec:
   - command:
     - sleep
     - 24h
-    image: alpine
+    #image: arm64v8/alpine
+    image: arm64v8/alpine
     name: alpine
