@@ -37,6 +37,8 @@ curl --cacert $CA_CERT -H "Authorization: Bearer $TOKEN" https://kubernetes.defa
 
 
 
+# create a new namespace ns1 to test role
+
 
 
 kubectl auth can-i list pods --as=system:serviceaccount:default:my-service-account
