@@ -19,33 +19,69 @@ ClusterRoleBinding
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 An RBAC rule is made up of three elements: the API group, a verb (i.e., an action), and a target (either a resource name(s) or an API URL). 
 The API group identifies which API group to target. The API group “” (empty string) represents the core Kubernetes API.
 
 
+
+
+
+
+
+
+
+
+namespace
+|
+|
+|
+create the service account
+|
+|
+|
+create the role
+|
+|
+|
+bind the role to service account
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+kubectl create ns ns1
+
+
+
+
+
+kubectl create sa mysa -n ns1
+
+
+kubectl create role myrole --verb=get --verb=list --verb=watch --resource=pods -n ns1
+kubectl create rolebinding my-role-binding --role=myrole --serviceaccount=myns:mysa -n ns1
+
+
+
+
+
+
+
+kubectl create clusterrole cr-demo --verb=get,list,watch --resource=pods
+kubectl get clusterrole
+
+kubectl create clusterrolebinding crb-demo --clusterrole=cr-demo --serviceaccount=ns-demo:sa-demo
+kubectl get clusterrolebinding
 
 
 
