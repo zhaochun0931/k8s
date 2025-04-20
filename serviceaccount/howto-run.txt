@@ -22,9 +22,16 @@ API_SERVER=https://kubernetes.default.svc
 CA_CERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
 
 
+# cluster role
 curl --cacert $CA_CERT -H "Authorization: Bearer $TOKEN" $API_SERVER/api/v1/pods
 
 
+
+or
+
+# role
+
+curl --cacert $CA_CERT -H "Authorization: Bearer $TOKEN" https://kubernetes.default.svc/api/v1/namespaces/ns1/pods
 
 
 
@@ -33,5 +40,11 @@ curl --cacert $CA_CERT -H "Authorization: Bearer $TOKEN" $API_SERVER/api/v1/pods
 
 
 kubectl auth can-i list pods --as=system:serviceaccount:default:my-service-account
+
+
+
+kubectl auth can-i list pods --as=system:serviceaccount:ns1:my-service-account --namespace=ns1
+
+
 
 
