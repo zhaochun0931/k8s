@@ -1,3 +1,59 @@
+Role-based access control (RBAC)
+
+RBAC authorization uses the rbac.authorization.k8s.io API group to drive authorization decisions
+
+
+
+
+The RBAC API declares four kinds of Kubernetes object: Role, ClusterRole, RoleBinding and ClusterRoleBinding.
+
+
+Role
+
+Cluster Role
+
+RoleBinding
+
+ClusterRoleBinding
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+An RBAC rule is made up of three elements: the API group, a verb (i.e., an action), and a target (either a resource name(s) or an API URL). 
+The API group identifies which API group to target. The API group “” (empty string) represents the core Kubernetes API.
+
+
+
+
+
+
+
+
+
+
 When you create a pod, you can specify the service account it should use. If you do not specify one, the pod will use the default service account in that namespace.
 
 
