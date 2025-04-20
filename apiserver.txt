@@ -1,0 +1,15 @@
+Port 6443 is used by default for the Kubernetes API server's HTTPS service
+
+
+kubectl cluster-info
+
+
+
+
+
+# kubectl cluster-info
+Kubernetes control plane is running at https://10.1.0.4:6443
+CoreDNS is running at https://10.1.0.4:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+#
