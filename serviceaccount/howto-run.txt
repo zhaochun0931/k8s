@@ -25,3 +25,13 @@ CA_CERT=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
 curl --cacert $CA_CERT -H "Authorization: Bearer $TOKEN" $API_SERVER/api/v1/pods
 
 
+
+
+
+
+
+
+
+kubectl auth can-i list pods --as=system:serviceaccount:default:my-service-account
+
+
