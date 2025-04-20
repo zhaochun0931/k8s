@@ -13,3 +13,22 @@ CoreDNS is running at https://10.1.0.4:6443/api/v1/namespaces/kube-system/servic
 
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 #
+
+
+
+
+
+
+
+# kubectl get nodes
+NAME   STATUS   ROLES           AGE     VERSION
+gf1    Ready    control-plane   3d15h   v1.32.3
+#
+
+cat ~/.kube/config | egrep -i 'certificate-authority-data' | awk -F: '{print $2}' | tr -d ' ' | base64 -d > myca.pem
+
+cat ~/.kube/config | egrep -i 'client-certificate-data' | awk -F: '{print $2}' | tr -d ' ' | base64 -d > mycert.pem
+
+cat ~/.kube/config | egrep -i 'client-key-data' | awk -F: '{print $2}' | tr -d ' ' | base64 -d > mykey.pem
+
+curl --cacert myca.pem --cert mycert.pem --key mykey.pem https://gf1:6443
