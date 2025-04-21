@@ -34,5 +34,25 @@ arch: amd64
 
 
 
+# Install the Kubernetes CLI
+
+gunzip kubectl-linux-v1.30.2+vmware.1.gz
+chmod +x kubectl-linux-v1.30.2+vmware.1
+install kubectl-linux-v1.30.2+vmware.1 /usr/local/bin/kubectl
+kubectl version
+
+
+# kubectl version
+Client Version: v1.30.2+vmware.1
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+#
+
+
+
+
+
+
+
 
 
