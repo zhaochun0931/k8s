@@ -33,6 +33,18 @@ arch: amd64
 
 
 
+tanzu plugin group get vmware-tkg/default:v2.5.2
+
+
+
+
+
+
+
+
+
+
+
 
 # Install the Kubernetes CLI
 
