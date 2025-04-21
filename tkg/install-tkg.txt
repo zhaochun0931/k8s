@@ -1,1 +1,7 @@
+install docker engine
+
+
+install tgk
+
+
 
