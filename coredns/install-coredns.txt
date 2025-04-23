@@ -1,1 +1,4 @@
+CoreDNS is a flexible, extensible DNS server that is commonly used in Kubernetes (K8s) clusters to provide DNS resolution services. 
 
+
+CoreDNS is responsible for resolving DNS queries for services and pods within the Kubernetes cluster. For example, when a pod in the cluster needs to reach another service (like my-service.default.svc.cluster.local), CoreDNS resolves the DNS name to the appropriate IP address of the service
