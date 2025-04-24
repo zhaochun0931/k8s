@@ -62,10 +62,7 @@ kube-controller-manager
 They tend to sit in loops and watch for changes – the aim of the game is to make sure the current state of the cluster matches the desired state (more on this shortly).
 
 
-kube-scheduler
-watches for newly created Pods with no assigned node, and selects a node for them to run on
 
-kube-scheduler 负责分配调度 Pod 到集群内的节点上，它监听 kube-apiserver，查询还未分配 Node 的 Pod，然后根据调度策略为这些 Pod 分配节点
 
 
 
