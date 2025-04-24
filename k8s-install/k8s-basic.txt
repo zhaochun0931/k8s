@@ -37,15 +37,6 @@ kube-apiserver 支持同时提供 https（默认监听在 6443 端口）和 http
 kubectl --v=8 get pods
 
 
-可通过 
-kubectl api-versions 
-和 
-kubectl api-resources
-查询 Kubernetes API 支持的 API 版本以及资源对象
-
-
-
-
 
 
 
