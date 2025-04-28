@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: redis-deployment
   namespace: ns1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: redis
   template:
     metadata:
       labels:
-        app: nginx
+        app: redis
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: redis
+        image: redis
         securityContext:
           allowPrivilegeEscalation: false
           runAsNonRoot: true
-          runAsUser: 1000   # Run as root (violates restricted policy)
+          runAsUser: 999   # Run as root (violates restricted policy)
           seccompProfile:
             type: RuntimeDefault
           capabilities:
