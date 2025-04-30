@@ -19,3 +19,14 @@ myapp/
 
 3 directories, 10 files
 $
+
+
+
+
+helm package myapp/
+
+
+
+$ helm package myapp/
+Successfully packaged chart and saved it to: /Users/zchun/Downloads/helm/myapp-0.1.0.tgz
+$ 
