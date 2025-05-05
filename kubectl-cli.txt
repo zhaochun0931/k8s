@@ -26,7 +26,7 @@ kubectl version
 
 
 kubectl get crds
-
+kubectl get crd gemfireclusters.gemfire.vmware.com -o yaml
 
 
 kubectl cluster-info
