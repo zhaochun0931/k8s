@@ -69,3 +69,34 @@ The connection to the server localhost:8080 was refused - did you specify the ri
 
 
 
+ubuntu@jumpbox:~$ kubectl get nodes
+NAME                                 STATUS   ROLES           AGE   VERSION
+workload2-controlplane-csscm-jxvqn   Ready    control-plane   21d   v1.28.11+vmware.2
+workload2-md-0-kz259-x8bkr-qndxr     Ready    <none>          10d   v1.28.11+vmware.2
+workload2-md-0-kz259-x8bkr-x2m64     Ready    <none>          10d   v1.28.11+vmware.2
+ubuntu@jumpbox:~$
+
+
+
+
+
+
+tanzu kubernetes-release get
+
+
+$ tanzu kubernetes-release get
+  NAME                              VERSION                         COMPATIBLE  ACTIVE  UPDATES AVAILABLE
+  v1.26.14---vmware.1-tiny.1-tkg.3  v1.26.14+vmware.1-tiny.1-tkg.3  True        True
+  v1.26.14---vmware.1-tkg.4         v1.26.14+vmware.1-tkg.4         True        True
+  v1.27.13---vmware.1-tiny.1-tkg.2  v1.27.13+vmware.1-tiny.1-tkg.2  True        True
+  v1.27.15---vmware.1-tkg.2         v1.27.15+vmware.1-tkg.2         True        True
+  v1.28.11---vmware.2-tkg.2         v1.28.11+vmware.2-tkg.2         True        True
+  v1.28.9---vmware.1-tiny.1-tkg.2   v1.28.9+vmware.1-tiny.1-tkg.2   True        True
+  v1.29.6---vmware.1-tkg.3          v1.29.6+vmware.1-tkg.3          True        True
+  v1.30.2---vmware.1-tkg.1          v1.30.2+vmware.1-tkg.1          True        True
+ubuntu@jumpbox:~$
+
+
+
+
+
