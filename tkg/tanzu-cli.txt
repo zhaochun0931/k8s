@@ -70,5 +70,9 @@ tanzu cluster list --output yaml
 tanzu cluster scale workload2 --worker-machine-count 3
 
 
+tanzu cluster node-pool list workload2
+
+
+
 
 
