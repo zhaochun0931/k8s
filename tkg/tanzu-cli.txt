@@ -1,0 +1,45 @@
+tanzu cluster list
+
+
+
+$ tanzu cluster list
+  NAME                NAMESPACE  STATUS   CONTROLPLANE  WORKERS  KUBERNETES         ROLES   PLAN  TKR
+  workload-slot1rp21  default    running  1/1           2/2      v1.28.11+vmware.2  <none>  dev   v1.28.11---vmware.2-tkg.2
+  workload2           default    running  1/1           2/2      v1.28.11+vmware.2  <none>        v1.28.11---vmware.2-tkg.2
+$
+
+
+
+
+
+tanzu cluster get workload2  --show-details
+
+
+
+$ tanzu cluster get workload2  --show-details
+  NAME       NAMESPACE  STATUS   CONTROLPLANE  WORKERS  KUBERNETES         ROLES   TKR
+  workload2  default    running  1/1           2/2      v1.28.11+vmware.2  <none>  v1.28.11---vmware.2-tkg.2
+
+
+Details:
+
+NAME                                                                             READY  SEVERITY  REASON  SINCE  MESSAGE
+/workload2                                                                       True                     21d
+├─ClusterInfrastructure - VSphereCluster/workload2-6msq9                         True                     21d
+├─ControlPlane - KubeadmControlPlane/workload2-controlplane-csscm                True                     21d
+│ └─Machine/workload2-controlplane-csscm-jxvqn                                   True                     21d
+│   ├─BootstrapConfig - KubeadmConfig/workload2-controlplane-csscm-jxvqn         True                     21d
+│   └─MachineInfrastructure - VSphereMachine/workload2-controlplane-csscm-jxvqn  True                     21d
+└─Workers
+  └─MachineDeployment/workload2-md-0-kz259                                       True                     10d
+    ├─Machine/workload2-md-0-kz259-x8bkr-qndxr                                   True                     10d
+    │ ├─BootstrapConfig - KubeadmConfig/workload2-md-0-kz259-x8bkr-qndxr         True                     10d
+    │ └─MachineInfrastructure - VSphereMachine/workload2-md-0-kz259-x8bkr-qndxr  True                     10d
+    └─Machine/workload2-md-0-kz259-x8bkr-x2m64                                   True                     10d
+      ├─BootstrapConfig - KubeadmConfig/workload2-md-0-kz259-x8bkr-x2m64         True                     10d
+      └─MachineInfrastructure - VSphereMachine/workload2-md-0-kz259-x8bkr-x2m64  True                     10d
+$
+
+
+
+
