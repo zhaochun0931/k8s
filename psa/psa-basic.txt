@@ -20,6 +20,18 @@ pod-security.kubernetes.io/warn-version=latest
 
 
 
+kubectl get namespace gemfire --show-labels
+
+kubectl label namespace gemfire pod-security.kubernetes.io/audit-version-
+kubectl label namespace gemfire pod-security.kubernetes.io/audit-
+kubectl label namespace gemfire pod-security.kubernetes.io/enforce-version-
+kubectl label namespace gemfire pod-security.kubernetes.io/enforce-
+kubectl label namespace gemfire pod-security.kubernetes.io/warn-version-
+kubectl label namespace gemfire pod-security.kubernetes.io/warn-
+
+
+
+
 
 
 # The per-mode level label indicates which policy level to apply for the mode.
