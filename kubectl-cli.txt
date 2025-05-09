@@ -200,3 +200,10 @@ kubectl patch users user-example -n rabbitmq-system --type=json -p='[{"op": "rem
 kubectl patch pod pod1 -p '{"metadata":{"finalizers":null}}' --type=merge
 
 
+
+kubectl get ns gemfire -o json> 1.json
+kubectl replace --raw /api/v1/namespaces/gemfire/finalize
+
+
+
+
