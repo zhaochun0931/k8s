@@ -22,23 +22,7 @@ kubeadm init
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 # install CNI, such as flannel or calico
-
-
-
-
-
 
 
 
@@ -57,10 +41,14 @@ done
 
 
 
-# install the CNI
-
 
 # Up till now, the k8s cluster is ready
+
+
+
+
+
+
 
 
 
