@@ -1,7 +1,35 @@
 Pod Security Admission
 
 
+
+
 An overview of the Pod Security Admission Controller, which can enforce the Pod Security Standards.
+
+
+
+# The per-mode level label indicates which policy level to apply for the mode.
+#
+# MODE must be one of `enforce`, `audit`, or `warn`.
+# LEVEL must be one of `privileged`, `baseline`, or `restricted`.
+pod-security.kubernetes.io/<MODE>: <LEVEL>
+
+# Optional: per-mode version label that can be used to pin the policy to the
+# version that shipped with a given Kubernetes minor version (for example v1.32).
+#
+# MODE must be one of `enforce`, `audit`, or `warn`.
+# VERSION must be a valid Kubernetes minor version, or `latest`.
+pod-security.kubernetes.io/<MODE>-version: <VERSION>
+
+
+
+
+
+pod-security.kubernetes.io/enforce: restricted
+pod-security.kubernetes.io/enforce-version: latest
+
+
+
+
 
 
 
@@ -34,22 +62,3 @@ kubectl label namespace gemfire pod-security.kubernetes.io/warn-
 
 
 
-# The per-mode level label indicates which policy level to apply for the mode.
-#
-# MODE must be one of `enforce`, `audit`, or `warn`.
-# LEVEL must be one of `privileged`, `baseline`, or `restricted`.
-pod-security.kubernetes.io/<MODE>: <LEVEL>
-
-# Optional: per-mode version label that can be used to pin the policy to the
-# version that shipped with a given Kubernetes minor version (for example v1.32).
-#
-# MODE must be one of `enforce`, `audit`, or `warn`.
-# VERSION must be a valid Kubernetes minor version, or `latest`.
-pod-security.kubernetes.io/<MODE>-version: <VERSION>
-
-
-
-
-
-pod-security.kubernetes.io/enforce: restricted
-pod-security.kubernetes.io/enforce-version: latest
