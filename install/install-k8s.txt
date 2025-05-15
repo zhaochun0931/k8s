@@ -32,7 +32,7 @@ kubectl annotate storageclass local-path storageclass.kubernetes.io/is-default-c
 
 
 
-# let the master node run the pod
+# remove the taint and let the master node run the pod
 for i in $(echo $HOSTNAME)
 do
 kubectl taint nodes $i node-role.kubernetes.io/control-plane:NoSchedule-
@@ -41,8 +41,22 @@ done
 
 
 
+cat << done >> .bash_profile
+alias k=kubectl
+done
 
-# Up till now, the k8s cluster is ready
+
+source .bash_profile
+
+
+
+
+
+
+
+
+
+# the k8s cluster is ready
 
 
 
