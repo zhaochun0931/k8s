@@ -4,11 +4,9 @@ metadata:
   name: my-rs-svc
   namespace: default
 spec:
-  # ports:
-  # - nodePort: 31860
-  #   port: 8080
-  #   protocol: TCP
-  #   targetPort: 8080
+  ports:
+  - port: 8080
+    targetPort: 8080
   selector:
     app: my-app
   type: NodePort
