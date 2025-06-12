@@ -9,6 +9,5 @@ spec:
   - ReadWriteOnce
   hostPath:
     path: /tmp
-  # persistentVolumeReclaimPolicy: Retain
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
   storageClassName: hostpath
