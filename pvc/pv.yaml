@@ -3,11 +3,11 @@ kind: PersistentVolume
 metadata:
   name: my-pv
 spec:
-  accessModes:
-  - ReadWriteOnce
   capacity:
     storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
   hostPath:
-    path: /Users/zchun/Downloads/35740918/data
+    path: ./
   persistentVolumeReclaimPolicy: Retain
   storageClassName: hostpath
