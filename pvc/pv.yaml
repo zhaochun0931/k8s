@@ -9,5 +9,6 @@ spec:
   - ReadWriteOnce
   hostPath:
     path: /mnt/data
-  persistentVolumeReclaimPolicy: Retain
+  # persistentVolumeReclaimPolicy: Retain
+  persistentVolumeReclaimPolicy: Delete
   storageClassName: hostpath
