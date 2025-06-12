@@ -8,6 +8,6 @@ spec:
   accessModes:
   - ReadWriteOnce
   hostPath:
-    path: ./
+    path: /mnt/data
   persistentVolumeReclaimPolicy: Retain
   storageClassName: hostpath
