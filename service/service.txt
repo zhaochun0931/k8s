@@ -9,3 +9,7 @@ The way that a Service knows which Pods to load-balance across is via labels.
 
 
 
+kubectl expose rs my-rs --name my-rs-svc --type='NodePort'
+
+
+
