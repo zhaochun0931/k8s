@@ -1,1 +1,11 @@
+Service – it’s a stable network abstraction point for multiple Pods that provides basic load balancing.
+
+
+
+how to connect Pods to Services
+
+The way that a Service knows which Pods to load-balance across is via labels.
+
+
+
 
