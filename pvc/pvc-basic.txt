@@ -7,6 +7,10 @@ cd /data
 touch xxx
 
 
+
+kubetctl get sc
+
+
 # kubetctl get pvc
 NAME     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 my-pvc   Bound    pvc-9b6d0d2b-0c37-4309-b8d2-745ef0395ca0   1Gi        RWO            hostpath       7m34s
