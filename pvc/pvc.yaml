@@ -9,6 +9,7 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: hostpath
+  persistentVolumeReclaimPolicy: Retain
 ---
 apiVersion: v1
 kind: Pod
