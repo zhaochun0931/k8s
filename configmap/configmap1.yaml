@@ -39,7 +39,3 @@ spec:
                 name: my-configmap
                 key: student_age
 
-
-
----
-
