@@ -13,7 +13,7 @@ deployment
 
 
 
-
+Deployments manage ReplicaSets, and ReplicaSets manage Pods.
 
 
 
