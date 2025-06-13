@@ -1,5 +1,28 @@
-# Lists
-# Dash indicates an element of an array
+# It's defined using a dash - followed by a space, , and optionally indented for structure.
+# indicates an element of an array
+
+
+
+fruits:
+  - apple
+  - banana
+  - cherry
+
+
+This is equivalent to the following JSON:
+
+
+{
+  "fruits": ["apple", "banana", "cherry"]
+}
+
+
+
+
+
+
+
+
 
 student: # dictionary
   name: xiaoming
