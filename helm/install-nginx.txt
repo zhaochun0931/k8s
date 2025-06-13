@@ -29,4 +29,9 @@ helm status my-nginx
 
 
 
+helm get manifest <release-name>
+
+helm get manifest my-nginx
+
+
 helm uninstall my-nginx
