@@ -3,12 +3,24 @@ https://kubernetes.io/docs/concepts/overview/components/
 
 
 
-Control Plane Components 
+master(control plane) components 
 |--- kube-apiserver
 |--- etcd
 |--- kube-scheduler
 |--- kube-controller-manager
 |--- cloud-controller-manager
+
+
+
+
+
+node components 
+|--- kubelet
+|--- kube-proxy
+|--- Container runtime
+
+
+
 
 
 
@@ -33,10 +45,7 @@ drwxr-xr-x   3 root root 4096 Oct 18 14:08 pki
 
 
 
-Node Components 
-|--- kubelet
-|--- kube-proxy
-|--- Container runtime
+
 
 
 kubelet
