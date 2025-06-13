@@ -1,3 +1,9 @@
+helm repo list
+
+
+
+
+
 helm repo update
 
 helm search repo bitnami/nginx
