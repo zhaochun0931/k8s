@@ -21,3 +21,5 @@ helm status my-nginx
 
 
 
+
+helm uninstall my-nginx
