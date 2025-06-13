@@ -7,5 +7,5 @@ spec:
   - command:
     - sleep
     - 1h
-    image: arm64v8/busybox
+    image: busybox
     name: busybox
