@@ -13,5 +13,11 @@ helm install <release-name> bitnami/nginx
 
 helm install my-nginx bitnami/nginx
 
+helm list
+
+helm status my-nginx
+
+
+
 
 
