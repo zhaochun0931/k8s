@@ -8,3 +8,4 @@ spec:
     - sleep
     - 1h
     image: busybox
+    name: busybox
