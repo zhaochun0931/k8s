@@ -1,0 +1,17 @@
+helm repo update
+
+helm search repo bitnami/nginx
+
+
+
+
+
+
+
+
+helm install <release-name> bitnami/nginx
+
+helm install my-nginx bitnami/nginx
+
+
+
