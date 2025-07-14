@@ -1,6 +1,8 @@
+# my-widget.yaml
 apiVersion: example.com/v1
-kind: MyCustomResource
+kind: Widget
 metadata:
-  name: myresource
+  name: my-widget
 spec:
-  foo: bar
+  size: "large"
+  color: "blue"
