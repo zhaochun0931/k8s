@@ -1,25 +1,31 @@
+# crd.yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: mycustomresources.example.com
+  name: widgets.example.com  # must be plural.group
 spec:
-  group: example.com
-  names:
-    kind: MyCustomResource
-    listKind: MyCustomResourceList
-    plural: mycustomresources
-    singular: mycustomresource
-  scope: Namespaced
+  group: example.com         # your API group
   versions:
-  - name: v1
-    served: true
-    storage: true
-    schema:
-      openAPIV3Schema:
-        type: object
-        properties:
-          spec:
-            type: object
-            properties:
-              foo:
-                type: string
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                size:
+                  type: string
+                color:
+                  type: string
+      subresources:
+        status: {}
+  scope: Namespaced           # or Cluster
+  names:
+    plural: widgets
+    singular: widget
+    kind: Widget
+    shortNames:
+    - wd
