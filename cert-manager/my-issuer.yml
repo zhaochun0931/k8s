@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: my-issuer
+  namespace: default
+spec:
+  selfSigned: {}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-certificate-password
+  namespace: default
+type: Opaque
+data:
+  password: cGFzc3dvcmQK  # Base64 for "password"
