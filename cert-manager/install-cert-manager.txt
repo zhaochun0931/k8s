@@ -7,15 +7,37 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 By default, cert-manager will be installed into the cert-manager namespace.
 
 
+kubectl -n cert-manager get all
 
-kubectl get pods --namespace cert-manager
 
-$ kubectl get pods --namespace cert-manager
-NAME                                     READY   STATUS    RESTARTS   AGE
-cert-manager-6fd987499c-bzmv7            1/1     Running   0          22s
-cert-manager-cainjector-5b94bd6f-bdsb8   1/1     Running   0          22s
-cert-manager-webhook-575479ff47-jbwc5    1/1     Running   0          22s
+
+
+$ kubectl -n cert-manager get all
+NAME                                           READY   STATUS    RESTARTS   AGE
+pod/cert-manager-69f748766f-gm659              1/1     Running   0          38s
+pod/cert-manager-cainjector-7cf6557c49-c6nlq   1/1     Running   0          38s
+pod/cert-manager-webhook-58f4cff74d-v62kp      1/1     Running   0          38s
+
+NAME                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)            AGE
+service/cert-manager              ClusterIP   10.99.184.254   <none>        9402/TCP           38s
+service/cert-manager-cainjector   ClusterIP   10.110.69.14    <none>        9402/TCP           38s
+service/cert-manager-webhook      ClusterIP   10.101.67.175   <none>        443/TCP,9402/TCP   38s
+
+NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/cert-manager              1/1     1            1           38s
+deployment.apps/cert-manager-cainjector   1/1     1            1           38s
+deployment.apps/cert-manager-webhook      1/1     1            1           38s
+
+NAME                                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/cert-manager-69f748766f              1         1         1       38s
+replicaset.apps/cert-manager-cainjector-7cf6557c49   1         1         1       38s
+replicaset.apps/cert-manager-webhook-58f4cff74d      1         1         1       38s
 $
+
+
+
+
+
 
 You should see the cert-manager, cert-manager-cainjector, and cert-manager-webhook pods in a Running state. The webhook might take a little longer to successfully provision than the others.
 
