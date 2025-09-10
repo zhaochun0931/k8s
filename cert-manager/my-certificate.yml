@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gemfire-certificate
+  namespace: default
+spec:
+  secretName: gemfire-tls
+  issuerRef:
+    name: my-issuer
+    kind: Issuer
+  commonName: gemfire1-locator.default.svc.cluster.local
+  dnsNames:
+    - gemfire1-locator.default.svc.cluster.local
+    - '*.gemfire1-locator.default.svc.cluster.local'
+    - '*.gemfire1-server.default.svc.cluster.local'
+  keystores:
+    pkcs12:
+      create: true
+      passwordSecretRef:
+        name: my-certificate-password
+        key: password
