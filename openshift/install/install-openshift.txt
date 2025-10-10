@@ -5,3 +5,13 @@ cd crc-linux-2.55.0-amd64/
 
 
 
+mv crc /usr/local/bin/
+
+crc version
+
+
+# crc version
+CRC version: 2.55.0+5be569
+OpenShift version: 4.19.13
+MicroShift version: 4.19.7
+#
