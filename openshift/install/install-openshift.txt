@@ -15,3 +15,87 @@ CRC version: 2.55.0+5be569
 OpenShift version: 4.19.13
 MicroShift version: 4.19.7
 #
+
+
+
+
+# change to non-root user
+
+crc setup 
+
+
+
+
+azureuser@oc1:~$ crc setup
+CRC is constantly improving and we would like to know more about usage (more details at https://developers.redhat.com/article/tool-data-collection)
+Your preference can be changed manually if desired using 'crc config set consent-telemetry <yes/no>'
+Would you like to contribute anonymous usage statistics? [y/N]: y
+Thanks for helping us! You can disable telemetry with the command 'crc config set consent-telemetry no'.
+INFO Using bundle path /home/azureuser/.crc/cache/crc_libvirt_4.19.13_amd64.crcbundle
+INFO Checking if running as non-root
+INFO Checking if running inside WSL2
+INFO Checking if crc-admin-helper executable is cached
+INFO Caching crc-admin-helper executable
+INFO Using root access: Changing ownership of /home/azureuser/.crc/bin/crc-admin-helper-linux-amd64
+INFO Using root access: Setting suid for /home/azureuser/.crc/bin/crc-admin-helper-linux-amd64
+INFO Checking if running on a supported CPU architecture
+INFO Checking if crc executable symlink exists
+INFO Creating symlink for crc executable
+INFO Checking minimum RAM requirements
+INFO Check if Podman binary exists in: /home/azureuser/.crc/bin/oc
+INFO Checking if Virtualization is enabled
+INFO Checking if KVM is enabled
+INFO Checking if libvirt is installed
+INFO Installing libvirt service and dependencies
+INFO Using root access: Installing virtualization packages
+INFO Checking if user is part of libvirt group
+INFO Checking if active user/process is currently part of the libvirt group
+ERRO You need to logout, re-login, and run crc setup again before the user is effectively a member of the 'libvirt' group.
+azureuser@oc1:~$
+
+
+
+azureuser@oc1:~$ crc setup
+INFO Using bundle path /home/azureuser/.crc/cache/crc_libvirt_4.19.13_amd64.crcbundle
+INFO Checking if running as non-root
+INFO Checking if running inside WSL2
+INFO Checking if crc-admin-helper executable is cached
+INFO Checking if running on a supported CPU architecture
+INFO Checking if crc executable symlink exists
+INFO Checking minimum RAM requirements
+INFO Check if Podman binary exists in: /home/azureuser/.crc/bin/oc
+INFO Checking if Virtualization is enabled
+INFO Checking if KVM is enabled
+INFO Checking if libvirt is installed
+INFO Checking if user is part of libvirt group
+INFO Checking if active user/process is currently part of the libvirt group
+INFO Checking if libvirt daemon is running
+INFO Checking if a supported libvirt version is installed
+INFO Checking if crc-driver-libvirt is installed
+INFO Installing crc-driver-libvirt
+INFO Checking crc daemon systemd service
+INFO Setting up crc daemon systemd service
+INFO Checking crc daemon systemd socket units
+INFO Setting up crc daemon systemd socket units
+INFO Checking if AppArmor is configured
+INFO Updating AppArmor configuration
+INFO Using root access: Updating AppArmor configuration
+INFO Using root access: Changing permissions for /etc/apparmor.d/libvirt/TEMPLATE.qemu to 644
+INFO Checking if vsock is correctly configured
+INFO Setting up vsock support
+INFO Using root access: Setting CAP_NET_BIND_SERVICE capability for /usr/local/bin/crc executable
+INFO Using root access: Creating udev rule for /dev/vsock
+INFO Using root access: Changing permissions for /etc/udev/rules.d/99-crc-vsock.rules to 644
+INFO Using root access: Reloading udev rules database
+INFO Using root access: Loading vhost_vsock kernel module
+INFO Using root access: Creating file /etc/modules-load.d/vhost_vsock.conf
+INFO Using root access: Changing permissions for /etc/modules-load.d/vhost_vsock.conf to 644
+INFO Checking if CRC bundle is extracted in '$HOME/.crc'
+INFO Checking if /home/azureuser/.crc/cache/crc_libvirt_4.19.13_amd64.crcbundle exists
+INFO Getting bundle for the CRC executable
+INFO Downloading bundle: /home/azureuser/.crc/cache/crc_libvirt_4.19.13_amd64.crcbundle...
+6.40 GiB / 6.40 GiB [-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------] 100.00% 116.55 MiB/s
+INFO Uncompressing /home/azureuser/.crc/cache/crc_libvirt_4.19.13_amd64.crcbundle
+crc.qcow2:  19.04 GiB / 22.04 GiB [--------------------------------------------------------------------------------------------------------------------------------------------------------------------------->___________________________] 86.38%
+ERRO write /home/azureuser/.crc/cache/tmp-extract/crc_libvirt_4.19.13_amd64/crc.qcow2: no space left on device
+azureuser@oc1:~$
