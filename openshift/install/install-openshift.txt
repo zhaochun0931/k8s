@@ -97,5 +97,43 @@ INFO Downloading bundle: /home/azureuser/.crc/cache/crc_libvirt_4.19.13_amd64.cr
 6.40 GiB / 6.40 GiB [-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------] 100.00% 116.55 MiB/s
 INFO Uncompressing /home/azureuser/.crc/cache/crc_libvirt_4.19.13_amd64.crcbundle
 crc.qcow2:  19.04 GiB / 22.04 GiB [--------------------------------------------------------------------------------------------------------------------------------------------------------------------------->___________________________] 86.38%
-ERRO write /home/azureuser/.crc/cache/tmp-extract/crc_libvirt_4.19.13_amd64/crc.qcow2: no space left on device
+Your system is correctly setup for using CRC. Use 'crc start' to start the instance
 azureuser@oc1:~$
+
+
+
+
+
+
+
+crc start
+
+
+
+
+$ crc start
+INFO Using bundle path /home/azureuser/.crc/cache/crc_libvirt_4.19.13_amd64.crcbundle
+INFO Checking if running as non-root
+INFO Checking if running inside WSL2
+INFO Checking if crc-admin-helper executable is cached
+INFO Checking if running on a supported CPU architecture
+INFO Checking if crc executable symlink exists
+INFO Checking minimum RAM requirements
+INFO Check if Podman binary exists in: /home/azureuser/.crc/bin/oc
+INFO Checking if Virtualization is enabled
+INFO Checking if KVM is enabled
+INFO Checking if libvirt is installed
+INFO Checking if user is part of libvirt group
+INFO Checking if active user/process is currently part of the libvirt group
+INFO Checking if libvirt daemon is running
+INFO Checking if a supported libvirt version is installed
+INFO Checking if crc-driver-libvirt is installed
+INFO Checking crc daemon systemd socket units
+INFO Checking if AppArmor is configured
+INFO Checking if vsock is correctly configured
+INFO Loading bundle: crc_libvirt_4.19.13_amd64...
+CRC requires a pull secret to download content from Red Hat.
+You can copy it from the Pull Secret section of https://console.redhat.com/openshift/create/local.
+? Please enter the pull secret
+
+
