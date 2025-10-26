@@ -1,3 +1,7 @@
+docker login -u username
+
+
+
 docker push xman1111/ci-cd-demo:latest
 
 
