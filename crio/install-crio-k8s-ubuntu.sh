@@ -49,4 +49,15 @@ modprobe br_netfilter
 sysctl -w net.ipv4.ip_forward=1
 
 
-# initilize the k8s cluster
+
+# 
+
+kubectl version
+kubeadm version
+
+
+
+
+
+
+# completed the k8s cluster installation
