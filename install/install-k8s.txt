@@ -100,3 +100,9 @@ chown -R xiaoming:xiaoming /home/xiaoming/.kube
 
 
 
+
+
+# reset the k8s cluster
+kubeadm reset
+
+
