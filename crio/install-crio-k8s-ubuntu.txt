@@ -1,19 +1,19 @@
 # https://cri-o.io/
 
 
-# Define the Kubernetes version and used CRI-O stream
+✅ Define the Kubernetes version and used CRI-O stream
 KUBERNETES_VERSION=v1.32
 CRIO_VERSION=v1.32
 
 
 
-# Install the dependencies for adding repositories
+✅ Install the dependencies for adding repositories
 apt-get update
 apt-get install -y software-properties-common curl
 
 
 
-# Add the Kubernetes repository
+✅ Add the Kubernetes repository
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
@@ -22,7 +22,7 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 
 
 
-# Add the CRI-O repository
+✅ Add the CRI-O repository
 curl -fsSL https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
 
@@ -31,33 +31,38 @@ echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://download.o
 
 
 
-# Install the packages
+✅ Install the packages
 apt-get update
 apt-get install -y cri-o kubelet kubeadm kubectl
 
 
 
-# Start CRI-O
-systemctl start crio.service
-systemctl status crio.service
-
-
-
-# Bootstrap a cluster
-swapoff -a
-modprobe br_netfilter
-sysctl -w net.ipv4.ip_forward=1
-
-
-
-# 
+✅ 
 
 kubectl version
 kubeadm version
 
 
 
+✅ Start CRI-O
+systemctl start crio.service
+systemctl restart crio.service
+systemctl status crio.service
 
 
 
-# completed the k8s cluster installation
+✅ Bootstrap a cluster
+swapoff -a
+modprobe br_netfilter
+sysctl -w net.ipv4.ip_forward=1
+
+
+
+
+
+
+
+
+
+
+✅ completed the k8s cluster installation
