@@ -1,0 +1,12 @@
+kubectl apply -f ubuntu-readonly.yaml
+
+
+
+
+kubectl exec -it ubuntu-readonly -- bash
+
+
+touch /etc/test        # should fail (read-only)
+touch /tmp/test        # should succeed (writable)
+
+
