@@ -11,7 +11,7 @@ spec:
         - |
           echo "Root filesystem is read-only, but /tmp is writable.";
           while true; do
-            date > /tmp/demo.txt;
+            date >>  /tmp/demo.txt;
             cat /tmp/demo.txt;
             sleep 5;
           done
