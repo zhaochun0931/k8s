@@ -1,3 +1,21 @@
+🧱 What readOnlyRootFilesystem: true actually does
+
+When you set this in a container’s securityContext, Kubernetes tells the container runtime (like containerd or Docker) to mount the container’s root filesystem as read-only.
+
+That means:
+
+The entire root filesystem (e.g. /bin, /etc, /usr, /var) is mounted with ro (read-only).
+
+Even the root user inside the container cannot override this — it’s enforced by the Linux kernel’s mount flags, not just user permissions.
+
+
+
+
+
+
+
+
+
 🧩 1️⃣ What readOnlyRootFilesystem: true actually means
 
 In your pod spec:
