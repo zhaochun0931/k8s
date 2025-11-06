@@ -1,3 +1,70 @@
+🧩 1️⃣ What readOnlyRootFilesystem: true actually means
+
+In your pod spec:
+
+securityContext:
+  readOnlyRootFilesystem: true
+
+
+you’re telling Kubernetes to mount the container’s root filesystem (/) as read-only.
+
+
+
+
+That means:
+
+Anything baked into the image (like /bin, /etc, /usr) cannot be modified.
+
+The container cannot write to any part of the filesystem unless it’s explicitly mounted as writable.
+
+This is a security hardening feature — it protects against attackers trying to write scripts, modify binaries, or drop malware in system directories.
+
+
+
+
+🧩 3️⃣ How to make /tmp or others writable
+
+You need to mount writable volumes on the paths where your app needs to write.
+
+✅ Example: writable /tmp with emptyDir
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-readonly
+spec:
+  containers:
+    - name: ubuntu
+      image: ubuntu:22.04
+      command: ["/bin/bash", "-c", "--"]
+      args: ["while true; do echo hello > /tmp/hello.txt; sleep 5; done"]
+      securityContext:
+        readOnlyRootFilesystem: true
+      volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+  volumes:
+    - name: tmp
+      emptyDir: {}
+
+
+What happens here:
+
+The whole root filesystem / is read-only.
+
+But /tmp is an emptyDir volume — which is writable, in-memory, and ephemeral.
+
+So your container can still write to /tmp.
+
+
+
+
+
+
+
+
+
+
+
 kubectl apply -f ubuntu-readonly.yaml
 
 
