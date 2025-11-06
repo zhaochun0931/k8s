@@ -20,6 +20,10 @@ spec:
       volumeMounts:
         - name: tmp
           mountPath: /tmp
+        - name: opt
+          mountPath: /opt
   volumes:
     - name: tmp
+      emptyDir: {}
+    - name: opt
       emptyDir: {}
