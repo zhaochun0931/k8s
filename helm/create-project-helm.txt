@@ -30,3 +30,31 @@ helm package myapp/
 $ helm package myapp/
 Successfully packaged chart and saved it to: /Users/zchun/Downloads/helm/myapp-0.1.0.tgz
 $ 
+
+
+
+
+
+
+✅ 1. List all Helm releases
+
+helm list -A
+
+# helm list -A
+NAME          	NAMESPACE      	REVISION	UPDATED                               	STATUS  	CHART                         	APP VERSION
+tanzu-rabbitmq	rabbitmq-system	1       	2025-11-17 13:53:47.07988258 +0000 UTC	deployed	tanzu-rabbitmq-operators-4.2.0	4.2.0
+#
+#
+
+
+
+
+helm uninstall <release-name> -n <namespace>
+
+
+# helm uninstall tanzu-rabbitmq -n rabbitmq-system
+release "tanzu-rabbitmq" uninstalled
+# 
+# helm list -A
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
+#
