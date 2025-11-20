@@ -1,0 +1,9 @@
+kubectl get nodes -o wide
+
+
+
+
+# kubectl get nodes -o wide
+NAME   STATUS   ROLES           AGE     VERSION    INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+test   Ready    control-plane   2d10h   v1.32.10   10.1.0.10     <none>        Ubuntu 24.04.3 LTS   6.14.0-1012-azure   cri-o://1.32.10
+#
