@@ -7,3 +7,36 @@ kubectl get nodes -o wide
 NAME   STATUS   ROLES           AGE     VERSION    INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
 test   Ready    control-plane   2d10h   v1.32.10   10.1.0.10     <none>        Ubuntu 24.04.3 LTS   6.14.0-1012-azure   cri-o://1.32.10
 #
+
+
+
+
+
+
+
+crio --version
+
+# crio --version
+crio version 1.32.10
+   GitCommit:      71a13a61e4e322dcbd26fa7cfa90a278043f546a
+   GitCommitDate:  2025-11-10T11:23:51Z
+   GitTreeState:   dirty
+   BuildDate:      1970-01-01T00:00:00Z
+   GoVersion:      go1.23.3
+   Compiler:       gc
+   Platform:       linux/amd64
+   Linkmode:       static
+   BuildTags:
+     static
+     netgo
+     osusergo
+     exclude_graphdriver_btrfs
+     seccomp
+     apparmor
+     selinux
+     exclude_graphdriver_devicemapper
+   LDFlags:          unknown
+   SeccompEnabled:   true
+   AppArmorEnabled:  true
+#
+
