@@ -1,0 +1,7 @@
+kind create cluster --name multi kind-config.yaml
+
+
+
+
+
+kubectl get nodes
