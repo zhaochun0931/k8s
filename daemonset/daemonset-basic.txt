@@ -1,0 +1,1 @@
+A DaemonSet makes sure a Pod runs on all nodes (or all nodes with a particular label).
