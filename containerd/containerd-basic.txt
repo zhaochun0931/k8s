@@ -1,0 +1,4 @@
+containerd is a lightweight, industry-standard container runtime.
+It is the core component responsible for running containers on many systems, including Kubernetes, Docker, and most cloud platforms.
+
+Think of it as the engine that actually runs containers.
