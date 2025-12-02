@@ -1,9 +1,11 @@
+🚀
+
 kubectl apply -f label-demo.yaml
 
 
 
 
-
+🚀
 kubectl get pods --show-labels
 
 
@@ -12,3 +14,38 @@ NAME        READY   STATUS    RESTARTS   AGE   LABELS
 app-pod-1   1/1     Running   0          48s   app=myapp,version=v1
 app-pod-2   1/1     Running   0          48s   app=myapp
 $
+
+
+
+🚀
+kubectl get pods -l version=v1
+
+
+$ kubectl get pods -l version=v1
+NAME        READY   STATUS    RESTARTS   AGE
+app-pod-1   1/1     Running   0          5m28s
+$
+$
+
+
+
+
+🚀
+kubectl get pods -l app=myapp
+
+$ kubectl get pods -l app=myapp
+NAME        READY   STATUS    RESTARTS   AGE
+app-pod-1   1/1     Running   0          5m37s
+app-pod-2   1/1     Running   0          5m37s
+$
+$
+
+
+
+
+🚀
+
+kubectl logs -l app=myapp
+
+
+kubectl logs -l version=v1
