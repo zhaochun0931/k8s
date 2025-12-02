@@ -1,0 +1,28 @@
+🚀
+A Kubernetes Operator is a custom controller that manages an application or system running inside Kubernetes—just like the built-in controllers (Deployment controller, StatefulSet controller, Job controller), but customized for your app.
+
+Operators let you teach Kubernetes:
+
+“When this kind of resource exists, automatically maintain, upgrade, scale, or heal it.”
+
+
+
+🚀 What is a Kubernetes Operator?
+
+A Kubernetes Operator consists of:
+
+CustomResourceDefinition (CRD)
+
+    Defines a new API type, e.g. MyApp, Database, CacheCluster
+
+Controller
+
+    Watches for changes to that resource (using reconciliation loop)
+
+    Performs actions (create Pods, Services, configs, backup, restore, etc)
+
+
+🚀
+Think of an Operator as:
+
+CRD + Controller logic = Operator
