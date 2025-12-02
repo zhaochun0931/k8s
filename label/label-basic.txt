@@ -1,0 +1,10 @@
+In Kubernetes, a label is a key-value pair that you attach to objects (Pods, Deployments, Nodes, Services, etc.) to identify, group, and select them.
+
+Labels do not affect how pods run—they are metadata—but Kubernetes uses them heavily for grouping and selection.
+
+
+
+
+🔥
+
+
