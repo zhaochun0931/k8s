@@ -1,7 +1,8 @@
-kind create cluster --name multi kind-config.yaml
-
-
+./kind create cluster --name test --config my-kind-config.yaml
 
 
 
 kubectl get nodes
+
+
+./kind get clusters
