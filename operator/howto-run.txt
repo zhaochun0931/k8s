@@ -1,0 +1,13 @@
+kubectl apply -f myapp-crd.yaml
+
+
+kubectl get crd
+kubectl explain myapp
+
+
+
+
+kopf run operator.py --namespace default
+
+
+

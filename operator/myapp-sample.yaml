@@ -1,0 +1,8 @@
+apiVersion: myapp.example.com/v1
+kind: MyApp
+metadata:
+  name: demo
+spec:
+  message: "Hello Pods from Kopf!"
+  replicas: 2
+  image: nginx
