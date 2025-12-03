@@ -7,7 +7,7 @@ kubectl explain myapp
 
 
 
-kopf run operator.py --namespace default
+kopf run my-operator.py --namespace default
 
 
 
