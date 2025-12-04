@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hpa-demo
+  template:
+    metadata:
+      labels:
+        app: hpa-demo
+    spec:
+      containers:
+      - name: hpa-demo
+        image: alpine
+        command: ["/bin/sh", "-c"]
+        args: ["apk update && apk add --no-cache stress-ng && sleep infinity"]
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
+
