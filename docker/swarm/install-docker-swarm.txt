@@ -1,6 +1,12 @@
 docker swarm init
 
 
+docker swarm leave --force
+
+
+
+
+
 
 
 
