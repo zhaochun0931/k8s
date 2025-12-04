@@ -1,4 +1,6 @@
-docker login -u username
+# Replace 'yourusername' with your Docker Hub username
+
+docker login -u yourusername
 
 docker build -t myrepo2025/myweb:latest .
 
