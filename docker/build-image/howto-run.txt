@@ -20,14 +20,7 @@ i Info → A Personal Access Token (PAT) can be used instead.
 
 
 Password:
-Error response from daemon: Get "https://registry-1.docker.io/v2/": unauthorized: incorrect username or password
-VWG2Q1HXJY:zchun~/Downloads/k8s/hpa/minimal-docker-swarm-demo$ docker login -u chun.a.zhao@gmail.com
 
-i Info → A Personal Access Token (PAT) can be used instead.
-         To create a PAT, visit https://app.docker.com/settings
-
-
-Password:
 Login Succeeded
 $
 $
