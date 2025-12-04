@@ -1,0 +1,85 @@
+✅
+kubectl create namespace argocd
+
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+
+
+kubectl get pods -n argocd
+
+
+$ kubectl get pods -n argocd
+NAME                                                READY   STATUS    RESTARTS   AGE
+argocd-application-controller-0                     1/1     Running   0          2m34s
+argocd-applicationset-controller-5c9b95498b-qdwdf   1/1     Running   0          2m34s
+argocd-dex-server-cccc8f49d-mzm95                   1/1     Running   0          2m34s
+argocd-notifications-controller-576c4d5559-mkfcl    1/1     Running   0          2m34s
+argocd-redis-684497594f-87t8x                       1/1     Running   0          2m34s
+argocd-repo-server-6c857c79ff-6wlp9                 1/1     Running   0          2m34s
+argocd-server-9dc66fd74-vz7vx                       1/1     Running   0          2m34s
+$
+
+
+
+
+
+
+
+
+
+
+
+✅ Get the ArgoCD admin password
+
+kubectl get secret argocd-initial-admin-secret  -n argocd -o jsonpath="{.data.password}" | base64 -d | echo
+
+
+
+✅
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+
+https://localhost:8080
+
+
+
+argocd login localhost:8080
+
+
+
+
+argocd app list
+
+
+
+
+
+
+
+
+
+
+
+$ argocd app list
+NAME         CLUSTER                         NAMESPACE  PROJECT  STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                     PATH                TARGET
+argocd/test  https://kubernetes.default.svc  default    default  Synced  Healthy  Auto        <none>      https://github.com/zhaochun0931/k8s.git  docker/build-image  HEAD
+$
+$ argocd app get test
+Name:               argocd/test
+Project:            default
+Server:             https://kubernetes.default.svc
+Namespace:          default
+URL:                https://localhost:8080/applications/test
+Source:
+- Repo:             https://github.com/zhaochun0931/k8s.git
+  Target:           HEAD
+  Path:             docker/build-image
+SyncWindow:         Sync Allowed
+Sync Policy:        Automated
+Sync Status:        Synced to HEAD (6522342)
+Health Status:      Healthy
+
+GROUP  KIND        NAMESPACE  NAME     STATUS  HEALTH   HOOK  MESSAGE
+apps   Deployment  default    busybox  Synced  Healthy        deployment.apps/busybox configured
+$
