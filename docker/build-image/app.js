@@ -5,7 +5,7 @@ const port = 8080;
 const handler = (req, res) => {
   console.log("Received request from " + req.connection.remoteAddress);
   res.writeHead(200);
-  res.end("Hello Docker Swarm! This response is from host: " + os.hostname() + "\n");
+  res.end("Hello, this response is from host: " + os.hostname() + "\n");
 };
 
 const server = http.createServer(handler);
