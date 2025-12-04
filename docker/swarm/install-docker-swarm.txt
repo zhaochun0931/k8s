@@ -1,3 +1,5 @@
+#
+
 docker swarm init
 
 
@@ -7,6 +9,8 @@ docker swarm leave --force
 
 
 
+
+# create the service
 
 
 docker service create --name helloworld --replicas 1  alpine ping docker.com
@@ -92,5 +96,6 @@ docker service logs myweb -f
 
 
 
+# delete the service
 
 docker service rm myweb
