@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hpa-demo
+  template:
+    metadata:
+      labels:
+        app: hpa-demo
+    spec:
+      containers:
+      - name: hpa-demo
+        image: vish/stress
+        args:
+          - "-cpus"
+          - "1"
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
+
