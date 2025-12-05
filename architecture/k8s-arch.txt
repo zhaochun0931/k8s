@@ -1,7 +1,17 @@
 https://kubernetes.io/docs/concepts/overview/components/
 
 
+✅
+A Kubernetes cluster consists of two types of resources:
 
+The Control Plane coordinates the cluster
+Nodes are the workers that run applications
+
+
+
+
+
+✅
 
 master(control plane) components 
 |--- kube-apiserver
