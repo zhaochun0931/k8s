@@ -21,6 +21,18 @@ Kubernetes does not allow a Deployment to have two different Pod specs.
 
 
 
+1️⃣ Containers in the same Pod share the network namespace
+
+They share IP, ports, and localhost.
+
+But Kubernetes DNS only resolves Service names, not container names inside a Pod.
+
+So ping nginx does not work unless there is a Service named nginx.
+
+
+
+
+
 
 pod
 |
