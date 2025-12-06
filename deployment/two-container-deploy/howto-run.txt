@@ -1,0 +1,114 @@
+kubectl apply -f two-container-deploy.yaml
+
+
+$ kubectl apply -f two-container-deploy.yaml
+deployment.apps/two-container-deploy created
+$ 
+$ 
+$ 
+$ kubectl get pods
+NAME                                    READY   STATUS    RESTARTS   AGE
+two-container-deploy-689ccb76db-xwqqc   2/2     Running   0          64s
+$
+
+
+
+kubectl describe pod <pod-name> -n <namespace>
+
+
+kubectl describe pod two-container-deploy-689ccb76db-xwqqc
+
+
+$ kubectl describe pod two-container-deploy-689ccb76db-xwqqc
+Name:             two-container-deploy-689ccb76db-xwqqc
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             my-cluster-worker/172.26.0.5
+Start Time:       Sat, 06 Dec 2025 19:04:04 +0800
+Labels:           app=multi
+                  pod-template-hash=689ccb76db
+Annotations:      <none>
+Status:           Running
+IP:               10.244.1.2
+IPs:
+  IP:           10.244.1.2
+Controlled By:  ReplicaSet/two-container-deploy-689ccb76db
+Containers:
+  nginx:
+    Container ID:   containerd://355e00007d674d3feb7b941812a4383770472a9625d1b711d06d902210b7d4fb
+    Image:          nginx:1.25
+    Image ID:       docker.io/library/nginx@sha256:a484819eb60211f5299034ac80f6a681b06f89e65866ce91f356ed7c72af059c
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sat, 06 Dec 2025 19:04:21 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-6sjm5 (ro)
+  busybox:
+    Container ID:  containerd://14e06a689c074e1d7e5baa77cdc5e40169269a2064723ce86cd065d27c5582da
+    Image:         busybox:1.36
+    Image ID:      docker.io/library/busybox@sha256:355b3a1bf5609da364166913878a8508d4ba30572d02020a97028c75477e24ff
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      while true; do echo Sidecar running; sleep 5; done
+    State:          Running
+      Started:      Sat, 06 Dec 2025 19:04:28 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-6sjm5 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-6sjm5:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  6m38s  default-scheduler  Successfully assigned default/two-container-deploy-689ccb76db-xwqqc to my-cluster-worker
+  Normal  Pulling    6m37s  kubelet            Pulling image "nginx:1.25"
+  Normal  Pulled     6m21s  kubelet            Successfully pulled image "nginx:1.25" in 16.36s (16.36s including waiting). Image size: 67665983 bytes.
+  Normal  Created    6m21s  kubelet            Created container: nginx
+  Normal  Started    6m21s  kubelet            Started container nginx
+  Normal  Pulling    6m21s  kubelet            Pulling image "busybox:1.36"
+  Normal  Pulled     6m14s  kubelet            Successfully pulled image "busybox:1.36" in 6.562s (6.562s including waiting). Image size: 1909538 bytes.
+  Normal  Created    6m14s  kubelet            Created container: busybox
+  Normal  Started    6m14s  kubelet            Started container busybox
+$
+$
+
+
+
+
+
+kubectl get pod <pod-name> -o jsonpath='{.spec.containers[*].name}' | wc -w
+
+
+
+$ kubectl get pod two-container-deploy-689ccb76db-xwqqc -o jsonpath='{.spec.containers[*].name}' | wc -w
+       2
+$
+
+
+
