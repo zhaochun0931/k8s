@@ -1,0 +1,20 @@
+✅ Without the service, can one pod ping another pod from different deploy?
+
+
+Yes, but only by using the Pod IP directly — not by Pod name.
+
+Here’s the detailed explanation:
+
+1️⃣ Pods in Kubernetes
+
+Each Pod gets a unique IP from the cluster’s Pod network (CNI plugin assigns subnets).
+
+Pods on the same node usually get IPs from the same /24 subnet.
+
+Pods on different nodes get IPs from their node’s subnet, but routing between nodes is handled by the CNI.
+
+
+
+
+
+
