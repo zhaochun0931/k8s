@@ -1,0 +1,19 @@
+kubectl apply -f busybox-deploy.yaml
+
+kubectl apply -f curl-deploy.yaml
+
+kubectl apply -f kubia-deploy.yaml
+
+
+
+
+kubectl get pods -o wide
+
+$ kubectl get pods -o wide
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE                 NOMINATED NODE   READINESS GATES
+busybox-deploy-bf6bcf96d-dzj8v   1/1     Running   0          96s   10.244.2.5   my-cluster-worker3   <none>           <none>
+busybox-deploy-bf6bcf96d-ws8cl   1/1     Running   0          96s   10.244.3.5   my-cluster-worker2   <none>           <none>
+curl-deploy-d4dbbc46-fdhfw       1/1     Running   0          92s   10.244.1.4   my-cluster-worker    <none>           <none>
+kubia-deploy-7f8ff64585-vb4n7    1/1     Running   0          87s   10.244.3.6   my-cluster-worker2   <none>           <none>
+kubia-deploy-7f8ff64585-wdgtm    1/1     Running   0          87s   10.244.1.5   my-cluster-worker    <none>           <none>
+$
