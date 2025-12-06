@@ -22,6 +22,57 @@ $
 
 
 
+$ kubectl exec -it curl-deploy-d4dbbc46-fdhfw -- sh
+~ $
+~ $
+~ $ ping kubia-deploy-7f8ff64585-vb4n7
+ping: bad address 'kubia-deploy-7f8ff64585-vb4n7'
+~ $
+~ $
+~ $
+~ $ ping kubia-deploy-7f8ff64585-wdgtm
+ping: bad address 'kubia-deploy-7f8ff64585-wdgtm'
+~ $
+~ $
+~ $ curl kubia-deploy-7f8ff64585-vb4n7
+curl: (6) Could not resolve host: kubia-deploy-7f8ff64585-vb4n7
+~ $
+~ $
+~ $ curl kubia-deploy-7f8ff64585-wdgtm
+curl: (6) Could not resolve host: kubia-deploy-7f8ff64585-wdgtm
+~ $
+~ $
+~ $ 
+~ $ curl 10.244.3.6:8080
+You've hit kubia-deploy-7f8ff64585-vb4n7
+~ $
+~ $
+~ $ curl 10.244.3.6:8080
+You've hit kubia-deploy-7f8ff64585-vb4n7
+~ $
+~ $
+~ $ curl 10.244.3.6:8080
+You've hit kubia-deploy-7f8ff64585-vb4n7
+~ $
+~ $
+~ $ curl 10.244.1.5:8080
+You've hit kubia-deploy-7f8ff64585-wdgtm
+~ $
+~ $
+~ $ curl 10.244.1.5:8080
+You've hit kubia-deploy-7f8ff64585-wdgtm
+~ $
+~ $
+~ $ curl 10.244.1.5:8080
+You've hit kubia-deploy-7f8ff64585-wdgtm
+~ $
+
+
+
+
+
+
+
 
 
 
