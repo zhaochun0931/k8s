@@ -2,7 +2,24 @@ kind create cluster --name my-cluster --config my-kind-cluster.yaml
 
 
 
-kubectl get nodes
+$ kind create cluster --name my-cluster --config my-kind-cluster.yaml
+Creating cluster "my-cluster" ...
+ ✓ Ensuring node image (kindest/node:v1.34.0) 🖼
+ ✓ Preparing nodes 📦 📦 📦 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+ ✓ Joining worker nodes 🚜
+Set kubectl context to "kind-my-cluster"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-my-cluster
+
+Thanks for using kind! 😊
+$
+
+
 
 
 
@@ -12,4 +29,13 @@ kubectl get nodes
 
 kind get clusters
 
-kind delete clusters test
+kubectl get nodes
+
+
+
+
+
+
+
+
+kind delete clusters my-cluster
