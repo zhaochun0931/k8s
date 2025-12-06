@@ -21,13 +21,30 @@ Kubernetes does not allow a Deployment to have two different Pod specs.
 
 
 
-1️⃣ Containers in the same Pod share the network namespace
+✅ Containers in the same Pod share the network namespace
 
 They share IP, ports, and localhost.
 
 But Kubernetes DNS only resolves Service names, not container names inside a Pod.
 
 So ping nginx does not work unless there is a Service named nginx.
+
+
+
+
+✅ Pod IPs in a cluster
+
+Kubernetes assigns each Pod an IP from the Pod network.
+
+All Pods in the same cluster usually share a single cluster-wide subnet, e.g., 10.244.0.0/16 if you use Flannel, or 192.168.0.0/16 for Calico default.
+
+
+
+
+
+
+
+
 
 
 
