@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: two-container-deploy
+  labels:
+    app: multi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multi
+  template:
+    metadata:
+      labels:
+        app: multi
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
+
+      - name: busybox
+        image: busybox:1.36
+        command: ["sh", "-c", "while true; do echo Sidecar running; sleep 5; done"]
