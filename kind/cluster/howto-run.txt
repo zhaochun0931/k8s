@@ -5,4 +5,11 @@
 kubectl get nodes
 
 
-./kind get clusters
+
+
+
+
+
+kind get clusters
+
+kind delete clusters test
