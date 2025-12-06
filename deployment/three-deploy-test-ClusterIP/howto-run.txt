@@ -1,0 +1,104 @@
+$ kubectl get deploy
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+busybox-deploy   2/2     2            2           12m
+curl-deploy      1/1     1            1           16m
+kubia-deploy     2/2     2            2           16m
+$
+$
+$
+$ kubectl get svc
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP   158m
+kubia-service   ClusterIP   10.96.223.37   <none>        80/TCP    15m
+$
+$ kubectl get pods -o wide
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE                 NOMINATED NODE   READINESS GATES
+busybox-deploy-bf6bcf96d-fpnqx   1/1     Running   0          11m   10.244.3.8   my-cluster-worker2   <none>           <none>
+busybox-deploy-bf6bcf96d-pxwq8   1/1     Running   0          11m   10.244.2.7   my-cluster-worker3   <none>           <none>
+curl-deploy-d4dbbc46-9h52q       1/1     Running   0          16m   10.244.3.7   my-cluster-worker2   <none>           <none>
+kubia-deploy-7f8ff64585-6pljf    1/1     Running   0          16m   10.244.2.6   my-cluster-worker3   <none>           <none>
+kubia-deploy-7f8ff64585-827fv    1/1     Running   0          16m   10.244.1.6   my-cluster-worker    <none>           <none>
+$
+
+
+
+
+
+
+
+
+
+
+$ kubectl exec -it curl-deploy-d4dbbc46-9h52q -- sh
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-6pljf
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-6pljf
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-6pljf
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-6pljf
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-827fv
+~ $
+~ $ ping kubia-service
+PING kubia-service (10.96.223.37): 56 data bytes
+^C
+--- kubia-service ping statistics ---
+3 packets transmitted, 0 packets received, 100% packet loss
+~ $
+~ $
+~ $ nslookup kubia-service
+Server:		10.96.0.10
+Address:	10.96.0.10:53
+
+** server can't find kubia-service.cluster.local: NXDOMAIN
+
+** server can't find kubia-service.svc.cluster.local: NXDOMAIN
+
+Name:	kubia-service.default.svc.cluster.local
+Address: 10.96.223.37
+
+** server can't find kubia-service.cluster.local: NXDOMAIN
+
+
+** server can't find kubia-service.svc.cluster.local: NXDOMAIN
+
+~ $
+
+
+
+
+
+  
+When you ping or resolve kubia-service from inside the cluster, it resolves to the ClusterIP of the Service.
+
+This ClusterIP is a virtual IP, managed by kube-proxy.
+
+Requests to this IP are load-balanced to all Pods selected by the Service.
+
+
+
+  
+
+
+  
