@@ -1,3 +1,27 @@
+a Deployment cannot run two different Pods.
+
+A Deployment = one Pod template = one type of Pod replicated many times.
+
+So:
+
+❌ Two different Pods in one Deployment
+✔ Multiple containers inside one Pod
+✔ Multiple Deployments, each with its own Pod type
+✔ One Deployment = one ReplicaSet = one Pod spec
+
+✅ Why?
+
+A Deployment creates a ReplicaSet, and a ReplicaSet requires all Pods to be identical.
+Kubernetes does not allow a Deployment to have two different Pod specs.
+
+
+
+
+
+
+
+
+
 pod
 |
 |
