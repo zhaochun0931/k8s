@@ -17,3 +17,43 @@ curl-deploy-d4dbbc46-fdhfw       1/1     Running   0          92s   10.244.1.4  
 kubia-deploy-7f8ff64585-vb4n7    1/1     Running   0          87s   10.244.3.6   my-cluster-worker2   <none>           <none>
 kubia-deploy-7f8ff64585-wdgtm    1/1     Running   0          87s   10.244.1.5   my-cluster-worker    <none>           <none>
 $
+
+
+
+
+
+
+
+
+✅ Without the service, can one pod ping another pod from different deploy?
+
+
+Yes, but only by using the Pod IP directly — not by Pod name.
+
+Here’s the detailed explanation:
+
+1️⃣ Pods in Kubernetes
+
+Each Pod gets a unique IP from the cluster’s Pod network (CNI plugin assigns subnets).
+
+Pods on the same node usually get IPs from the same /24 subnet.
+
+Pods on different nodes get IPs from their node’s subnet, but routing between nodes is handled by the CNI.
+
+2️⃣ Communication between Pods
+Without a Service
+
+Pod A can reach Pod B using Pod B’s IP, e.g.:
+
+kubectl exec -it <pod-a> -- sh
+ping <pod-b-ip>
+curl http://<pod-b-ip>:80
+
+
+✅ Works because all Pods are in the cluster’s flat network.
+
+Limitations
+
+Pod IPs can change if the Pod is deleted and recreated.
+
+Hardcoding Pod IPs is not recommended in production.
