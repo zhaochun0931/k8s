@@ -1,0 +1,29 @@
+$ kubectl apply -f test.yaml
+namespace/ns1 created
+namespace/ns2 created
+$
+$
+$ kubectl get ns
+NAME                 STATUS   AGE
+default              Active   15m
+kube-node-lease      Active   15m
+kube-public          Active   15m
+kube-system          Active   15m
+local-path-storage   Active   15m
+ns1                  Active   2s
+ns2                  Active   2s
+$
+$
+$ kubectl delete -f test.yaml
+namespace "ns1" deleted
+namespace "ns2" deleted
+$
+$
+$ kubectl get ns
+NAME                 STATUS   AGE
+default              Active   15m
+kube-node-lease      Active   15m
+kube-public          Active   15m
+kube-system          Active   15m
+local-path-storage   Active   15m
+$
