@@ -1,4 +1,4 @@
-./kind create cluster --name test --config my-kind-config.yaml
+kind create cluster --name my-cluster --config my-kind-cluster.yaml
 
 
 
