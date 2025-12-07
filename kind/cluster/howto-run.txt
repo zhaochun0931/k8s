@@ -27,13 +27,32 @@ $
 
 
 
+
+
+
 kind get clusters
+
+
+
+$ kind get clusters
+my-cluster
+$
+
+
+
+
 
 kubectl get nodes
 
 
 
-
+$ kubectl get nodes -o wide
+NAME                       STATUS     ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                         KERNEL-VERSION     CONTAINER-RUNTIME
+my-cluster-control-plane   NotReady   control-plane   15s   v1.34.0   172.26.0.4    <none>        Debian GNU/Linux 12 (bookworm)   6.12.54-linuxkit   containerd://2.1.3
+my-cluster-worker          NotReady   <none>          5s    v1.34.0   172.26.0.2    <none>        Debian GNU/Linux 12 (bookworm)   6.12.54-linuxkit   containerd://2.1.3
+my-cluster-worker2         NotReady   <none>          5s    v1.34.0   172.26.0.3    <none>        Debian GNU/Linux 12 (bookworm)   6.12.54-linuxkit   containerd://2.1.3
+my-cluster-worker3         NotReady   <none>          5s    v1.34.0   172.26.0.5    <none>        Debian GNU/Linux 12 (bookworm)   6.12.54-linuxkit   containerd://2.1.3
+$
 
 
 
