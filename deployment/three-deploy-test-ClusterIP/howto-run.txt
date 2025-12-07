@@ -101,4 +101,209 @@ Requests to this IP are load-balanced to all Pods selected by the Service.
   
 
 
+
+
+
+
+
+
+$ kubectl get svc
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP   5h52m
+kubia-service   ClusterIP   10.96.109.89   <none>        80/TCP    7m21s
+$
+
+
+
+
+✅ open one terminal to access the kube-proxy pod
+
+kubectl exec -it kube-proxy-6dnvc -n kube-system -- sh
+
+
+# iptables -t nat -L
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination
+KUBE-SERVICES  all  --  anywhere             anywhere             /* kubernetes service portals */
+DOCKER_OUTPUT  all  --  anywhere             192.168.65.254
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+KUBE-SERVICES  all  --  anywhere             anywhere             /* kubernetes service portals */
+DOCKER_OUTPUT  all  --  anywhere             192.168.65.254
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination
+KUBE-POSTROUTING  all  --  anywhere             anywhere             /* kubernetes postrouting rules */
+DOCKER_POSTROUTING  all  --  anywhere             192.168.65.254
+KIND-MASQ-AGENT  all  --  anywhere             anywhere             ADDRTYPE match dst-type !LOCAL /* kind-masq-agent: ensure nat POSTROUTING directs all non-LOCAL destination traffic to our custom KIND-MASQ-AGENT chain */
+
+Chain DOCKER_OUTPUT (2 references)
+target     prot opt source               destination
+DNAT       tcp  --  anywhere             192.168.65.254       tcp dpt:domain to:127.0.0.11:37965
+DNAT       udp  --  anywhere             192.168.65.254       udp dpt:domain to:127.0.0.11:58779
+
+Chain DOCKER_POSTROUTING (1 references)
+target     prot opt source               destination
+SNAT       tcp  --  127.0.0.11           anywhere             tcp spt:37965 to:192.168.65.254:53
+SNAT       udp  --  127.0.0.11           anywhere             udp spt:58779 to:192.168.65.254:53
+
+Chain KIND-MASQ-AGENT (1 references)
+target     prot opt source               destination
+RETURN     all  --  anywhere             10.244.0.0/16        /* kind-masq-agent: local traffic is not subject to MASQUERADE */
+MASQUERADE  all  --  anywhere             anywhere             /* kind-masq-agent: outbound traffic is subject to MASQUERADE (must be last in chain) */
+
+Chain KUBE-KUBELET-CANARY (0 references)
+target     prot opt source               destination
+
+Chain KUBE-MARK-MASQ (14 references)
+target     prot opt source               destination
+MARK       all  --  anywhere             anywhere             MARK or 0x4000
+
+Chain KUBE-NODEPORTS (1 references)
+target     prot opt source               destination
+
+Chain KUBE-POSTROUTING (1 references)
+target     prot opt source               destination
+RETURN     all  --  anywhere             anywhere             mark match ! 0x4000/0x4000
+MARK       all  --  anywhere             anywhere             MARK xor 0x4000
+MASQUERADE  all  --  anywhere             anywhere             /* kubernetes service traffic requiring SNAT */ random-fully
+
+Chain KUBE-PROXY-CANARY (0 references)
+target     prot opt source               destination
+
+Chain KUBE-SEP-2CB3GZZWDM222JHI (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  my-cluster-control-plane.kind  anywhere             /* default/kubernetes:https */
+DNAT       tcp  --  anywhere             anywhere             /* default/kubernetes:https */ tcp to:172.26.0.4:6443
+
+Chain KUBE-SEP-2EWJUYBAKU6KEY6X (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  10.244.2.3           anywhere             /* default/kubia-service */
+DNAT       tcp  --  anywhere             anywhere             /* default/kubia-service */ tcp to:10.244.2.3:8080
+
+Chain KUBE-SEP-IT2ZTR26TO4XFPTO (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  10.244.0.2           anywhere             /* kube-system/kube-dns:dns-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* kube-system/kube-dns:dns-tcp */ tcp to:10.244.0.2:53
+
+Chain KUBE-SEP-N4G2XR5TDX7PQE7P (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  10.244.0.2           anywhere             /* kube-system/kube-dns:metrics */
+DNAT       tcp  --  anywhere             anywhere             /* kube-system/kube-dns:metrics */ tcp to:10.244.0.2:9153
+
+Chain KUBE-SEP-PLCITDUJNOKBBADG (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  10.244.3.3           anywhere             /* default/kubia-service */
+DNAT       tcp  --  anywhere             anywhere             /* default/kubia-service */ tcp to:10.244.3.3:8080
+
+Chain KUBE-SEP-PUHFDAMRBZWCPADU (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  10.244.0.4           anywhere             /* kube-system/kube-dns:metrics */
+DNAT       tcp  --  anywhere             anywhere             /* kube-system/kube-dns:metrics */ tcp to:10.244.0.4:9153
+
+Chain KUBE-SEP-SF3LG62VAE5ALYDV (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  10.244.0.4           anywhere             /* kube-system/kube-dns:dns-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* kube-system/kube-dns:dns-tcp */ tcp to:10.244.0.4:53
+
+Chain KUBE-SEP-WXWGHGKZOCNYRYI7 (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  10.244.0.4           anywhere             /* kube-system/kube-dns:dns */
+DNAT       udp  --  anywhere             anywhere             /* kube-system/kube-dns:dns */ udp to:10.244.0.4:53
+
+Chain KUBE-SEP-YIL6JZP7A3QYXJU2 (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  all  --  10.244.0.2           anywhere             /* kube-system/kube-dns:dns */
+DNAT       udp  --  anywhere             anywhere             /* kube-system/kube-dns:dns */ udp to:10.244.0.2:53
+
+Chain KUBE-SERVICES (2 references)
+target     prot opt source               destination
+KUBE-SVC-TCOU7JCQXEZGVUNU  udp  --  anywhere             10.96.0.10           /* kube-system/kube-dns:dns cluster IP */ udp dpt:domain
+KUBE-SVC-IRWMJJK2Z22STMIH  tcp  --  anywhere             10.96.109.89         /* default/kubia-service cluster IP */ tcp dpt:http
+KUBE-SVC-NPX46M4PTMTKRN6Y  tcp  --  anywhere             10.96.0.1            /* default/kubernetes:https cluster IP */ tcp dpt:https
+KUBE-SVC-ERIFXISQEP7F7OF4  tcp  --  anywhere             10.96.0.10           /* kube-system/kube-dns:dns-tcp cluster IP */ tcp dpt:domain
+KUBE-SVC-JD5MR3NA4I4DYORP  tcp  --  anywhere             10.96.0.10           /* kube-system/kube-dns:metrics cluster IP */ tcp dpt:9153
+KUBE-NODEPORTS  all  --  anywhere             anywhere             /* kubernetes service nodeports; NOTE: this must be the last rule in this chain */ ADDRTYPE match dst-type LOCAL
+
+Chain KUBE-SVC-ERIFXISQEP7F7OF4 (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  tcp  -- !10.244.0.0/16        10.96.0.10           /* kube-system/kube-dns:dns-tcp cluster IP */ tcp dpt:domain
+KUBE-SEP-IT2ZTR26TO4XFPTO  all  --  anywhere             anywhere             /* kube-system/kube-dns:dns-tcp -> 10.244.0.2:53 */ statistic mode random probability 0.50000000000
+KUBE-SEP-SF3LG62VAE5ALYDV  all  --  anywhere             anywhere             /* kube-system/kube-dns:dns-tcp -> 10.244.0.4:53 */
+
+Chain KUBE-SVC-IRWMJJK2Z22STMIH (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  tcp  -- !10.244.0.0/16        10.96.109.89         /* default/kubia-service cluster IP */ tcp dpt:http
+KUBE-SEP-2EWJUYBAKU6KEY6X  all  --  anywhere             anywhere             /* default/kubia-service -> 10.244.2.3:8080 */ statistic mode random probability 0.50000000000
+KUBE-SEP-PLCITDUJNOKBBADG  all  --  anywhere             anywhere             /* default/kubia-service -> 10.244.3.3:8080 */
+
+Chain KUBE-SVC-JD5MR3NA4I4DYORP (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  tcp  -- !10.244.0.0/16        10.96.0.10           /* kube-system/kube-dns:metrics cluster IP */ tcp dpt:9153
+KUBE-SEP-N4G2XR5TDX7PQE7P  all  --  anywhere             anywhere             /* kube-system/kube-dns:metrics -> 10.244.0.2:9153 */ statistic mode random probability 0.50000000000
+KUBE-SEP-PUHFDAMRBZWCPADU  all  --  anywhere             anywhere             /* kube-system/kube-dns:metrics -> 10.244.0.4:9153 */
+
+Chain KUBE-SVC-NPX46M4PTMTKRN6Y (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  tcp  -- !10.244.0.0/16        10.96.0.1            /* default/kubernetes:https cluster IP */ tcp dpt:https
+KUBE-SEP-2CB3GZZWDM222JHI  all  --  anywhere             anywhere             /* default/kubernetes:https -> 172.26.0.4:6443 */
+
+Chain KUBE-SVC-TCOU7JCQXEZGVUNU (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  udp  -- !10.244.0.0/16        10.96.0.10           /* kube-system/kube-dns:dns cluster IP */ udp dpt:domain
+KUBE-SEP-YIL6JZP7A3QYXJU2  all  --  anywhere             anywhere             /* kube-system/kube-dns:dns -> 10.244.0.2:53 */ statistic mode random probability 0.50000000000
+KUBE-SEP-WXWGHGKZOCNYRYI7  all  --  anywhere             anywhere             /* kube-system/kube-dns:dns -> 10.244.0.4:53 */
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# iptables -t nat -L KUBE-SERVICES -n --line-numbers
+Chain KUBE-SERVICES (2 references)
+num  target     prot opt source               destination
+1    KUBE-SVC-TCOU7JCQXEZGVUNU  17   --  0.0.0.0/0            10.96.0.10           /* kube-system/kube-dns:dns cluster IP */ udp dpt:53
+2    KUBE-SVC-IRWMJJK2Z22STMIH  6    --  0.0.0.0/0            10.96.109.89         /* default/kubia-service cluster IP */ tcp dpt:80
+3    KUBE-SVC-NPX46M4PTMTKRN6Y  6    --  0.0.0.0/0            10.96.0.1            /* default/kubernetes:https cluster IP */ tcp dpt:443
+4    KUBE-SVC-ERIFXISQEP7F7OF4  6    --  0.0.0.0/0            10.96.0.10           /* kube-system/kube-dns:dns-tcp cluster IP */ tcp dpt:53
+5    KUBE-SVC-JD5MR3NA4I4DYORP  6    --  0.0.0.0/0            10.96.0.10           /* kube-system/kube-dns:metrics cluster IP */ tcp dpt:9153
+6    KUBE-NODEPORTS  0    --  0.0.0.0/0            0.0.0.0/0            /* kubernetes service nodeports; NOTE: this must be the last rule in this chain */ ADDRTYPE match dst-type LOCAL
+#
+
+
+
+iptables -t nat -L KUBE-SVC-IRWMJJK2Z22STMIH -n --line-numbers
+
+
+# iptables -t nat -L KUBE-SVC-IRWMJJK2Z22STMIH -n --line-numbers
+Chain KUBE-SVC-IRWMJJK2Z22STMIH (1 references)
+num  target     prot opt source               destination
+1    KUBE-MARK-MASQ  6    -- !10.244.0.0/16        10.96.109.89         /* default/kubia-service cluster IP */ tcp dpt:80
+2    KUBE-SEP-2EWJUYBAKU6KEY6X  0    --  0.0.0.0/0            0.0.0.0/0            /* default/kubia-service -> 10.244.2.3:8080 */ statistic mode random probability 0.50000000000
+3    KUBE-SEP-PLCITDUJNOKBBADG  0    --  0.0.0.0/0            0.0.0.0/0            /* default/kubia-service -> 10.244.3.3:8080 */
+#
+
+
+iptables -t nat -L KUBE-SEP-2EWJUYBAKU6KEY6X -n
+
+iptables -t nat -L KUBE-SEP-PLCITDUJNOKBBADG -n
+
+
+
+
   
