@@ -1,6 +1,49 @@
 The kubelet is the primary "node agent" that runs on each node. The kubelet works in terms of a PodSpec.
 
 
+The kubelet is one of the most important components in Kubernetes.
+It runs on every node and is responsible for running containers.
+
+✅ What is kubelet?
+
+kubelet = the node agent that makes sure containers are running as expected on a node.
+
+Think of it like this:
+
+The API server tells kubelet:
+“Please run this Pod.”
+
+The kubelet uses the container runtime (containerd, Docker, CRI-O) to actually start the containers.
+
+Then it reports status back to the API server:
+“Pod is running.”
+
+If kubelet dies → the node becomes NotReady.
+
+
+
+
+
+
+
+✅ 2. Talks to container runtime (containerd, Docker)
+
+kubelet doesn't run containers directly.
+
+It uses the CRI (Container Runtime Interface) to call:
+
+containerd
+
+or CRI-O
+
+or old Docker (deprecated)
+
+
+
+
+
+
+
 
 kubelet --version
 
