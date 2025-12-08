@@ -1,0 +1,57 @@
+🚀
+kube-proxy talks to the Kubernetes API server just like any other Kubernetes component:
+through the Kubernetes API over HTTPS, using its kubeconfig file and client certificates.
+
+
+
+✅ 1. kube-proxy runs on every node
+
+kube-proxy is an agent running as a DaemonSet:
+
+
+
+kubectl get ds -n kube-system
+
+
+
+$ kubectl get ds -n kube-system
+NAMESPACE     NAME         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   kube-proxy   4         4         4       4            4           kubernetes.io/os=linux   23h
+$
+
+
+
+kubectl get pods -n kube-system -o wide -l k8s-app=kube-proxy
+
+
+$ kubectl get pods -n kube-system -o wide -l k8s-app=kube-proxy
+NAME               READY   STATUS    RESTARTS        AGE   IP           NODE                       NOMINATED NODE   READINESS GATES
+kube-proxy-4cg58   1/1     Running   2 (3h59m ago)   23h   172.26.0.4   my-cluster-worker2         <none>           <none>
+kube-proxy-6dnvc   1/1     Running   2 (3h59m ago)   23h   172.26.0.5   my-cluster-worker3         <none>           <none>
+kube-proxy-v4ggr   1/1     Running   2 (3h59m ago)   23h   172.26.0.3   my-cluster-control-plane   <none>           <none>
+kube-proxy-vnf9h   1/1     Running   2 (3h59m ago)   23h   172.26.0.2   my-cluster-worker          <none>           <none>
+$
+
+
+
+
+🚀
+It is responsible for:
+
+reading Service + Endpoints updates
+
+programming iptables or ipvs rules
+
+
+
+
+
+
+
+
+✅ 2. kube-proxy uses its own kubeconfig file
+
+When kube-proxy starts, it loads:
+
+/var/lib/kube-proxy/kubeconfig
+
