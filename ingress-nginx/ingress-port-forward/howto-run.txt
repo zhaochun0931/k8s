@@ -1,0 +1,33 @@
+kubectl apply -f kubia-deploy.yaml
+kubectl apply -f kubia-service.yaml
+kubectl apply -f curl-deploy.yaml
+    
+    
+    
+kubectl create ingress my-ingress \
+  --rule="xiaoming.com/*=kubia-service:8080" \
+  --class=nginx
+
+
+
+
+kubectl port-forward svc/ingress-nginx-controller -n ingress-nginx 8080:80
+
+
+
+curl -H "Host: xiaoming.com" http://localhost:8080/
+
+
+curl --resolve xiaoming.com:8080:127.0.0.1 http://xiaoming.com:8080
+
+
+
+$ curl -H "Host: xiaoming.com" http://localhost:8080/
+You've hit kubia-deploy-5588b68bd6-f29ds
+$
+
+
+
+$ curl --resolve xiaoming.com:8080:127.0.0.1 http://xiaoming.com:8080
+You've hit kubia-deploy-5588b68bd6-prjl6
+$
