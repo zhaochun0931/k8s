@@ -12,40 +12,41 @@ docker exec -it my-cluster-control-plane bash
 
 
 
-# ps -aux
+
+# ps -auxww
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root           1  0.0  0.0  22268 12780 ?        Ss   04:38   0:01 /sbin/init
 root          91  0.0  0.0  25120 10388 ?        Ss   04:38   0:00 /lib/systemd/systemd-journald
-root         107  0.7  0.4 3048508 71668 ?       Ssl  04:38   4:08 /usr/local/bin/containerd
-root         186  3.1  0.5 2617196 97468 ?       Ssl  04:38  17:30 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --node-ip=172.26.
-root         332  0.0  0.0 1233200 12536 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 2224fe28d01e71757010d6d98ee0f8a53baa2a6c37b18eed0c9ad59ea8f9f0f2 -address /run/containerd/containerd.sock
-root         351  0.0  0.0 1233456 13120 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 8c40a28b4505f2e53f8c7aade7072c082d84431f787496d145835f67bb48d7d8 -address /run/containerd/containerd.sock
-root         379  0.0  0.0 1233456 15136 ?       Sl   04:38   0:05 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id b0969d48ec282fbd3f7ff846797761bf7d038eda14c8d6adec28bdfe1842210d -address /run/containerd/containerd.sock
-root         394  0.0  0.0 1233456 15036 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 5a746376a3a77af8d27dc5310b59182e212b88a3b9554fc825fcf4762f51508a -address /run/containerd/containerd.sock
+root         107  0.7  0.4 3048508 70816 ?       Ssl  04:38   4:10 /usr/local/bin/containerd
+root         186  3.1  0.5 2617196 97472 ?       Ssl  04:38  17:40 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --node-ip=172.26.0.3 --node-labels= --pod-infra-container-image=registry.k8s.io/pause:3.10.1 --provider-id=kind://docker/my-cluster/my-cluster-control-plane --runtime-cgroups=/system.slice/containerd.service
+root         332  0.0  0.0 1233200 12604 ?       Sl   04:38   0:07 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 2224fe28d01e71757010d6d98ee0f8a53baa2a6c37b18eed0c9ad59ea8f9f0f2 -address /run/containerd/containerd.sock
+root         351  0.0  0.0 1233456 13192 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 8c40a28b4505f2e53f8c7aade7072c082d84431f787496d145835f67bb48d7d8 -address /run/containerd/containerd.sock
+root         379  0.0  0.0 1233456 15232 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id b0969d48ec282fbd3f7ff846797761bf7d038eda14c8d6adec28bdfe1842210d -address /run/containerd/containerd.sock
+root         394  0.0  0.0 1233456 14996 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 5a746376a3a77af8d27dc5310b59182e212b88a3b9554fc825fcf4762f51508a -address /run/containerd/containerd.sock
 65535        447  0.0  0.0    796   488 ?        Ss   04:38   0:00 /pause
 65535        454  0.0  0.0    796   492 ?        Ss   04:38   0:00 /pause
 65535        456  0.0  0.0    796   496 ?        Ss   04:38   0:00 /pause
 65535        466  0.0  0.0    796   492 ?        Ss   04:38   0:00 /pause
-root         551  2.7  0.5 11740152 90536 ?      Ssl  04:38  15:18 etcd --advertise-client-urls=https://172.26.0.3:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-auth=true --data-dir=/var/lib/etcd --feature-gates=InitialCor
-root         558  5.0  1.8 1512492 308648 ?      Ssl  04:38  28:40 kube-apiserver --advertise-address=172.26.0.3 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt --enable-admission-plugins=Node
-root         560  0.9  0.3 1275532 65280 ?       Ssl  04:38   5:28 kube-scheduler --authentication-kubeconfig=/etc/kubernetes/scheduler.conf --authorization-kubeconfig=/etc/kubernetes/scheduler.conf --bind-address=127.0.0.1 --kubeconfig=/etc/k
-root         567  2.0  0.7 1297008 116736 ?      Ssl  04:38  11:26 kube-controller-manager --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf --authorization-kubeconfig=/etc/kubernetes/controller-man
-root         807  0.0  0.0 1233456 14596 ?       Sl   04:38   0:07 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id c52374d0678021d0c57d5b0d091ebb333f8dedf70869e2dd2c532edf24229583 -address /run/containerd/containerd.sock
-root         839  0.0  0.0 1233456 12676 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 2aedf52822286efeee8cbc439930287c0332865b2215a9a943017dbbb1f71c6d -address /run/containerd/containerd.sock
-root         851  0.0  0.0 1233456 14624 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 9660c93a9f9f039c20b5087d67ca20527c5c1547bf2c2899403012d57be17a31 -address /run/containerd/containerd.sock
+root         551  2.7  0.5 11740152 90540 ?      Ssl  04:38  15:26 etcd --advertise-client-urls=https://172.26.0.3:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-auth=true --data-dir=/var/lib/etcd --feature-gates=InitialCorruptCheck=true --initial-advertise-peer-urls=https://172.26.0.3:2380 --initial-cluster=my-cluster-control-plane=https://172.26.0.3:2380 --key-file=/etc/kubernetes/pki/etcd/server.key --listen-client-urls=https://127.0.0.1:2379,https://172.26.0.3:2379 --listen-metrics-urls=http://127.0.0.1:2381 --listen-peer-urls=https://172.26.0.3:2380 --name=my-cluster-control-plane --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt --peer-client-cert-auth=true --peer-key-file=/etc/kubernetes/pki/etcd/peer.key --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt --snapshot-count=10000 --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt --watch-progress-notify-interval=5s
+root         558  5.0  1.8 1512492 308652 ?      Ssl  04:38  28:55 kube-apiserver --advertise-address=172.26.0.3 --allow-privileged=true --authorization-mode=Node,RBAC --client-ca-file=/etc/kubernetes/pki/ca.crt --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group --requestheader-username-headers=X-Remote-User --runtime-config= --secure-port=6443 --service-account-issuer=https://kubernetes.default.svc.cluster.local --service-account-key-file=/etc/kubernetes/pki/sa.pub --service-account-signing-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16 --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+root         560  0.9  0.3 1275532 65280 ?       Ssl  04:38   5:31 kube-scheduler --authentication-kubeconfig=/etc/kubernetes/scheduler.conf --authorization-kubeconfig=/etc/kubernetes/scheduler.conf --bind-address=127.0.0.1 --kubeconfig=/etc/kubernetes/scheduler.conf --leader-elect=true
+root         567  2.0  0.7 1297008 116740 ?      Ssl  04:38  11:32 kube-controller-manager --allocate-node-cidrs=true --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf --authorization-kubeconfig=/etc/kubernetes/controller-manager.conf --bind-address=127.0.0.1 --client-ca-file=/etc/kubernetes/pki/ca.crt --cluster-cidr=10.244.0.0/16 --cluster-name=my-cluster --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt --cluster-signing-key-file=/etc/kubernetes/pki/ca.key --controllers=*,bootstrapsigner,tokencleaner --enable-hostpath-provisioner=true --kubeconfig=/etc/kubernetes/controller-manager.conf --leader-elect=true --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --root-ca-file=/etc/kubernetes/pki/ca.crt --service-account-private-key-file=/etc/kubernetes/pki/sa.key --service-cluster-ip-range=10.96.0.0/16 --use-service-account-credentials=true
+root         807  0.0  0.0 1233456 14592 ?       Sl   04:38   0:07 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id c52374d0678021d0c57d5b0d091ebb333f8dedf70869e2dd2c532edf24229583 -address /run/containerd/containerd.sock
+root         839  0.0  0.0 1233456 12616 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 2aedf52822286efeee8cbc439930287c0332865b2215a9a943017dbbb1f71c6d -address /run/containerd/containerd.sock
+root         851  0.0  0.0 1233456 14676 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id 9660c93a9f9f039c20b5087d67ca20527c5c1547bf2c2899403012d57be17a31 -address /run/containerd/containerd.sock
 65535        932  0.0  0.0    796   496 ?        Ss   04:38   0:00 /pause
-root         947  0.0  0.0 1233456 14592 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id fecc64bdf6ccfbaad63427340a47b755dc0ca6a1d76e0e24c6f46c31126639db -address /run/containerd/containerd.sock
+root         947  0.0  0.0 1233456 14652 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id fecc64bdf6ccfbaad63427340a47b755dc0ca6a1d76e0e24c6f46c31126639db -address /run/containerd/containerd.sock
 65535        958  0.0  0.0    796   492 ?        Ss   04:38   0:00 /pause
 65535        960  0.0  0.0    796   496 ?        Ss   04:38   0:00 /pause
-root         999  0.0  0.0 1233456 14684 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id c7906e49685cd5e046956390b0cb979aa78bac9cbc1def531c340daa050e0381 -address /run/containerd/containerd.sock
+root         999  0.0  0.0 1233456 14540 ?       Sl   04:38   0:06 /usr/local/bin/containerd-shim-runc-v2 -namespace k8s.io -id c7906e49685cd5e046956390b0cb979aa78bac9cbc1def531c340daa050e0381 -address /run/containerd/containerd.sock
 65535       1001  0.0  0.0    796   492 ?        Ss   04:38   0:00 /pause
 65535       1050  0.0  0.0    796   492 ?        Ss   04:38   0:00 /pause
 root        1091  0.0  0.3 1270860 52856 ?       Ssl  04:38   0:10 /usr/local/bin/kube-proxy --config=/var/lib/kube-proxy/config.conf --hostname-override=my-cluster-control-plane
-65532       1098  0.1  0.3 1297352 64000 ?       Ssl  04:38   1:01 /coredns -conf /etc/coredns/Corefile
-65532       1134  0.1  0.3 1297096 64496 ?       Ssl  04:38   1:02 /coredns -conf /etc/coredns/Corefile
+65532       1098  0.1  0.3 1297352 63808 ?       Ssl  04:38   1:02 /coredns -conf /etc/coredns/Corefile
+65532       1134  0.1  0.3 1297096 64496 ?       Ssl  04:38   1:03 /coredns -conf /etc/coredns/Corefile
 root        1138  0.0  0.2 1279192 40492 ?       Ssl  04:38   0:15 /bin/kindnetd
 root        1464  0.0  0.2 1266292 36388 ?       Ssl  04:39   0:06 local-path-provisioner --debug start --helper-image docker.io/kindest/local-path-helper:v20241212-8ac705d0 --config /etc/config/config.json
 root        4267  0.0  0.0   2324  1512 pts/0    Ss+  08:41   0:00 sh
-root        7729  0.0  0.0   4060  3284 pts/1    Ss   13:54   0:00 bash
-root        7831  0.0  0.0   8020  3892 pts/1    R+   14:02   0:00 ps -aux
+root        7912  0.0  0.0   4060  3260 pts/1    Ss   14:07   0:00 bash
+root        7919  0.0  0.0   8020  3868 pts/1    R+   14:07   0:00 ps -auxww
 #
