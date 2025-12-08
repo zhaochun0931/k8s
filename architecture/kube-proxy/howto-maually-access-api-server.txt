@@ -1,0 +1,17 @@
+/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+
+
+/var/run/secrets/kubernetes.io/serviceaccount/token
+
+
+TOKEN=$(cat token)
+
+curl --cacert ca.crt \
+     -H "Authorization: Bearer $TOKEN" \
+     https://kubernetes.default.svc/api
+
+
+
+curl --cacert ca.crt \
+     -H "Authorization: Bearer $TOKEN" \
+     https://kubernetes.default.svc/api/v1/pods
