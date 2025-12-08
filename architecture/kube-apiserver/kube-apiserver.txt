@@ -1,0 +1,17 @@
+$ docker ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED        STATUS        PORTS                       NAMES
+5ff2a375f4d6   kindest/node:v1.34.0   "/usr/local/bin/entr…"   30 hours ago   Up 11 hours                               my-cluster-worker3
+f85179a8a4fd   kindest/node:v1.34.0   "/usr/local/bin/entr…"   30 hours ago   Up 11 hours                               my-cluster-worker
+8ed41ece1450   kindest/node:v1.34.0   "/usr/local/bin/entr…"   30 hours ago   Up 11 hours   127.0.0.1:62478->6443/tcp   my-cluster-control-plane
+a15639704542   kindest/node:v1.34.0   "/usr/local/bin/entr…"   30 hours ago   Up 11 hours                               my-cluster-worker2
+$
+
+
+docker exec -it my-cluster-control-plane bash
+
+/etc/kubernetes/scheduler.conf
+
+
+
+
+
