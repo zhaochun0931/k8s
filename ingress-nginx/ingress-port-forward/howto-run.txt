@@ -10,7 +10,15 @@ kubectl create ingress my-ingress \
 
 
 
+$ kubectl get svc -n ingress-nginx
+NAME                                 TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller             LoadBalancer   10.96.83.193   <pending>     80:31422/TCP,443:30989/TCP   3h33m
+ingress-nginx-controller-admission   ClusterIP      10.96.10.145   <none>        443/TCP                      3h33m
+$
 
+
+
+✅ forward local port 8080 → service port 80
 kubectl port-forward svc/ingress-nginx-controller -n ingress-nginx 8080:80
 
 
