@@ -53,5 +53,7 @@ programming iptables or ipvs rules
 
 When kube-proxy starts, it loads:
 
-/var/lib/kube-proxy/kubeconfig
+/var/lib/kube-proxy/kubeconfig.conf
+
+
 
