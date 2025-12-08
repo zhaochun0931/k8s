@@ -45,6 +45,172 @@ or old Docker (deprecated)
 
 
 
+
+✅ How kubelet communicates with API server
+
+Kubelet uses:
+
+client certs (client.crt, client.key)
+
+or bootstrap token (for TLS bootstrapping)
+
+On a node:
+
+/var/lib/kubelet/config.yaml
+/var/lib/kubelet/pki/kubelet-client.crt
+
+
+
+
+
+
+
+
+
+$ docker ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED        STATUS        PORTS                       NAMES
+5ff2a375f4d6   kindest/node:v1.34.0   "/usr/local/bin/entr…"   30 hours ago   Up 11 hours                               my-cluster-worker3
+f85179a8a4fd   kindest/node:v1.34.0   "/usr/local/bin/entr…"   30 hours ago   Up 11 hours                               my-cluster-worker
+8ed41ece1450   kindest/node:v1.34.0   "/usr/local/bin/entr…"   30 hours ago   Up 11 hours   127.0.0.1:62478->6443/tcp   my-cluster-control-plane
+a15639704542   kindest/node:v1.34.0   "/usr/local/bin/entr…"   30 hours ago   Up 11 hours                               my-cluster-worker2
+$
+
+
+
+docker exec -it my-cluster-worker3 bash
+
+
+
+
+
+/var/lib/kubelet
+|-- actuated_pods_state
+|-- allocated_pods_state
+|-- checkpoints
+|-- config.yaml
+|-- cpu_manager_state
+|-- device-plugins
+|   `-- kubelet.sock
+|-- dra_manager_state
+|-- instance-config.yaml
+|-- kubeadm-flags.env
+|-- memory_manager_state
+|-- pki
+|   |-- kubelet-client-2025-12-07-07-33-22.pem
+|   |-- kubelet-client-current.pem -> /var/lib/kubelet/pki/kubelet-client-2025-12-07-07-33-22.pem
+|   |-- kubelet.crt
+|   `-- kubelet.key
+|-- plugins
+|-- plugins_registry
+|-- pod-resources
+|   `-- kubelet.sock
+`-- pods
+    |-- 07f8e8d6-8f7c-4dce-94a7-50efb227d61e
+    |   |-- containers
+    |   |   `-- curl
+    |   |       `-- 4c4b5079
+    |   |-- etc-hosts
+    |   |-- plugins
+    |   |   `-- kubernetes.io~empty-dir
+    |   |       `-- wrapped_kube-api-access-bnfn5
+    |   |           `-- ready
+    |   `-- volumes
+    |       `-- kubernetes.io~projected
+    |           `-- kube-api-access-bnfn5
+    |               |-- ca.crt -> ..data/ca.crt
+    |               |-- namespace -> ..data/namespace
+    |               `-- token -> ..data/token
+    |-- 6313aa7f-49a7-41a1-b655-206265599b71
+    |   |-- containers
+    |   |   `-- kubia
+    |   |       `-- d383f378
+    |   |-- etc-hosts
+    |   |-- plugins
+    |   |   `-- kubernetes.io~empty-dir
+    |   |       `-- wrapped_kube-api-access-tqklh
+    |   |           `-- ready
+    |   `-- volumes
+    |       `-- kubernetes.io~projected
+    |           `-- kube-api-access-tqklh
+    |               |-- ca.crt -> ..data/ca.crt
+    |               |-- namespace -> ..data/namespace
+    |               `-- token -> ..data/token
+    |-- 6cb7a9e5-6238-4754-95e3-04e315e8af80
+    |   |-- containers
+    |   |   `-- kube-proxy
+    |   |       |-- 003986b5
+    |   |       |-- 5734c136
+    |   |       `-- 8b55fa85
+    |   |-- etc-hosts
+    |   |-- plugins
+    |   |   `-- kubernetes.io~empty-dir
+    |   |       |-- wrapped_kube-api-access-mhp8d
+    |   |       |   `-- ready
+    |   |       `-- wrapped_kube-proxy
+    |   |           `-- ready
+    |   `-- volumes
+    |       |-- kubernetes.io~configmap
+    |       |   `-- kube-proxy
+    |       |       |-- config.conf -> ..data/config.conf
+    |       |       `-- kubeconfig.conf -> ..data/kubeconfig.conf
+    |       `-- kubernetes.io~projected
+    |           `-- kube-api-access-mhp8d
+    |               |-- ca.crt -> ..data/ca.crt
+    |               |-- namespace -> ..data/namespace
+    |               `-- token -> ..data/token
+    |-- 76c9fc1e-24dc-42c9-bbaa-2078f540d261
+    |   |-- containers
+    |   |   `-- kindnet-cni
+    |   |       |-- 340c3a00
+    |   |       |-- d1b1f3a5
+    |   |       `-- ee00b9a2
+    |   |-- etc-hosts
+    |   |-- plugins
+    |   |   `-- kubernetes.io~empty-dir
+    |   |       `-- wrapped_kube-api-access-5qkz9
+    |   |           `-- ready
+    |   `-- volumes
+    |       `-- kubernetes.io~projected
+    |           `-- kube-api-access-5qkz9
+    |               |-- ca.crt -> ..data/ca.crt
+    |               |-- namespace -> ..data/namespace
+    |               `-- token -> ..data/token
+    `-- f7555036-3dae-4e90-a117-3c5fd90a62ae
+        |-- containers
+        |   `-- controller
+        |       `-- 98395bde
+        |-- etc-hosts
+        |-- plugins
+        |   `-- kubernetes.io~empty-dir
+        |       |-- wrapped_kube-api-access-rvcsj
+        |       |   `-- ready
+        |       `-- wrapped_webhook-cert
+        |           `-- ready
+        `-- volumes
+            |-- kubernetes.io~projected
+            |   `-- kube-api-access-rvcsj
+            |       |-- ca.crt -> ..data/ca.crt
+            |       |-- namespace -> ..data/namespace
+            |       `-- token -> ..data/token
+            `-- kubernetes.io~secret
+                `-- webhook-cert
+                    |-- ca -> ..data/ca
+                    |-- cert -> ..data/cert
+                    `-- key -> ..data/key
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 kubelet --version
 
 
