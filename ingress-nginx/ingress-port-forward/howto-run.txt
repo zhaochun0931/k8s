@@ -1,12 +1,20 @@
+🚀
+
 kubectl apply -f kubia-deploy.yaml
 kubectl apply -f kubia-service.yaml
 kubectl apply -f curl-deploy.yaml
     
     
-    
+
+🚀 create the ingress rule
 kubectl create ingress my-ingress \
   --rule="xiaoming.com/*=kubia-service:8080" \
   --class=nginx
+
+
+or 
+
+kubectl apply -f my-ingress.yaml
 
 
 
@@ -23,6 +31,8 @@ kubectl port-forward svc/ingress-nginx-controller -n ingress-nginx 8080:80
 
 
 
+
+🚀
 curl -H "Host: xiaoming.com" http://localhost:8080/
 
 
