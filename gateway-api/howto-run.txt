@@ -95,5 +95,16 @@ kubectl apply -f cafe.yaml
 
 kubectl apply -f gateway.yaml
 
+kubectl apply -f cafe-routes.yaml
+
+
+
+
+kubectl -n default describe httproutes
+
+kubectl -n default describe gateways
+
+
+
 
 
