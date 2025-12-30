@@ -1,0 +1,33 @@
+✅ Core conceptual difference
+
+
+
+✅
+kubectl create
+
+
+
+
+Imperative
+
+“Create this resource now”
+
+Fails if the resource already exists
+
+Kubernetes does not track desired state
+
+
+
+
+✅
+kubectl apply
+
+
+
+Declarative
+
+“Make the cluster match this YAML”
+
+Can create OR update
+
+Kubernetes tracks field ownership & last-applied state
