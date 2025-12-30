@@ -61,5 +61,19 @@ kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/re
 
 
 
+kubectl get crd
+
+NAME                                           CREATED AT
+backendtlspolicies.gateway.networking.k8s.io   2025-12-30T03:57:43Z
+gatewayclasses.gateway.networking.k8s.io       2025-12-30T03:57:43Z
+gateways.gateway.networking.k8s.io             2025-12-30T03:57:43Z
+grpcroutes.gateway.networking.k8s.io           2025-12-30T03:57:43Z
+httproutes.gateway.networking.k8s.io           2025-12-30T03:57:43Z
+referencegrants.gateway.networking.k8s.io      2025-12-30T03:57:43Z
+
+
+
+
+
 
 
