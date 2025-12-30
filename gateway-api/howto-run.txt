@@ -76,4 +76,24 @@ referencegrants.gateway.networking.k8s.io      2025-12-30T03:57:43Z
 
 
 
+🚗
+
+kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.3.0" | kubectl apply -f -
+
+
+helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway --set nginx.service.type=NodePort --set-json 'nginx.service.nodePorts=[{"port":31437,"listenerPort":80}]'
+
+
+
+
+
+
+
+🚗
+
+kubectl apply -f cafe.yaml
+
+kubectl apply -f gateway.yaml
+
+
 
