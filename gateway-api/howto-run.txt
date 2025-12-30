@@ -11,6 +11,50 @@ kubectl create -f kubia-service.yaml
 
 
 
+
+
+🚗
+
+kubectl get pods  -o wide --show-labels
+
+
+
+NAME                            READY   STATUS    RESTARTS   AGE     IP            NODE                 NOMINATED NODE   READINESS GATES   LABELS
+curl-deploy-d4dbbc46-4twdh      1/1     Running   0          4m1s    10.244.1.12   my-cluster-worker3   <none>           <none>            app=curl,pod-template-hash=d4dbbc46
+kubia-deploy-7f8ff64585-6jgfz   1/1     Running   0          4m15s   10.244.3.10   my-cluster-worker2   <none>           <none>            app=kubia,pod-template-hash=7f8ff64585
+kubia-deploy-7f8ff64585-chrzd   1/1     Running   0          4m15s   10.244.2.10   my-cluster-worker    <none>           <none>            app=kubia,pod-template-hash=7f8ff64585
+
+
+
+
+
+kubectl exec -it curl-deploy-d4dbbc46-4twdh -- sh
+
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-6jgfz
+~ $
+~ $
+~ $ 
+~ $
+~ $
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-6jgfz
+~ $
+~ $
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-chrzd
+~ $
+~ $
+~ $ curl kubia-service
+You've hit kubia-deploy-7f8ff64585-6jgfz
+~ $
+~ $
+
+
+
+
+
+
 🚗
 
 kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.1/standard-install.yaml
