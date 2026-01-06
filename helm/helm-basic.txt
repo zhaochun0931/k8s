@@ -19,18 +19,8 @@ In Helm, a chart is a package that contains all the necessary configurations to 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| Term           | Meaning                       |
+| -------------- | ----------------------------- |
+| **Chart**      | The package (blueprint)       |
+| **Release**    | A running instance of a chart |
+| **Repository** | Where charts are stored       |
