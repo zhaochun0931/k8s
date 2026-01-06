@@ -115,6 +115,19 @@ kubectl apply -f tea.yaml
 
 kubectl apply -f gateway.yaml
 
+
+
+kubectl get svc
+
+
+$ kubectl get svc
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+gateway-nginx   NodePort    10.105.84.135   <none>        8080:32508/TCP   5s
+
+
+
+
+
 kubectl apply -f cafe-routes.yaml
 
 
