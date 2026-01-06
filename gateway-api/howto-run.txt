@@ -111,6 +111,8 @@ kubectl get svc -n nginx-gateway
 
 kubectl apply -f cafe.yaml
 
+kubectl apply -f tea.yaml
+
 kubectl apply -f gateway.yaml
 
 kubectl apply -f cafe-routes.yaml
