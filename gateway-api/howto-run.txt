@@ -126,3 +126,25 @@ kubectl -n default describe gateways
 
 
 
+
+
+kubectl port-forward svc/gateway-nginx 8080:8080
+
+
+curl --resolve cafe.example.com:8080:127.0.0.1 http://cafe.example.com:8080/coffee
+
+
+
+$ curl --resolve cafe.example.com:8080:127.0.0.1 http://cafe.example.com:8080/coffee
+Server address: 10.244.3.3:8080
+Server name: coffee-5b9c74f9d9-zjnxk
+Date: 06/Jan/2026:06:25:01 +0000
+URI: /coffee
+Request ID: f4d7a9659c2cede07e64fb1736448d04
+
+
+
+
+
+
+
