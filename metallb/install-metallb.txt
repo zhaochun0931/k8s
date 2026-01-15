@@ -24,3 +24,12 @@ speaker-9l87b                1/1     Running   0          48s
 
 
 
+
+
+
+
+kubectl apply -f ip-pool.yaml
+
+
+kubectl apply -f l2.yaml
+
