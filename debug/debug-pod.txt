@@ -1,0 +1,36 @@
+✅ RECOMMENDED WAY (NO RESTART)
+  
+Use kubectl debug with an ephemeral container
+
+This is the safest and correct way in Kubernetes.
+
+
+
+1️⃣ Find the container name in the pod
+kubectl get pod gemfire1-locator-0 -o jsonpath='{.spec.containers[*].name}'
+
+
+
+2️⃣ Attach a debug container with tcpdump
+  
+kubectl debug gemfire1-locator-0 -it \
+  --image=nicolaka/netshoot \
+  --target=locator
+
+
+3️⃣ Run tcpdump
+
+Inside the debug container:
+
+tcpdump -i eth0 -nn port 10334 or port 40404
+
+
+Save to a file:
+
+tcpdump -i eth0 -nn -w /tmp/locator.pcap
+
+
+Stop with Ctrl+C
+
+4️⃣ Copy the capture to your machine
+kubectl cp gemfire1-locator-0:/tmp/locator.pcap ./locator.pcap
