@@ -8,6 +8,19 @@ MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, us
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.15.3/config/manifests/metallb-native.yaml
 
 
+
+
+
+✅
+
 kubectl get pods -n metallb-system
+
+
+# kubectl get pods -n metallb-system
+NAME                         READY   STATUS    RESTARTS   AGE
+controller-9c6cff498-4jvpx   1/1     Running   0          48s
+speaker-9l87b                1/1     Running   0          48s
+#
+
 
 
