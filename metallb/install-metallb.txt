@@ -3,5 +3,11 @@ MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, us
 
 
 
+✅
+
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.15.3/config/manifests/metallb-native.yaml
+
+
+kubectl get pods -n metallb-system
 
 
