@@ -6,6 +6,8 @@
 ✅ install kubeadm, kubelet, kubctl
 
 
+✅ install CNI, such as flannel or calico
+
 ✅ flannel
 
 # you must specify the --pod-network-cidr option when using the flannel otherwise it will not create the file  /run/flannel/subnet.env
@@ -28,17 +30,20 @@ kubeadm init
 
 
 
-# install CNI, such as flannel or calico
 
 
 
-# install local-path PVC driver
+✅ install local-path PVC driver
+
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+
 kubectl annotate storageclass local-path storageclass.kubernetes.io/is-default-class=true
 
 
 
-# remove the taint and let the master node run the pod
+✅ remove the taint and let the master node run the pod
+
+
 for i in $(echo $HOSTNAME)
 do
 kubectl taint nodes $i node-role.kubernetes.io/control-plane:NoSchedule-
@@ -62,7 +67,12 @@ source .bash_profile
 
 
 
-# the k8s cluster is ready
+
+
+
+
+
+✅ the k8s cluster is ready
 
 
 
