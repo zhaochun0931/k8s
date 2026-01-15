@@ -89,3 +89,10 @@ sysctl -w net.ipv4.ip_forward=1
 
 
 ✅ completed the k8s cluster installation
+
+
+
+
+Please initialize this k8s cluster
+
+
