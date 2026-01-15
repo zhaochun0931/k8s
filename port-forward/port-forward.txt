@@ -1,0 +1,5 @@
+kubectl port-forward service/<service-name> <local-port>:<service-port>
+
+
+
+kubectl port-forward service/my-app 8080:80
