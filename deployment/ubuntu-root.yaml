@@ -6,6 +6,10 @@ spec:
   containers:
   - name: ubuntu
     image: ubuntu:22.04
-    command: ["sleep", "infinity"]
+    command:
+      - bash
+      - -c
+      - |
+        apt-get update && apt-get install -y netcat wget openjdk-17-jdk vim && sleep infinity
     securityContext:
       privileged: true
