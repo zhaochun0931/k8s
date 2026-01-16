@@ -1,0 +1,43 @@
+In Kubernetes, a finalizer is a cleanup hook that tells Kubernetes:
+
+“Before you delete this object, I need to do some cleanup.”
+
+It’s a safety mechanism to ensure resources are cleaned up gracefully, not abruptly.
+
+
+
+
+✅ Simple explanation
+
+When you delete a resource:
+
+kubectl delete pod mypod
+
+
+
+
+Kubernetes:
+
+Sets a deletionTimestamp
+
+Stops normal operations
+
+Waits for finalizers to finish cleanup
+
+Deletes the object only after finalizers are removed
+
+If a finalizer never finishes → the resource gets stuck in Terminating
+
+
+
+
+
+
+
+✅ Where finalizers live
+
+They are stored in metadata:
+
+metadata:
+  finalizers:
+    - example.com/my-finalizer
