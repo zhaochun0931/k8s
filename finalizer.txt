@@ -41,3 +41,98 @@ They are stored in metadata:
 metadata:
   finalizers:
     - example.com/my-finalizer
+
+
+
+
+
+
+
+
+✅
+Example: remove finalizer from a resource
+
+
+kubectl patch myresource myname \
+  --type=merge \
+  -p '{"metadata":{"finalizers":[]}}'
+
+
+
+
+✅
+Example: force-delete a namespace
+
+
+
+kubectl get namespace rabbitmq-system -o json \
+| jq 'del(.spec.finalizers)' \
+| kubectl replace --raw "/api/v1/namespaces/rabbitmq-system/finalize" -f -
+
+
+
+
+
+
+
+
+
+
+
+# kubectl get ns
+
+NAME                 STATUS        AGE
+cert-manager         Active        22h
+default              Active        22h
+kube-flannel         Active        22h
+kube-node-lease      Active        22h
+kube-public          Active        22h
+kube-system          Active        22h
+local-path-storage   Active        22h
+metallb-system       Active        22h
+rabbitmq-system      Terminating   20h
+
+
+
+
+# kubectl describe ns rabbitmq-system
+Name:         rabbitmq-system
+Labels:       app.kubernetes.io/component=rabbitmq-operator
+              app.kubernetes.io/name=rabbitmq-system
+              app.kubernetes.io/part-of=rabbitmq
+              kubernetes.io/metadata.name=rabbitmq-system
+Annotations:  <none>
+Status:       Terminating
+Conditions:
+  Type                                         Status  LastTransitionTime               Reason                Message
+  ----                                         ------  ------------------               ------                -------
+  NamespaceDeletionDiscoveryFailure            False   Thu, 15 Jan 2026 09:01:36 +0000  ResourcesDiscovered   All resources successfully discovered
+  NamespaceDeletionGroupVersionParsingFailure  False   Thu, 15 Jan 2026 09:01:36 +0000  ParsedGroupVersions   All legacy kube types successfully parsed
+  NamespaceDeletionContentFailure              False   Thu, 15 Jan 2026 09:01:36 +0000  ContentDeleted        All content successfully deleted, may be waiting on finalization
+  NamespaceContentRemaining                    True    Thu, 15 Jan 2026 09:01:36 +0000  SomeResourcesRemain   Some resources are remaining: rabbitmqclusters.rabbitmq.com has 1 resource instances
+  NamespaceFinalizersRemaining                 True    Thu, 15 Jan 2026 09:01:36 +0000  SomeFinalizersRemain  Some content in the namespace has finalizers remaining: deletion.finalizers.rabbitmqclusters.rabbitmq.com in 1 resource instances
+
+No resource quota.
+
+No LimitRange resource.
+
+
+
+
+
+
+
+
+
+
+4️⃣ If STILL stuck → force-remove finalizers (safe in dev)
+⚠️ This is the real fix when stuck for hours
+
+
+kubectl get namespace rabbitmq-system -o json \
+| jq 'del(.spec.finalizers)' \
+| kubectl replace --raw "/api/v1/namespaces/rabbitmq-system/finalize" -f -
+
+
+
+root@gf:~#
