@@ -1,3 +1,16 @@
+A Dockerfile is a script (text file) that tells Docker how to build a custom image.
+
+Each line is a command for building the image
+
+Docker executes these commands layer by layer
+
+The result is a Docker image you can run as a container
+
+
+
+
+
+
 # This line specifies the base image
 FROM arm64v8/alpine
 
