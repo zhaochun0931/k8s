@@ -8,6 +8,18 @@ The result is a Docker image you can run as a container
 
 
 
+Dockerfile key instructions
+
+| Instruction                  | Description                                            |
+| ---------------------------- | ------------------------------------------------------ |
+| `FROM <image>`               | Base image, e.g., `ubuntu:22.04`                       |
+| `RUN <cmd>`                  | Execute commands during build (e.g., install packages) |
+| `COPY <src> <dst>`           | Copy files from your folder into the image             |
+| `WORKDIR <dir>`              | Set working directory inside container                 |
+| `CMD ["executable","param"]` | Default command when container starts                  |
+| `EXPOSE <port>`              | Document which port the container listens on           |
+
+
 
 
 
