@@ -35,16 +35,27 @@ $
 
 
 
+curl -H "Host: myapp.example.com" http://localhost:30706 --resolve myapp.example.com:31762:127.0.0.1
 
 
-
-
-$
-$ curl myapp.example.com:30979
+$ curl -H "Host: myapp.example.com" http://localhost:30706 --resolve myapp.example.com:31762:127.0.0.1
 Hello, world!
 Version: 1.0.0
-Hostname: helloapp1-7d6c6f6675-ghz2d
+Hostname: helloapp1-c444c7dc7-nrq5j
 $
+
+
+
+
+curl -H "Host: myapp.example.com" http://localhost:30706
+
+$ curl -H "Host: myapp.example.com" http://localhost:30706
+Hello, world!
+Version: 1.0.0
+Hostname: helloapp1-c444c7dc7-ldc22
+$
+
+
 
 
 
