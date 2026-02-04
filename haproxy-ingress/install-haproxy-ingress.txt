@@ -12,6 +12,16 @@ kubectl get service haproxy-kubernetes-ingress --namespace haproxy-controller
 
 
 
+
+By default, the ingress controller creates a Kubernetes service that assigns random NodePort ports. You can see this by calling kubectl get service kubernetes-service. In the example below, the ingress controller listens on port 30706 for HTTP traffic and 30675 for HTTPS traffic. Port 31441 publishes the HAProxy Stats page.
+
+kubectl get service haproxy-kubernetes-ingress --namespace haproxy-controller
+
+
+
+
+
+
 Install with preset NodePort values
 By default, the ingress controller creates a Kubernetes service that assigns random NodePort ports.
 
