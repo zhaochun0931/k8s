@@ -18,7 +18,8 @@ kubectl get service haproxy-kubernetes-ingress --namespace haproxy-controller
 
 Install with preset NodePort values 
 
-By default, the ingress controller creates a Kubernetes service that assigns random NodePort ports. You can see this by calling kubectl get service kubernetes-service. 
+By default, the ingress controller creates a Kubernetes service that assigns random NodePort ports. 
+
 In the example below, the ingress controller listens on port 30706 for HTTP traffic and 30675 for HTTPS traffic. Port 31441 publishes the HAProxy Stats page.
 
 kubectl get service haproxy-kubernetes-ingress --namespace haproxy-controller
@@ -28,9 +29,15 @@ kubectl get service haproxy-kubernetes-ingress --namespace haproxy-controller
 
 
 $ kubectl get service haproxy-kubernetes-ingress --namespace haproxy-controller
-NAME                         TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)                                                                  AGE
-haproxy-kubernetes-ingress   NodePort   10.99.114.65   <none>        80:30979/TCP,443:32395/TCP,443:32395/UDP,1024:31438/TCP,6060:30570/TCP   10m
+NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                     AGE
+haproxy-kubernetes-ingress   NodePort    10.97.154.7      <none>        80:30706/TCP,443:30675/TCP,1024:31441/TCP   32s
 $
+
+
+
+
+
+
 
 $
 $ curl myapp.example.com:30979
@@ -42,7 +49,7 @@ $
 
 
 
-
+You can choose specific NodePort ports instead by setting the controller.service.nodePort.http, controller.service.nodePort.https, and controller.service.nodePort.stat Helm chart fields.
 
 helm install haproxy-kubernetes-ingress haproxytech/kubernetes-ingress \
   --create-namespace \
@@ -51,6 +58,3 @@ helm install haproxy-kubernetes-ingress haproxytech/kubernetes-ingress \
   --set controller.service.nodePorts.https=30001 \
   --set controller.service.nodePorts.stat=30002 \
   --set controller.service.nodePorts.prometheus=30003
-
-
-
