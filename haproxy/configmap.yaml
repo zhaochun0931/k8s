@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: haproxy-config
+data:
+  haproxy.cfg: |
+    global
+        log stdout format raw local0
+    defaults
+        mode http
+        timeout connect 5s
+        timeout client 50s
+        timeout server 50s
+    frontend http-in
+        bind *:80
+        default_backend web-servers
+    backend web-servers
+        balance roundrobin
+        # Replace 'web-service' with the name of your backend K8s Service
+        server web-1 web-server-service:80 check
