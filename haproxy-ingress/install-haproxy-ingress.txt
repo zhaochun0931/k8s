@@ -58,6 +58,30 @@ $
 
 
 
+$ curl -v --resolve myapp.example.com:31762:127.0.0.1 http://myapp.example.com:31762
+* Added myapp.example.com:31762:127.0.0.1 to DNS cache
+* Hostname myapp.example.com was found in DNS cache
+*   Trying 127.0.0.1:31762...
+* Connected to myapp.example.com (127.0.0.1) port 31762
+> GET / HTTP/1.1
+> Host: myapp.example.com:31762
+> User-Agent: curl/8.7.1
+> Accept: */*
+>
+* Request completely sent off
+< HTTP/1.1 200 OK
+< date: Wed, 04 Feb 2026 07:34:15 GMT
+< content-length: 65
+< content-type: text/plain; charset=utf-8
+<
+Hello, world!
+Version: 1.0.0
+Hostname: helloapp1-c444c7dc7-ldc22
+* Connection #0 to host myapp.example.com left intact
+$
+
+
+
 
 
 You can choose specific NodePort ports instead by setting the controller.service.nodePort.http, controller.service.nodePort.https, and controller.service.nodePort.stat Helm chart fields.
