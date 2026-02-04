@@ -1,0 +1,9 @@
+$ kubectl get svc
+NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+haproxy-service      NodePort    10.111.237.42    <none>        80:32495/TCP   44s
+
+$ curl localhost:32495
+Hello, world!
+Version: 2.0.0
+Hostname: helloapp2-78c59bffd9-qvsfm
+$
