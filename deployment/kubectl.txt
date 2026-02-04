@@ -1,0 +1,1 @@
+kubectl create deployment web-server-deployment --image=uksa/kubia:latest --replicas=3
