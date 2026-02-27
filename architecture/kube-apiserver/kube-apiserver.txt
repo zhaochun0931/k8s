@@ -7,10 +7,7 @@ Some defend, some attack, some are great at passing, some are great at shootingâ
 
 
 
-At the time of writing, the best way to package and deploy a Kubernetes application is via something called a Deployment. 
-With Deployments, we start out with our application code and we containerize it. Then we define it as a Deployment via a YAML or JSON manifest file. This manifest file tells Kubernetes two important things:
-What our app should look like â€“ what images to use, ports to expose, networks to join, how to perform update etc.
-How many replicas of each part of the app to run (scale)
+
 
 
 master:
