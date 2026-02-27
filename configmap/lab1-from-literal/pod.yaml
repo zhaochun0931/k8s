@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod
+spec:
+  containers:
+    - name: app
+      image: busybox
+      command: ["sh", "-c", "sleep infinity"]
+              # Use Secret as environment variables
+      env:
+        - name: test-username
+          valueFrom:
+            configMapKeyRef:
+              name: my-configmap
+              key: username
+        - name: test-password
+          valueFrom:
+            configMapKeyRef:
+              name: my-configmap
+              key: password
