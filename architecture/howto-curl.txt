@@ -10,3 +10,13 @@ curl \
   --cert client.crt \
   --key client.key \
   https://<API_SERVER>:6443/api/v1/namespaces/default/pods
+
+
+
+curl \
+  --cacert ca.crt \
+  --cert client.crt \
+  --key client.key \
+  https://172.16.0.5:6443/api/v1/nodes
+
+
