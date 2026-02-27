@@ -1,0 +1,44 @@
+A ConfigMap is an API object used to store non-confidential data in key-value pairs. 
+Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume.
+
+
+
+kubectl create configmap my-configmap --from-literal=username=admin --from-literal=password=password
+
+
+
+kubectl get configmap
+
+$ kubectl get configmap
+NAME               DATA   AGE
+kube-root-ca.crt   1      22d
+my-configmap       2      3s
+$
+
+
+
+
+kubectl describe configmap my-configmap
+
+$ kubectl describe configmap my-configmap
+Name:         my-configmap
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+password:
+----
+password
+
+username:
+----
+admin
+
+
+BinaryData
+====
+
+Events:  <none>
+$
