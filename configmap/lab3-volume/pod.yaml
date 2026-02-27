@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod
+spec:
+  containers:
+    - name: app
+      image: busybox
+      command: ["sh", "-c", "sleep infinity"]
+              # Use configmap as volume
+      volumeMounts:
+      - name: my-volume
+        mountPath: /tmp
+  volumes:
+  - name: my-volume
+    configMap:
+      name: my-configmap
