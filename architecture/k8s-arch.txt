@@ -22,6 +22,10 @@ master(control plane) components
 
 
 
+~/.kube/config
+
+
+
 
 
 node components 
