@@ -1,1 +1,5 @@
 kubectl get events
+
+kubectl describe pod POD-NAME
+
+kubectl logs POD-NAME
