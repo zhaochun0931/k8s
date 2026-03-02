@@ -1,8 +1,7 @@
 The kubelet is the primary "node agent" that runs on each node. The kubelet works in terms of a PodSpec.
 
 
-The kubelet is one of the most important components in Kubernetes.
-It runs on every node and is responsible for running containers.
+
 
 ✅ What is kubelet?
 
