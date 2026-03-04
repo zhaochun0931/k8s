@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpine
+spec:
+  containers:
+  - image: alpine     # <--- Added the dash here
+    name: alpine
+    command: ["sleep"]
+    args: ["24h"]
