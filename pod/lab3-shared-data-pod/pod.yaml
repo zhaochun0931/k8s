@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shared-data-pod
+spec:
+  # 1. Define the shared volume at the Pod level
+  volumes:
+  - name: shared-storage
+    emptyDir: {}
+
+  containers:
+  # Container A: The Writer
+  - name: producer
+    image: busybox
+    command: ["/bin/sh", "-c", "while true; do date > /data/index.html; sleep 5; done"]
+    volumeMounts:
+    - name: shared-storage
+      mountPath: /data  # Mounts the volume here
+
+  # Container B: The Reader (Nginx)
+  - name: consumer
+    image: nginx
+    volumeMounts:
+    - name: shared-storage
+      mountPath: /usr/share/nginx/html # Nginx looks for files here
