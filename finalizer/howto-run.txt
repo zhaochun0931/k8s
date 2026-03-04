@@ -1,0 +1,5 @@
+kubectl get pod <pod-name> -o jsonpath='{.metadata.finalizers}'
+
+
+kubectl patch pod stubborn-pod -p '{"metadata":{"finalizers":null}}' --type=merge
+

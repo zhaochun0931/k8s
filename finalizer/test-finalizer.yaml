@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stubborn-pod
+  finalizers:
+    - "example.com/my-test-blocker" # This is our fake finalizer
+spec:
+  containers:
+  - name: alpine
+    image: alpine
+    command: ["sleep", "3600"]
