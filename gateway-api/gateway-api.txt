@@ -1,0 +1,8 @@
+The 3 Core Layers (Role-Oriented Design)
+The biggest shift in the Gateway API is that it splits the routing configuration into three separate Kubernetes resources. This allows different people in an organization to manage only the parts they are responsible for:
+
+1. GatewayClass (The Blueprint): Usually set up by the Infrastructure Provider. It defines which underlying proxy technology is going to do the work (e.g., NGINX, Contour).
+
+2. Gateway (The Front Door): Managed by the Cluster Admin. This is the physical listener. It says, "Open port 443, accept TLS traffic, and use this specific GatewayClass to do it." (This is what you just built!).
+
+3. Routes (The Directions): Managed by the Application Developers. These are resources like HTTPRoute, TLSRoute, TCPRoute, or UDPRoute. They attach to the Gateway and say, "If traffic asks for app.localhost/api, send it to my specific backend pod."
