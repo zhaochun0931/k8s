@@ -1,0 +1,8 @@
+1. How it Works (The Workflow)
+The Device Plugin runs as a DaemonSet (a pod on every node that has the hardware). Here is the connection sequence:
+
+Registration: The plugin tells the Kubelet (the "manager" on the node) that it exists and handles a specific resource (e.g., nvidia.com/gpu).
+
+Monitoring: The plugin keeps an eye on the hardware. If a GPU fails, it tells the Kubelet the resource is "Unhealthy."
+
+Allocation: When you request a GPU in a Pod spec, the Kubelet asks the Device Plugin: "How do I give this container access?" The plugin responds with the specific device IDs and paths (like /dev/nvidia0).
