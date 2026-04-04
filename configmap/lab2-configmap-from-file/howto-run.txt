@@ -1,0 +1,36 @@
+1. Create ConfigMap from a File
+The easiest way to do this is via the command line using kubectl.
+
+
+kubectl create configmap <config-name> --from-file=<path-to-file>
+
+Example:
+If you have a file named mysql-config.conf:
+
+kubectl create configmap mysql-settings --from-file=mysql-config.conf
+
+Key: The filename (mysql-config.conf) becomes the key.
+
+Value: The entire contents of the file become the value.
+
+
+2. Create ConfigMap from Multiple Files
+
+You can also point to a whole directory, and Kubernetes will create a key for every file inside that folder.
+
+kubectl create configmap app-config --from-file=./config-dir/
+
+
+
+
+kubectl create configmap my-configmap --from-file=./config/
+
+
+
+
+⚠️ One Important Difference
+If you update your ConfigMap while the Pod is running:
+
+Volume Mounts: The files update automatically inside the container.
+
+Environment Variables: The variables do not update. You must delete and recreate the Pod (or restart the Deployment) to "pick up" the new values.

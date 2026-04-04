@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpine-config-test
+spec:
+  containers:
+    - name: alpine-container
+      image: alpine:latest
+      # This keeps the container alive for 1 hour so you can inspect it
+      command: ["/bin/sh", "-c", "sleep 3600"]
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/test-configs  # This is where your files will appear
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-configmap  # Make sure this ConfigMap exists!
