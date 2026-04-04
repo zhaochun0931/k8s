@@ -1,0 +1,243 @@
+$ kubectl logs  kindnet-6fq8s -n kube-system
+I0404 11:24:24.224531       1 main.go:390] probe TCP address desktop-control-plane:6443
+I0404 11:24:24.226379       1 main.go:109] connected to apiserver: https://desktop-control-plane:6443
+I0404 11:24:24.226615       1 main.go:139] hostIP = 172.25.0.2
+podIP = 172.25.0.2
+I0404 11:24:24.226715       1 main.go:148] setting mtu 65535 for CNI
+I0404 11:24:24.226748       1 main.go:178] kindnetd IP family: "ipv4"
+I0404 11:24:24.226757       1 main.go:182] noMask IPv4 subnets: [10.244.0.0/16]
+time="2026-04-04T11:24:24Z" level=info msg="Created plugin 10-kube-network-policies (kindnetd, handles RunPodSandbox,RemovePodSandbox)"
+I0404 11:24:24.330206       1 controller.go:377] "Starting controller" name="kube-network-policies"
+I0404 11:24:24.330228       1 controller.go:381] "Waiting for informer caches to sync"
+I0404 11:24:24.330233       1 shared_informer.go:350] "Waiting for caches to sync" controller="kube-network-policies"
+time="2026-04-04T11:24:24Z" level=info msg="Registering plugin 10-kube-network-policies..."
+time="2026-04-04T11:24:24Z" level=info msg="Configuring plugin 10-kube-network-policies for runtime containerd/v2.2.0..."
+time="2026-04-04T11:24:24Z" level=info msg="Started plugin 10-kube-network-policies..."
+I0404 11:24:24.521791       1 shared_informer.go:357] "Caches are synced" controller="kube-network-policies"
+I0404 11:24:24.521809       1 metrics.go:72] Registering metrics
+I0404 11:24:24.521876       1 controller.go:711] "Syncing nftables rules"
+I0404 11:24:24.522654       1 nri.go:56] Synchronized state with the runtime (6 pods, 6 containers)...
+I0404 11:24:34.330963       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:24:34.330998       1 main.go:301] handling current node
+I0404 11:24:44.333257       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:24:44.333319       1 main.go:301] handling current node
+I0404 11:24:54.330440       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:24:54.330511       1 main.go:301] handling current node
+I0404 11:25:04.334167       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:25:04.334230       1 main.go:301] handling current node
+I0404 11:25:14.333892       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:25:14.333947       1 main.go:301] handling current node
+I0404 11:25:24.329626       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:25:24.329664       1 main.go:301] handling current node
+I0404 11:25:34.340655       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:25:34.340708       1 main.go:301] handling current node
+I0404 11:25:44.330878       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:25:44.330922       1 main.go:301] handling current node
+I0404 11:25:54.330719       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:25:54.330778       1 main.go:301] handling current node
+I0404 11:26:04.339271       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:26:04.339382       1 main.go:301] handling current node
+I0404 11:26:14.333198       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:26:14.333257       1 main.go:301] handling current node
+I0404 11:26:24.331838       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:26:24.331888       1 main.go:301] handling current node
+I0404 11:26:34.333244       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:26:34.333280       1 main.go:301] handling current node
+I0404 11:26:44.332980       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:26:44.333025       1 main.go:301] handling current node
+I0404 11:26:54.343543       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:26:54.343606       1 main.go:301] handling current node
+I0404 11:27:04.340211       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:27:04.340275       1 main.go:301] handling current node
+I0404 11:27:14.331483       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:27:14.331591       1 main.go:301] handling current node
+I0404 11:27:24.330862       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:27:24.330905       1 main.go:301] handling current node
+I0404 11:27:34.339118       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:27:34.339147       1 main.go:301] handling current node
+I0404 11:27:44.329315       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:27:44.329377       1 main.go:301] handling current node
+I0404 11:27:54.339758       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:27:54.339845       1 main.go:301] handling current node
+I0404 11:28:04.329684       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:28:04.329731       1 main.go:301] handling current node
+I0404 11:28:14.334615       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:28:14.334649       1 main.go:301] handling current node
+I0404 11:28:24.336203       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:28:24.336385       1 main.go:301] handling current node
+I0404 11:28:34.322395       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:28:34.322431       1 main.go:301] handling current node
+I0404 11:28:44.324348       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:28:44.324422       1 main.go:301] handling current node
+I0404 11:28:54.323890       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:28:54.323964       1 main.go:301] handling current node
+I0404 11:29:04.332740       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:29:04.332796       1 main.go:301] handling current node
+I0404 11:29:14.329017       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:29:14.329057       1 main.go:301] handling current node
+I0404 11:29:24.340338       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:29:24.340411       1 main.go:301] handling current node
+I0404 11:29:34.331094       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:29:34.331130       1 main.go:301] handling current node
+I0404 11:29:44.329843       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:29:44.329906       1 main.go:301] handling current node
+I0404 11:29:54.343999       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:29:54.344096       1 main.go:301] handling current node
+I0404 11:30:04.336288       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:30:04.336314       1 main.go:301] handling current node
+I0404 11:30:14.329120       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:30:14.329597       1 main.go:301] handling current node
+I0404 11:30:24.330128       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:30:24.330170       1 main.go:301] handling current node
+I0404 11:30:34.328937       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:30:34.328963       1 main.go:301] handling current node
+I0404 11:30:44.328759       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:30:44.328827       1 main.go:301] handling current node
+I0404 11:30:54.339335       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:30:54.339392       1 main.go:301] handling current node
+I0404 11:31:04.333940       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:31:04.333988       1 main.go:301] handling current node
+I0404 11:31:14.329253       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:31:14.329300       1 main.go:301] handling current node
+I0404 11:31:24.341429       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:31:24.341493       1 main.go:301] handling current node
+I0404 11:31:34.328626       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:31:34.328672       1 main.go:301] handling current node
+I0404 11:31:44.329791       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:31:44.329846       1 main.go:301] handling current node
+I0404 11:31:54.341268       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:31:54.341313       1 main.go:301] handling current node
+I0404 11:32:04.331087       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:32:04.331134       1 main.go:301] handling current node
+I0404 11:32:14.329286       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:32:14.329347       1 main.go:301] handling current node
+I0404 11:32:24.332350       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:32:24.332425       1 main.go:301] handling current node
+I0404 11:32:34.331374       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:32:34.331414       1 main.go:301] handling current node
+I0404 11:32:44.329055       1 main.go:297] Handling node with IPs: map[172.25.0.2:{} fc00:f853:ccd:e793::2:{}]
+I0404 11:32:44.329113       1 main.go:301] handling current node
+I0404 11:32:54.338597       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:32:54.338684       1 main.go:301] handling current node
+I0404 11:33:04.333428       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:33:04.333502       1 main.go:301] handling current node
+I0404 11:33:14.332067       1 main.go:297] Handling node with IPs: map[172.25.0.2:{} fc00:f853:ccd:e793::2:{}]
+I0404 11:33:14.332126       1 main.go:301] handling current node
+I0404 11:33:24.335869       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:33:24.335943       1 main.go:301] handling current node
+I0404 11:33:34.329870       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:33:34.329913       1 main.go:301] handling current node
+I0404 11:33:44.332144       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:33:44.332191       1 main.go:301] handling current node
+I0404 11:33:54.339550       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:33:54.339623       1 main.go:301] handling current node
+I0404 11:34:04.329077       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:34:04.329126       1 main.go:301] handling current node
+I0404 11:34:14.329845       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:34:14.329913       1 main.go:301] handling current node
+I0404 11:34:24.329158       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:34:24.329202       1 main.go:301] handling current node
+I0404 11:34:34.328801       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:34:34.328831       1 main.go:301] handling current node
+I0404 11:34:44.336073       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:34:44.336231       1 main.go:301] handling current node
+I0404 11:34:54.338248       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:34:54.338324       1 main.go:301] handling current node
+I0404 11:35:04.329421       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:35:04.329505       1 main.go:301] handling current node
+I0404 11:35:14.329507       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:35:14.329555       1 main.go:301] handling current node
+I0404 11:35:24.330660       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:35:24.330714       1 main.go:301] handling current node
+I0404 11:35:34.330169       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:35:34.330218       1 main.go:301] handling current node
+I0404 11:35:44.333022       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:35:44.333084       1 main.go:301] handling current node
+I0404 11:35:54.330080       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:35:54.330129       1 main.go:301] handling current node
+I0404 11:36:04.331972       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:36:04.332151       1 main.go:301] handling current node
+I0404 11:36:14.331617       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:36:14.331685       1 main.go:301] handling current node
+I0404 11:36:24.340176       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:36:24.340221       1 main.go:301] handling current node
+I0404 11:36:34.334270       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:36:34.334324       1 main.go:301] handling current node
+I0404 11:36:44.333049       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:36:44.333153       1 main.go:301] handling current node
+I0404 11:36:54.333522       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:36:54.333595       1 main.go:301] handling current node
+I0404 11:37:04.331798       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:37:04.331848       1 main.go:301] handling current node
+I0404 11:37:14.330067       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:37:14.330181       1 main.go:301] handling current node
+I0404 11:37:24.338569       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:37:24.338635       1 main.go:301] handling current node
+I0404 11:37:34.329846       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:37:34.329901       1 main.go:301] handling current node
+I0404 11:37:44.331792       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:37:44.331937       1 main.go:301] handling current node
+I0404 11:37:54.329496       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:37:54.329538       1 main.go:301] handling current node
+I0404 11:38:04.330434       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:38:04.330469       1 main.go:301] handling current node
+I0404 11:38:14.327480       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:38:14.327551       1 main.go:301] handling current node
+I0404 11:38:24.329428       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:38:24.329461       1 main.go:301] handling current node
+I0404 11:38:34.328433       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:38:34.328477       1 main.go:301] handling current node
+I0404 11:38:44.331105       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:38:44.331173       1 main.go:301] handling current node
+I0404 11:38:54.329375       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:38:54.329423       1 main.go:301] handling current node
+I0404 11:39:04.327913       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:39:04.328010       1 main.go:301] handling current node
+I0404 11:39:14.330665       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:39:14.330779       1 main.go:301] handling current node
+I0404 11:39:24.335912       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:39:24.335963       1 main.go:301] handling current node
+I0404 11:39:34.337742       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:39:34.337809       1 main.go:301] handling current node
+I0404 11:39:44.331188       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:39:44.331252       1 main.go:301] handling current node
+I0404 11:39:54.329862       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:39:54.329919       1 main.go:301] handling current node
+I0404 11:40:04.347938       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:40:04.348423       1 main.go:301] handling current node
+I0404 11:40:14.329792       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:40:14.329823       1 main.go:301] handling current node
+I0404 11:40:24.329104       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:40:24.329179       1 main.go:301] handling current node
+I0404 11:40:34.327744       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:40:34.327774       1 main.go:301] handling current node
+I0404 11:40:44.328603       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:40:44.328662       1 main.go:301] handling current node
+I0404 11:40:54.331993       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:40:54.332072       1 main.go:301] handling current node
+I0404 11:41:04.342314       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:41:04.342486       1 main.go:301] handling current node
+I0404 11:41:14.327629       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:41:14.327687       1 main.go:301] handling current node
+I0404 11:41:24.327773       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:41:24.327847       1 main.go:301] handling current node
+I0404 11:41:34.336179       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:41:34.336264       1 main.go:301] handling current node
+I0404 11:41:44.332395       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:41:44.332462       1 main.go:301] handling current node
+I0404 11:41:54.327700       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:41:54.327783       1 main.go:301] handling current node
+I0404 11:42:04.328193       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:42:04.328239       1 main.go:301] handling current node
+I0404 11:42:14.328369       1 main.go:297] Handling node with IPs: map[172.25.0.2:{} fc00:f853:ccd:e793::2:{}]
+I0404 11:42:14.328445       1 main.go:301] handling current node
+I0404 11:42:24.332295       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:42:24.332337       1 main.go:301] handling current node
+I0404 11:42:34.330978       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:42:34.331011       1 main.go:301] handling current node
+I0404 11:42:44.338651       1 main.go:297] Handling node with IPs: map[172.25.0.2:{} fc00:f853:ccd:e793::2:{}]
+I0404 11:42:44.338984       1 main.go:301] handling current node
+I0404 11:42:54.330951       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:42:54.330996       1 main.go:301] handling current node
+I0404 11:43:04.333788       1 main.go:297] Handling node with IPs: map[172.25.0.2:{}]
+I0404 11:43:04.333818       1 main.go:301] handling current node

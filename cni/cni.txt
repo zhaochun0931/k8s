@@ -1,0 +1,112 @@
+In Kubernetes, CNI stands for Container Network Interface.
+
+Think of it as a universal plug for networking. Kubernetes itself doesn't actually know how to "setup" a network for your Pods; instead, it follows a standardized set of rules (the CNI specification) and tells a specialized plugin to handle the heavy lifting.
+
+1. Why do we need CNI?
+In the early days of containers, every runtime (Docker, Mesos, rkt) had its own way of doing networking. This was a nightmare for developers. CNI was created by CoreOS to standardize how network connectivity is established when a container is created or destroyed.
+
+In K8s, the CNI's job is to ensure that:
+
+Every Pod gets its own unique IP address.
+
+Pods can talk to each other across different nodes without NAT (Network Address Translation).
+
+When a Pod dies, its IP is cleaned up and returned to the pool.
+
+2. How it Works (The Handshake)
+When you run kubectl apply -f pod.yaml, a sequence of events happens:
+
+Kubelet (the agent on the node) sees the new Pod.
+
+Kubelet calls the CNI Plugin (e.g., Calico or Flannel).
+
+The Plugin creates a virtual network interface (veth pair) for the Pod.
+
+The Plugin assigns an IP address to that interface.
+
+The Plugin attaches the interface to the network (bridge or routing table).
+
+The Plugin reports back to Kubelet, and the Pod is now "Ready."
+
+
+
+
+
+4. Where does the CNI live?
+If you log into a Kubernetes node, you can actually see the "brain" of the CNI in two places:
+
+Binaries: /opt/cni/bin/ (The executable files that do the work).
+
+Configuration: /etc/cni/net.d/ (The JSON file telling K8s which plugin to use).
+
+
+
+
+
+
+The CNI (Calico, Flannel, etc.) usually runs as a DaemonSet in the kube-system namespace.
+
+
+
+$ kubectl get all -n kube-system
+NAME                                                READY   STATUS    RESTARTS   AGE
+pod/coredns-66bc5c9577-ckng5                        1/1     Running   0          9m56s
+pod/coredns-66bc5c9577-jbq46                        1/1     Running   0          9m56s
+pod/etcd-desktop-control-plane                      1/1     Running   0          10m
+pod/kindnet-6fq8s                                   1/1     Running   0          9m56s
+pod/kube-apiserver-desktop-control-plane            1/1     Running   0          10m
+pod/kube-controller-manager-desktop-control-plane   1/1     Running   0          10m
+pod/kube-proxy-fkflk                                1/1     Running   0          9m56s
+pod/kube-scheduler-desktop-control-plane            1/1     Running   0          10m
+
+NAME               TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+service/kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   10m
+
+NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+daemonset.apps/kindnet      1         1         1       1            1           kubernetes.io/os=linux   10m
+daemonset.apps/kube-proxy   1         1         1       1            1           kubernetes.io/os=linux   10m
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/coredns   2/2     2            2           10m
+
+NAME                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/coredns-66bc5c9577   2         2         2       9m56s
+
+$
+
+$ kubectl get pods -A
+NAMESPACE            NAME                                            READY   STATUS    RESTARTS   AGE
+kube-system          coredns-66bc5c9577-ckng5                        1/1     Running   0          16m
+kube-system          coredns-66bc5c9577-jbq46                        1/1     Running   0          16m
+kube-system          etcd-desktop-control-plane                      1/1     Running   0          16m
+kube-system          kindnet-6fq8s                                   1/1     Running   0          16m
+kube-system          kube-apiserver-desktop-control-plane            1/1     Running   0          16m
+kube-system          kube-controller-manager-desktop-control-plane   1/1     Running   0          16m
+kube-system          kube-proxy-fkflk                                1/1     Running   0          16m
+kube-system          kube-scheduler-desktop-control-plane            1/1     Running   0          16m
+local-path-storage   local-path-provisioner-5c4cdb564f-56vd5         1/1     Running   0          16m
+$
+
+
+POD NAME                ROLE              WHAT IT DOES
+---------------------------------------------------------------------------------------
+kindnet                 CNI               The "plumber." Connects pods via IP.
+coredns                 DNS               The "phonebook." Resolves service names to IPs.
+etcd                    Database          The "brain." Stores the entire cluster state.
+kube-apiserver          API               The "front door." Every kubectl command goes here.
+kube-proxy              Network Proxy     The "traffic cop." Handles Service load balancing.
+kube-scheduler          Scheduler         The "manager." Decides which node a Pod lives on.
+---------------------------------------------------------------------------------------
+
+
+kubectl → Sends the YAML to the kube-apiserver.
+
+kube-apiserver → Saves the spec in etcd.
+
+kube-scheduler → Notices the new Pod in etcd and picks a node.
+
+kube-apiserver → Tells the Kubelet on that node to start the container.
+
+kindnet → Plumbs the network so the Pod gets an IP.
+
+kube-proxy → Updates the routing rules so other Pods can find it.
