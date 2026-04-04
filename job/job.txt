@@ -1,0 +1,14 @@
+In Kubernetes, a Job is a controller used for finite tasks. Unlike a Deployment (which keeps a Pod running forever, like a web server or MySQL), a Job runs a Pod until it successfully finishes its task and then stops.
+
+Think of a Job as a "run-to-completion" script.
+
+
+
+
+
+1. How a Job works
+When you create a Job, it starts one or more Pods.
+
+If the Pod succeeds (returns exit code 0), the Job is complete.
+
+If the Pod fails (crashes), the Job will automatically restart it until it succeeds or hits a retry limit.

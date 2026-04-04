@@ -1,0 +1,3 @@
+kubectl apply -f caculator.yaml
+
+kubectl delete job math-calculator
