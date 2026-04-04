@@ -1,0 +1,33 @@
+kubectl exec -it postgres-0 -- bash
+
+
+su - postgres
+
+psql
+
+
+create table t1(id int);
+
+insert into t1 select * from generate_series(1,10000);
+
+
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(150),
+    city VARCHAR(100),
+    created_at DATE
+);
+
+
+
+kubectl cp ./large_data.csv postgres-0:/tmp
+
+
+psql -h postgres-0.postgres -U postgres
+
+COPY users(id, name, email, city, created_at)
+FROM '/tmp/yourdata.csv'
+DELIMITER ','
+CSV HEADER;

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  serviceName: "postgres"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "your_password"
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql # <--- Mount to the parent, let Postgres handle the subdirs 
+          ports:
+            - containerPort: 5432
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi  # Requesting 5Gi of storage for each pod
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres      # This matches the serviceName in your StatefulSet
+  labels:
+    app: postgres
+spec:
+  ports:
+  - port: 5432
+    name: postgres
+  clusterIP: None     # This makes it "Headless"
+  selector:
+    app: postgres     # This must match the labels on your Postgres pods
