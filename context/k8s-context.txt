@@ -1,0 +1,48 @@
+n Kubernetes, a context is essentially a shortcut that bundles together three specific pieces of information: Who you are, Where you are connecting, and What part of the cluster you are looking at.
+
+Think of it like a "profile" or a "preset" on a car radio. Instead of manually entering the frequency, bass, and volume every time, you just hit "Button 1."
+
+1. The Three Components of a Context
+A context is defined in your ~/.kube/config file and consists of:
+
+Cluster: The URL of the API server (e.g., rancher-desktop or a cloud URL like https://12.34.56.78).
+
+User: Your credentials (e.g., your admin certificate, a token, or your username/password).
+
+Namespace: The specific "folder" or logical partition inside the cluster you want to work in by default (e.g., default, development, or production).
+
+
+
+2. Why Contexts Matter
+Without contexts, every time you ran a command like kubectl get pods, you would have to type out:
+kubectl get pods --server=https://my-cluster:6443 --user=admin --namespace=prod
+
+With a context set, you just type:
+kubectl get pods
+
+## Task                            Command
+
+List all contexts               kubectl config get-contexts
+See current context             kubectl config current-context
+Switch context                  kubectl config use-context \<name\>
+Set a default namespace         kubectl config set-context --current --namespace=\<name\>
+
+
+Task: List all contexts
+
+kubectl config get-contexts
+
+
+Task: See current context
+
+kubectl config current-context
+
+
+Task: Switch context
+
+kubectl config use-context <name>
+
+
+Task: Set a default namespace
+
+kubectl config set-context --current --namespace=<name>
