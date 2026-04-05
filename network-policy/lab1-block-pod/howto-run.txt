@@ -1,0 +1,1 @@
+kubectl label pod curl-test access=true

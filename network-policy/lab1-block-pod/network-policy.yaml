@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: limit-target-access
+spec:
+  podSelector:
+    matchLabels:
+      app: target         # 1. Which Pods are we protecting?
+  policyTypes:
+  - Ingress
+  ingress:                # 2. Define the "Allow" list
+  - from:
+    - podSelector:
+        matchLabels:
+          access: "true"  # 3. Only allow Pods with this label
