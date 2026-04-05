@@ -1,0 +1,8 @@
+1. The Relationship Hierarchy
+Think of it like a chain. Breaking the first link doesn't destroy the others.
+
+[Pod] ---uses---> [PVC] ---bound to---> [PV] ---points to---> [Actual Data]
+
+Delete the Pod: The PVC and PV remain Bound. The data is safe.
+
+Delete the PVC: This is where things change. What happens to the PV depends on the Reclaim Policy.
