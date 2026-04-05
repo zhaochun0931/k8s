@@ -1,0 +1,74 @@
+Dynamic Provisioning.
+
+Because you used the storageClassName: local-path (which is the default "factory" that comes with Rancher Desktop), you no longer have to manually create the Persistent Volume (PV) yourself.
+
+How Dynamic Provisioning Works (The Magic)
+The PVC Request: You tell Kubernetes, "I need 2Gi of space, and I want to use the local-path worker."
+
+The Provisioner: The local-path controller (a background process in Rancher Desktop) sees your request.
+
+The PV Creation: The controller automatically creates a brand new PV for you. It picks a folder inside the Rancher VM and labels it as yours.
+
+The Binding: It instantly "staples" (binds) that new PV to your PVC.
+
+
+
+
+
+$ kubectl get sc
+NAME                   PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+local-path (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  6h50m
+$
+
+
+
+$ kubectl describe pv pvc-9048640c-4237-44dc-b429-d0ef34e12f22
+Name:              pvc-9048640c-4237-44dc-b429-d0ef34e12f22
+Labels:            <none>
+Annotations:       local.path.provisioner/selected-node: lima-rancher-desktop
+                   pv.kubernetes.io/provisioned-by: rancher.io/local-path
+Finalizers:        [kubernetes.io/pv-protection]
+StorageClass:      local-path
+Status:            Bound
+Claim:             default/my-pvc
+Reclaim Policy:    Delete
+Access Modes:      RWO
+VolumeMode:        Filesystem
+Capacity:          2Gi
+Node Affinity:
+  Required Terms:
+    Term 0:        kubernetes.io/hostname in [lima-rancher-desktop]
+Message:
+Source:
+    Type:  LocalVolume (a persistent volume backed by local storage on a node)
+    Path:  /var/lib/rancher/k3s/storage/pvc-9048640c-4237-44dc-b429-d0ef34e12f22_default_my-pvc
+Events:    <none>
+$
+
+
+2. How to "Touch" the files from your Mac
+Because this path exists inside the Rancher Desktop VM (not directly on your macOS desktop), you have to enter the Rancher shell to see it.
+
+Step 1: Enter the VM
+
+rdctl shell
+
+Step 2: Go to the storage directory
+
+sudo -i
+cd /var/lib/rancher/k3s/storage/
+ls
+
+
+
+
+
+
+
+
+
+
+
+kubectl exec -it task-pv-pod -- bash
+
+echo "hello world $(date)" > /usr/share/nginx/html/index.html
