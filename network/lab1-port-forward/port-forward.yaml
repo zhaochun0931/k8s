@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        # This command writes the Pod's hostname into the index file
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            echo "Hello from Pod: $(hostname)" > /usr/share/nginx/html/index.html;
+            nginx -g 'daemon off;'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+spec:
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

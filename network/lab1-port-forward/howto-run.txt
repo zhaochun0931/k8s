@@ -1,0 +1,39 @@
+Step 2: Port-Forward to a Specific Pod
+
+
+kubectl get pods
+
+kubectl port-forward pod/web-deploy-xxxxx 8080:80
+
+
+
+curl localhost:8080
+
+
+
+
+
+
+Step 3: Port-Forward to the Service
+
+kubectl get svc
+
+$ kubectl get svc
+NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+kubernetes    ClusterIP   10.43.0.1      <none>        443/TCP   92m
+web-service   ClusterIP   10.43.121.53   <none>        80/TCP    8m51s
+$
+
+kubectl port-forward svc/web-service 9000:80
+
+curl localhost:9000
+
+
+
+
+Step 4: Using a Random Local Port
+
+If you don't want to check which ports are free on your Mac, let Kubernetes decide.
+
+
+kubectl port-forward svc/web-service :80

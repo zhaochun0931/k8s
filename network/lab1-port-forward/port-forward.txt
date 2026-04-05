@@ -1,0 +1,41 @@
+Port-forwarding in Kubernetes is a networking "tunnel" that lets you access a Pod or Service inside the cluster from your local machine (your Mac).
+
+Think of it as a temporary bridge. Since Kubernetes pods live in a private internal network that your Mac can’t normally see, kubectl port-forward creates a direct link between a port on your localhost and a port on the Pod.
+
+
+
+
+
+Port-forwarding in Kubernetes is a networking "tunnel" that lets you access a Pod or Service inside the cluster from your local machine (your Mac).
+
+Think of it as a temporary bridge. Since Kubernetes pods live in a private internal network that your Mac can’t normally see, kubectl port-forward creates a direct link between a port on your localhost and a port on the Pod.
+
+
+
+
+
+
+Address binding: 
+By default, it binds to 127.0.0.1. If you need other devices on your local network to see it, use:
+--address 0.0.0.0
+
+Random Port: 
+If you don't care what the local port is, use :80, and Kubernetes will pick a random free port for you.
+
+
+
+
+
+
+
+
+
+
+Even though you are pointing to a Service (which we usually think of as a Load Balancer), kubectl port-forward behaves differently than a standard NodePort or LoadBalancer.
+
+1. Why it's "stuck" on one Pod
+When you run kubectl port-forward svc/web-service 9000:80, the following happens:
+
+Single Tunnel: kubectl picks one healthy pod that matches the service selector and opens a single, direct TCP tunnel to it.
+
+Sticky Connection: It does not load balance every request. As long as that tunnel is open and the pod is alive, all traffic through that specific port-forward command will go to that same pod.
