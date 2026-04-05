@@ -1,0 +1,34 @@
+1. How ClusterIP Works
+When you use a ClusterIP (the default), Kubernetes gives the Service a single, stable IP address.
+
+When you connect to postgres, you talk to that one IP.
+
+The Service then "load balances" your request to any available Postgres Pod.
+
+
+
+A ClusterIP supports load balancing because it doesn't actually exist as a physical device. Instead, it is a Virtual IP (VIP) managed by a process called kube-proxy that lives on every node in your cluster.
+
+1. The "How": How it Works (The Traffic Cop)
+When you create a ClusterIP service, Kubernetes does three things:
+
+Assigns an IP: It gives the service a "Virtual IP" from a internal pool.
+
+Identifies Backends: It looks at your selector (e.g., app: nginx) and finds all Pods with that label. These are called Endpoints.
+
+Configures the Nodes: The kube-proxy on every node writes "Rules" (using iptables or IPVS) into the Linux kernel of the node.
+
+When your packet hits the ClusterIP, the Linux kernel looks at its rules and says: "If a packet is going to 10.96.0.10 (Service), intercept it and send it to 10.244.0.5 (Pod A) instead."
+
+
+
+
+
+
+Standard vs. Headless (Load Balance View)
+Standard (ClusterIP): The Cluster handles the load balancing. You talk to one IP, and the "rules" decide which Pod answers.
+
+Headless: The Client handles the load balancing. Kubernetes gives you all the IPs, and you (the code or user) decide which one to connect to.
+
+
+

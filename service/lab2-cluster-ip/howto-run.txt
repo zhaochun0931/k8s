@@ -1,0 +1,5 @@
+kubectl exec -it manual-dns-tester -- sh
+
+nslookup my-clusterip-service
+
+curl my-clusterip-service

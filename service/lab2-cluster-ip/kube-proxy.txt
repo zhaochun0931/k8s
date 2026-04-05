@@ -1,0 +1,92 @@
+iptables -t nat -L KUBE-SERVICES
+
+
+# iptables -t nat -L KUBE-SERVICES
+Chain KUBE-SERVICES (2 references)
+target     prot opt source               destination
+KUBE-SVC-NPX46M4PTMTKRN6Y  tcp  --  anywhere             10.96.0.1            /* default/kubernetes:https cluster IP */ tcp dpt:https
+KUBE-SVC-TCOU7JCQXEZGVUNU  udp  --  anywhere             10.96.0.10           /* kube-system/kube-dns:dns cluster IP */ udp dpt:domain
+KUBE-SVC-ERIFXISQEP7F7OF4  tcp  --  anywhere             10.96.0.10           /* kube-system/kube-dns:dns-tcp cluster IP */ tcp dpt:domain
+KUBE-SVC-JD5MR3NA4I4DYORP  tcp  --  anywhere             10.96.0.10           /* kube-system/kube-dns:metrics cluster IP */ tcp dpt:9153
+KUBE-SVC-GHMMVT2BDVMMFA3N  tcp  --  anywhere             10.96.12.55          /* default/my-clusterip-service cluster IP */ tcp dpt:http
+KUBE-NODEPORTS  all  --  anywhere             anywhere             /* kubernetes service nodeports; NOTE: this must be the last rule in this chain */ ADDRTYPE match dst-type LOCAL
+#
+
+
+
+
+
+
+
+# iptables -t nat -L KUBE-SVC-GHMMVT2BDVMMFA3N
+Chain KUBE-SVC-GHMMVT2BDVMMFA3N (1 references)
+target     prot opt source               destination
+KUBE-MARK-MASQ  tcp  -- !10.244.0.0/16        10.96.12.55          /* default/my-clusterip-service cluster IP */ tcp dpt:http
+KUBE-SEP-CBX7I7IO3P7UPXEE  all  --  anywhere             anywhere             /* default/my-clusterip-service -> 10.244.0.10:80 */ statistic mode random probability 0.33333333349
+KUBE-SEP-JRM7H4IE3XDEJW43  all  --  anywhere             anywhere             /* default/my-clusterip-service -> 10.244.0.11:80 */ statistic mode random probability 0.50000000000
+KUBE-SEP-T7V7VMUQGRZC4IZA  all  --  anywhere             anywhere             /* default/my-clusterip-service -> 10.244.0.9:80 */
+#
+
+
+
+
+1. The Probability Math (Fixed Length)
+
+RULE #    PROBABILITY    REMAINING TRAFFIC    ACTUAL CHANCE    TARGET POD
+--------------------------------------------------------------------------------
+1         0.33333        100%                 ~33%             10.244.0.10
+2         0.50000        66%                  ~33%             10.244.0.11
+3         (Always)       33%                  ~33%             10.244.0.9
+--------------------------------------------------------------------------------
+
+Rule 1: Takes 1/3 of all incoming requests and sends them to Pod .10.
+
+Rule 2: Of the 2/3 of traffic that "fell through" Rule 1, it takes half (0.50000). Half of 2/3 is exactly 1/3.
+
+Rule 3: This is the "catch-all." Since there is no probability listed, it takes 100% of whatever is left.
+
+
+2. Decoding the Terms for your .txt Lab Notes
+
+KUBE-SVC-xxx: The "Service" chain. This is the entry point for your ClusterIP (10.96.12.55).
+
+KUBE-SEP-xxx: "Service End Point." These are the specific rules for your individual Pods.
+
+KUBE-MARK-MASQ: This ensures that if traffic comes from outside the cluster, the return packet knows how to find its way back (Masquerading/SNAT).
+
+statistic mode random: This tells the Linux kernel to use the random number generator to decide if this rule should "fire."
+
+
+
+
+
+3. Why this is "Invisible" to the App
+When your tester pod ran curl 10.96.12.55, it thought it was talking to a single server. It had no idea that the Linux Kernel was intercepting that packet and rewriting the destination IP to 10.244.0.11 before it even left the virtual network card!
+
+
+
+
+
+
+
+1. The "Traffic Splitter" (Load Balancing)
+These lines explain why your curl hits different Pods. The kernel evaluates these rules top-to-bottom:
+
+Rule 1 (Probability 0.33): The kernel rolls a "dice." If it hits 1–33, the traffic goes to Pod 10.244.0.10. If not, it moves to the next rule.
+
+Rule 2 (Probability 0.50): Of the remaining 66% of traffic, the kernel rolls again. Since 50% of 66% is 33%, another third of total traffic goes to Pod 10.244.0.11.
+
+Rule 3 (No Probability): This is the "else" statement. 100% of whatever is left (the final third) goes to Pod 10.244.0.9.
+
+2. The Columns Explained (Fixed Length)
+3. What is KUBE-MARK-MASQ?
+You see this line at the very top:
+
+KUBE-MARK-MASQ  tcp  -- !10.244.0.0/16   10.96.12.55
+
+The ! means NOT. This rule says: "If the traffic is coming from OUTSIDE the cluster (not from 10.244.x.x) and heading to our Service IP (10.96.12.55), mark it for Masquerading."
+
+This is critical because it tells the network: "When the Pod replies, send the answer back through the Service IP so the outside world recognizes the sender." Without this, the outside client would get a reply from a "random" Pod IP it didn't ask for and would reject the connection.
+
+4. Why is this cool?
+Because this is happening at the Kernel level, it is incredibly fast. Your application code doesn't have to know anything about load balancing. It just sends a packet to 10.96.12.55, and the Linux kernel "teleports" that packet to the correct Pod before it even touches the physical wire.
