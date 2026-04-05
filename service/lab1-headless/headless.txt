@@ -1,0 +1,22 @@
+A Headless Service is a specific type of Kubernetes Service that does not have a single "ClusterIP" (a stable virtual IP). Instead of acting as a load balancer that hides the Pods, it acts as a direct directory that reveals the IP addresses of every Pod behind it.
+
+
+
+In a Headless Service, Kubernetes creates DNS "A records" for each pod in the format:
+
+pod-name.service-name.namespace.svc.cluster.local
+
+
+
+FEATURE          STANDARD SERVICE (ClusterIP)      HEADLESS SERVICE (None)
+--------------------------------------------------------------------------------
+Virtual IP       Assigned (e.g. 10.96.0.10)        None
+DNS Response     Returns the single ClusterIP      Returns all individual Pod IPs
+Traffic          Load balanced by Kube-Proxy       Client chooses which Pod
+Pod Identity     Anonymous / Replaceable           Stable and Unique (StatefulSet)
+--------------------------------------------------------------------------------
+
+
+Standard Service: Acts like a single entry point. When you query the service name, you get one stable IP address. Kubernetes handles the load balancing to any available Pod. This is best for web apps where any Pod can handle the request.
+
+Headless Service: Acts like a transparent list. When you query the service name, Kubernetes gives you the direct IP addresses of every Pod in the set. This is required for databases (like your Postgres setup) where you need to connect to a specific instance like postgres-0.

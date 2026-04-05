@@ -1,0 +1,59 @@
+kubectl exec -it manual-dns-tester -- sh
+
+
+nslookup nginx-headless
+
+nslookup web-0.nginx-headless
+
+nslookup web-0.nginx-headless.default.svc.cluster.local
+
+
+
+# Test the whole Headless Service
+nslookup nginx-headless
+
+# Test a specific Pod in the StatefulSet
+nslookup web-0.nginx-headless
+
+
+
+
+/ # nslookup nginx-headless
+;; Got recursion not available from 10.96.0.10
+Server:		10.96.0.10
+Address:	10.96.0.10#53
+
+Name:	nginx-headless.default.svc.cluster.local
+Address: 10.244.0.7
+Name:	nginx-headless.default.svc.cluster.local
+Address: 10.244.0.5
+Name:	nginx-headless.default.svc.cluster.local
+Address: 10.244.0.8
+;; Got recursion not available from 10.96.0.10
+
+/ #
+
+
+/ # nslookup web-0.nginx-headless
+;; Got recursion not available from 10.96.0.10
+Server:		10.96.0.10
+Address:	10.96.0.10#53
+
+Name:	web-0.nginx-headless.default.svc.cluster.local
+Address: 10.244.0.5
+;; Got recursion not available from 10.96.0.10
+
+/ #
+
+
+
+/ # nslookup web-0.nginx-headless.default.svc.cluster.local
+;; Got recursion not available from 10.96.0.10
+Server:		10.96.0.10
+Address:	10.96.0.10#53
+
+Name:	web-0.nginx-headless.default.svc.cluster.local
+Address: 10.244.0.5
+;; Got recursion not available from 10.96.0.10
+
+/ #
