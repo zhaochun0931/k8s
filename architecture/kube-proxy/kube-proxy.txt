@@ -1,0 +1,126 @@
+Kube-proxy is a critical network daemon that runs on every single worker node in a Kubernetes cluster.
+
+If the Kubelet is the site foreman managing the workers (Pods), kube-proxy is the switchboard operator or the traffic cop. Its entire job is to make sure that network traffic meant for your applications actually finds its way to the correct, currently running Pod.
+
+Here is a deep dive into how it works and the massive problem it solves.
+
+1. The Problem: Ephemeral Pods
+To understand kube-proxy, you first have to understand the fundamental networking problem in Kubernetes: Pod IP addresses are completely unreliable.
+
+When a Pod starts, it gets an IP address. If that Pod crashes, the Kubelet will spin up a replacement, but that new Pod gets a brand new IP address.
+
+If your Frontend app needs to talk to your Backend app, it cannot rely on the Backend Pod's IP address because it might change at any second. To fix this, Kubernetes uses a Service. A Service provides a single, stable, never-changing IP address for a group of Pods.
+
+But a Service is just a virtual concept; it isn't a real physical load balancer. So, when the Frontend sends a request to the Service's stable IP, how does the Linux operating system actually know where to route that packet? That is where kube-proxy comes in.
+
+2. How Kube-Proxy Routes Traffic
+Kube-proxy constantly watches the Kube-API Server for any changes to Services or Pod endpoints. When a new Service is created, or a Pod scales up/down, kube-proxy immediately springs into action and updates the local network rules on its specific worker node.
+
+
+
+Mode                 How it works                                                 Best for
+---------------------------------------------------------------------------------------------------------------------------
+iptables (Default)   It writes hundreds or thousands of rules into the Linux      Most standard Kubernetes clusters. 
+                     firewall (iptables). When a packet hits the node destined    It is stable and reliable.
+                     for a Service IP, the iptables rules instantly catch it, 
+                     perform Network Address Translation (NAT), and rewrite 
+                     the packet's destination to a specific Pod's IP.             
+
+IPVS                 Instead of firewall rules, it uses the Linux Virtual         Massive clusters (1,000+ Services). 
+                     Server kernel module. It builds a highly efficient hash      iptables gets slow if you have 50,000 
+                     table to route traffic.                                      rules; IPVS remains lightning-fast.
+
+eBPF (Replacement)   Note: This actually bypasses kube-proxy entirely. Modern     Ultra-high performance, modern, 
+                     CNIs like Cilium use eBPF to program the kernel directly,    large-scale enterprise clusters.
+                     completely removing the need for the kube-proxy daemon.
+
+
+
+
+
+3. Step-by-Step Traffic Flow
+Let's trace a network packet to see kube-proxy in action:
+
+The Request: Pod A (Frontend) wants to talk to the Backend Service. It sends a packet to the Backend Service's stable virtual IP (e.g., 10.96.0.10).
+
+The Interception: As the packet tries to leave the node, the Linux kernel checks its iptables rules.
+
+The Translation: The iptables rules (written by kube-proxy a few minutes ago) say: "Ah! Any packet going to 10.96.0.10 should actually be redirected to either Pod B (192.168.1.5) or Pod C (192.168.1.6). I will randomly pick Pod B."
+
+The Delivery: The destination IP on the packet is overwritten to 192.168.1.5, and it routes perfectly to the correct Backend Pod.
+
+4. What Kube-Proxy Does Not Do
+To keep the mental model clean, it is important to know what kube-proxy is not responsible for:
+
+It does not assign IPs to Pods: That is the job of the CNI (Container Network Interface), like Calico, Flannel, or Weave.
+
+It does not resolve domain names: If Pod A asks for backend.default.svc.cluster.local, kube-proxy doesn't know what that means. That is the job of CoreDNS. (CoreDNS turns the name into the Service IP; kube-proxy turns the Service IP into the Pod IP).
+
+It is not an Ingress Controller: It primarily handles "East-West" traffic (internal cluster traffic), not HTTP routing from the outside public internet based on domain names.
+
+
+
+
+
+
+
+
+🚀
+kube-proxy talks to the Kubernetes API server just like any other Kubernetes component:
+through the Kubernetes API over HTTPS, using its kubeconfig file and client certificates.
+
+
+
+✅ 1. kube-proxy runs on every node
+
+kube-proxy is an agent running as a DaemonSet:
+
+
+
+kubectl get ds -n kube-system
+
+
+
+$ kubectl get ds -n kube-system
+NAMESPACE     NAME         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system   kube-proxy   4         4         4       4            4           kubernetes.io/os=linux   23h
+$
+
+
+
+kubectl get pods -n kube-system -o wide -l k8s-app=kube-proxy
+
+
+$ kubectl get pods -n kube-system -o wide -l k8s-app=kube-proxy
+NAME               READY   STATUS    RESTARTS        AGE   IP           NODE                       NOMINATED NODE   READINESS GATES
+kube-proxy-4cg58   1/1     Running   2 (3h59m ago)   23h   172.26.0.4   my-cluster-worker2         <none>           <none>
+kube-proxy-6dnvc   1/1     Running   2 (3h59m ago)   23h   172.26.0.5   my-cluster-worker3         <none>           <none>
+kube-proxy-v4ggr   1/1     Running   2 (3h59m ago)   23h   172.26.0.3   my-cluster-control-plane   <none>           <none>
+kube-proxy-vnf9h   1/1     Running   2 (3h59m ago)   23h   172.26.0.2   my-cluster-worker          <none>           <none>
+$
+
+
+
+
+🚀
+It is responsible for:
+
+reading Service + Endpoints updates
+
+programming iptables or ipvs rules
+
+
+
+
+
+
+
+
+✅ 2. kube-proxy uses its own kubeconfig file
+
+When kube-proxy starts, it loads:
+
+/var/lib/kube-proxy/kubeconfig.conf
+
+
+
