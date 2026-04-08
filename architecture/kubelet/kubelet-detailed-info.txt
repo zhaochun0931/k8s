@@ -1,0 +1,54 @@
+The Kubelet is the primary "node agent" that runs on every single worker node in a Kubernetes cluster.
+
+If we continue with our analogies, if the Kubernetes Control Plane is the architect team sitting in the main office, the Kubelet is the site foreman working out in the field.
+
+The foreman doesn’t design the building and doesn't decide how many workers are needed globally. The foreman's only job is to look at the blueprints handed to them for their specific piece of land, tell the workers what to do, and make sure the work gets done correctly.
+
+Here is a deep dive into exactly how the Kubelet functions:
+
+1. The Core Job: Managing PodSpecs
+The Kubelet's entire existence revolves around something called a PodSpec (Pod Specification). A PodSpec is a YAML or JSON object that describes exactly how a Pod should look (what image to use, what ports to open, how much memory it's allowed).
+
+Receiving Orders: The Kubelet continuously watches the Kube-API Server. When the Scheduler assigns a new Pod to the Kubelet's specific node, the Kubelet downloads that PodSpec.
+
+Execution: The Kubelet doesn't actually run the containers itself. Instead, it translates the PodSpec into instructions and hands them down to the high-level container runtime (like containerd or CRI-O) via the CRI (Container Runtime Interface).
+
+The Guarantee: The Kubelet's main promise to the cluster is: "I will ensure that the containers described in this PodSpec are running and healthy on my machine."
+
+2. Monitoring and Health Checks
+The Kubelet doesn't just start containers and walk away; it acts as a constant babysitter. It is the component responsible for executing the health checks you define in your YAML files:
+
+Liveness Probes: The Kubelet periodically checks if the application inside the container is frozen or dead (e.g., by hitting an /healthz HTTP endpoint). If the Liveness Probe fails, the Kubelet violently terminates the container and tells the runtime to spin up a fresh one.
+
+Readiness Probes: The Kubelet checks if the application is ready to accept user traffic (maybe it's still loading a large database into memory). If it's not ready, the Kubelet tells the cluster to temporarily stop sending network traffic to this Pod.
+
+Startup Probes: Used for legacy applications that take a very long time to start up, preventing the Liveness probe from killing them prematurely.
+
+3. Reporting Back to Headquarters
+While the Kubelet is managing the containers locally, it must keep the Control Plane informed.
+
+It constantly gathers telemetry about its node (CPU usage, memory pressure, disk space).
+
+It tracks the exact status of every Pod it is managing (Pending, Running, Succeeded, Failed).
+
+It streams all of this information back to the Kube-API Server, which in turn updates the master etcd database so the rest of the cluster knows what is going on.
+
+4. What the Kubelet Does Not Do
+To truly understand the Kubelet, it helps to know its boundaries:
+
+It does not manage networking: If a Pod needs to talk to another Pod, the Kubelet doesn't handle the routing. That is the job of Kube-proxy and the CNI (Container Network Interface).
+
+It does not pull images: It delegates that to containerd/CRI-O.
+
+It does not care about Deployments or ReplicaSets: The Kubelet has no idea what a "Deployment" is. By the time instructions reach the Kubelet, all the high-level K8s logic has been stripped away. The Kubelet only understands Pods.
+
+Summary of the Flow
+API Server: "Hey Kubelet on Node 2, the Scheduler assigned Pod-A to you. Here is the PodSpec."
+
+Kubelet: "Got it. Hey containerd (via CRI), here are the specs. Pull the image and get runc to start the container."
+
+containerd/runc: Starts the container.
+
+Kubelet: Pings the container every 10 seconds. "Are you healthy? Good."
+
+Kubelet: Calls API Server. "Pod-A is running perfectly, and my node has 4GB of RAM left."
