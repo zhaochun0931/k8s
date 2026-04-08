@@ -1,0 +1,35 @@
+runc is the industry-standard, low-level container runtime. If we stick with our previous analogy where Kubernetes is the conductor and containerd/CRI-O is the musician, runc is the instrument itself.
+
+It is the very bottom layer of the container stack, sitting right on top of the Linux operating system. Its one and only job is to actually create and execute the container.
+
+1. What makes runc different?
+High-level runtimes (like containerd and CRI-O) are "smart." They know how to talk to the internet, pull images, check signatures, and manage APIs.
+
+runc is "dumb" (by design). It has no idea what Kubernetes is, it doesn't know what a network registry is, and it cannot pull an image. It expects to be handed exactly two things:
+
+A folder on the hard drive containing the unpacked application files (the root filesystem).
+
+A JSON configuration file (config.json) that dictates exactly how the application should be constrained.
+
+Once it has those two things, it turns them into a running, isolated process.
+
+2. How runc creates the "Container Magic"
+Containers aren't actually real, physical things; they are an illusion created by the Linux Kernel. runc is the tool that orchestrates this illusion. It takes the JSON configuration file and translates it into specific commands for the Linux kernel, configuring three main components:
+
+Namespaces (Isolation): runc tells the kernel to lie to the process. It sets up namespaces so the process thinks it has its own dedicated hard drive, its own isolated network interface and IP address, and its own process tree (where it thinks it is PID 1).
+
+Cgroups (Resource Limits): runc configures Control Groups to ensure the container plays nicely with others. If the JSON file says "Limit to 512MB of RAM," runc sets that hard limit in the kernel. If the container tries to use 513MB, the kernel kills it (OOMKill).
+
+Security Profiles: runc applies kernel-level security policies (like seccomp, SELinux, or AppArmor) to restrict which system calls the container is allowed to make, preventing a compromised container from taking down the whole node.
+
+3. The Lifecycle (The "Shim" concept)
+One of the most fascinating things about runc is that it is transient.
+
+When containerd tells runc to start a container, runc talks to the kernel, sets up the namespaces and cgroups, starts your application (like nginx or your Java app), and then runc immediately exits and dies.
+
+It does not stick around to babysit the container. A small helper process called a "shim" (like containerd-shim) takes over just to keep the terminal output (stdout/stderr) open and to report the exit status back to containerd if the application crashes. This makes runc incredibly fast and lean.
+
+4. History and Standardization
+Just like containerd, runc was originally the core execution engine hidden deep inside Docker.
+
+In 2015, Docker extracted this core code and donated it to form the Open Container Initiative (OCI). Because of this, runc became the universal gold standard. Today, whether you are using Docker on your laptop, containerd in AWS EKS, or CRI-O in OpenShift, they are almost all using runc at the very bottom of the stack to actually talk to the Linux kernel.
