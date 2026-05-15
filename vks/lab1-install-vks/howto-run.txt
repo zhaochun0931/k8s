@@ -1,0 +1,106 @@
+# Delete the Contour Deployment
+
+kubectl delete deployment contour -n tanzu-system-ingress
+kubectl delete deployment contour-my-gateway
+
+
+
+# Delete the Envoy DaemonSet
+
+kubectl delete daemonset envoy -n tanzu-system-ingress 
+kubectl delete daemonset envoy-my-gateway
+
+
+
+# Delete the associated Services
+
+kubectl delete service contour envoy -n tanzu-system-ingress
+kubectl delete service contour-my-gateway envoy-my-gateway
+
+
+kubectl get all -n tanzu-system-ingress
+
+
+
+
+
+
+
+
+tanzu package available list contour.kubernetes.vmware.com -A
+
+
+
+
+
+tanzu package installed list -A
+
+
+$ tanzu package installed list -A
+
+  NAMESPACE          NAME                                  PACKAGE-NAME                                 PACKAGE-VERSION             STATUS
+  my-packages        cert-manager                          cert-manager.kubernetes.vmware.com           1.19.1+vmware.1-vks.1       Reconcile succeeded
+  my-packages        contour                               contour.kubernetes.vmware.com                1.33.0+vmware.1-vks.1       Reconcile succeeded
+  vmware-system-tkg  cluster-1-antrea                      antrea.tanzu.vmware.com                      2.3.2+vmware.1-tkg.1        Reconcile succeeded
+  vmware-system-tkg  cluster-1-gateway-api                 gateway-api.tanzu.vmware.com                 1.2.1+vmware.6-tkg.1        Reconcile succeeded
+  vmware-system-tkg  cluster-1-guest-cluster-auth-service  guest-cluster-auth-service.tanzu.vmware.com  1.4.4+vmware.1-tkg.1        Reconcile succeeded
+  vmware-system-tkg  cluster-1-metrics-server              metrics-server.tanzu.vmware.com              0.8.0+vmware.6-fips-tkg.1   Reconcile succeeded
+  vmware-system-tkg  cluster-1-pinniped                    pinniped.tanzu.vmware.com                    0.39.0+vmware.3-tkg.1       Reconcile succeeded
+  vmware-system-tkg  cluster-1-secretgen-controller        secretgen-controller.tanzu.vmware.com        0.19.2+vmware.8-fips-tkg.1  Reconcile succeeded
+  vmware-system-tkg  cluster-1-vsphere-cpi                 vsphere-cpi.tanzu.vmware.com                 1.33.0+vmware.1-tkg.1       Reconcile succeeded
+  vmware-system-tkg  cluster-1-vsphere-pv-csi              vsphere-pv-csi.tanzu.vmware.com              3.5.0+vmware.2-tkg.1        Reconcile succeeded
+$
+
+
+
+
+
+
+tanzu package installed delete contour -n my-packages
+
+
+
+
+
+
+
+
+
+
+
+tanzu package available get contour.kubernetes.vmware.com/1.33.1+vmware.1-vks.1 --default-values-file-output my-contour-values.yaml
+
+
+
+
+
+
+tanzu package install contour \
+  --package contour.kubernetes.vmware.com \
+  --version 1.33.1+vmware.1-vks.1 \
+  --namespace my-packages \
+  --values-file contour-data-values.yaml
+
+
+
+
+
+
+Step 4: Verify the Installation
+
+The Tanzu CLI will wait for the kapp-controller to reconcile the deployment. Once the prompt returns, you can verify that Contour is healthy and running:
+
+# Check the Tanzu package status
+tanzu package installed get contour -n my-packages
+
+# Check that the Contour and Envoy pods are running in their target namespace (usually tanzu-system-ingress)
+kubectl get pods -n tanzu-system-ingress
+
+
+
+
+
+
+kubectl apply -f https://projectcontour.io/quickstart/contour-gateway-provisioner.yaml
+
+kubectl apply -f my-gatewayclass-and-gateway.yaml
