@@ -66,34 +66,16 @@ $
 
 
 
-
+# delete the package
 tanzu package installed delete contour -n my-packages
 
 
-
-
-
-
-
-
-
-
-
+# export the values from the package
 tanzu package available get contour.kubernetes.vmware.com/1.33.1+vmware.1-vks.1 --default-values-file-output my-contour-values.yaml
 
 
-
-
-
-
-tanzu package install contour \
-  --package contour.kubernetes.vmware.com \
-  --version 1.33.1+vmware.1-vks.1 \
-  --namespace my-packages \
-  --values-file contour-data-values.yaml
-
-
-
+# install the package
+tanzu package install contour --package contour.kubernetes.vmware.com --version 1.33.1+vmware.1-vks.1 --namespace my-packages --values-file contour-data-values.yaml
 
 
 
