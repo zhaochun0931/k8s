@@ -1,0 +1,118 @@
+快速创建默认集群
+直接在终端运行以下命令：
+
+kind create cluster --name my-cluster1
+
+
+
+
+$ kind create cluster --name my-cluster1
+Creating cluster "my-cluster1" ...
+ ✓ Ensuring node image (kindest/node:v1.34.0) 🖼
+ ✓ Preparing nodes 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+Set kubectl context to "kind-my-cluster1"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-my-cluster1
+
+Thanks for using kind! 😊
+$
+
+
+
+该命令会自动下载所需的镜像，并创建一个默认名为 my-cluster1 的单节点集群
+
+
+
+kind create cluster --name my-cluster2
+
+
+
+
+
+$ kind create cluster --name my-cluster2
+Creating cluster "my-cluster2" ...
+ ✓ Ensuring node image (kindest/node:v1.34.0) 🖼
+ ✓ Preparing nodes 📦
+ ✓ Writing configuration 📜
+ ✓ Starting control-plane 🕹️
+ ✓ Installing CNI 🔌
+ ✓ Installing StorageClass 💾
+Set kubectl context to "kind-my-cluster2"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-my-cluster2
+
+Thanks for using kind! 😊
+$
+
+
+
+kind get clusters
+
+kubectl get nodes
+
+kubectl cluster-info
+
+
+
+
+
+
+
+$ kubectl cluster-info --context kind-my-cluster1
+Kubernetes control plane is running at https://127.0.0.1:57605
+CoreDNS is running at https://127.0.0.1:57605/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+
+$ kubectl cluster-info --context kind-my-cluster2
+Kubernetes control plane is running at https://127.0.0.1:57612
+CoreDNS is running at https://127.0.0.1:57612/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+$
+
+
+
+
+
+kubectl config current-context
+
+
+kubectl config get-contexts
+
+
+kubectl config use-context kind-my-cluster1
+
+$ kubectl config get-contexts
+CURRENT   NAME                      CLUSTER                   AUTHINFO                  NAMESPACE
+          docker-desktop            docker-desktop            docker-desktop
+          kind-kind-cluster         kind-kind-cluster         kind-kind-cluster
+          kind-management-cluster   kind-management-cluster   kind-management-cluster
+*         kind-my-cluster1          kind-my-cluster1          kind-my-cluster1
+          rancher-desktop           rancher-desktop           rancher-desktop
+$
+
+
+
+
+
+
+
+
+kind get kubeconfig --name my-cluster1 > my-cluster-config.yaml
+
+
+
+kind delete cluster --name my-cluster2
+
+kind delete cluster --name my-cluster1
+
+
+
