@@ -1,0 +1,131 @@
+在 Kubernetes（k8s）中，**Context（上下文）** 是 `kubectl` 命令行工具用来记录“**我正在操作哪个集群的哪个账户和哪个命名空间**”的一套快捷配置组合。
+
+由于开发人员通常需要管理或访问多个 Kubernetes 集群（例如：开发环境、测试环境、生产环境），上下文机制可以让你轻松地在不同环境之间快速切换，而不需要每次都重新输入访问凭证或集群地址。
+
+---
+
+### 上下文（Context）的组成要素
+
+一个 Context 实际上是一个命名元组，由以下三要素绑定在一起：
+
+1. **Cluster（集群）：** 要连接的目标 Kubernetes 集群地址及其 TLS 证书信息（例如：`kind-my-cluster` 或 `prod-us-east-1`）。
+2. **User（用户）：** 用于访问该集群的身份凭证（如 Client 证书、Token、OIDC 或 IAM 账号）。
+3. **Namespace（命名空间，可选）：** 默认操作的具体命名空间（如 `default`、`kube-system` 或 `dev`）。如果不指定，默认使用 `default`。
+
+---
+
+### 配置文件（Kubeconfig）
+
+所有的 Context 规则都存储在本地的 Kubeconfig 文件中（默认路径为 `~/.kube/config`）。它的结构大致如下：
+
+```yaml
+apiVersion: v1
+kind: Config
+
+# 1. 定义集群列表
+clusters:
+- name: my-cluster-dev
+  cluster:
+    server: https://127.0.0.1:6443
+
+# 2. 定义凭证列表
+users:
+- name: dev-user
+  user:
+    token: exp-token-xxx
+
+# 3. 组合成 Contexts
+contexts:
+- name: dev-context
+  context:
+    cluster: my-cluster-dev
+    user: dev-user
+    namespace: development
+
+# 4. 指定当前启用的 Context
+current-context: dev-context
+
+```
+
+---
+
+### 常用 Context 操作指令
+
+* **查看当前正在使用的 Context：**
+```bash
+kubectl config current-context
+
+```
+
+
+*Verification:* 终端会输出单行字符串（如 `kind-my-cluster`），表示当前命令都会作用在该集群上。
+* **列出本地所有已配置的 Context：**
+```bash
+kubectl config get-contexts
+
+```
+
+
+*Verification:* 输出列表中前面带有 `*` 标号的那一行即为当前激活的上下文。
+* **切换到指定的 Context：**
+```bash
+kubectl config use-context <context-name>
+
+```
+
+
+*Verification:* 运行后提示 `Switched to context "<context-name>".`。
+* **修改当前 Context 的默认命名空间：**
+```bash
+kubectl config set-context --current --namespace=<namespace-name>
+
+```
+
+
+
+
+
+In Kubernetes, a context is essentially a shortcut that bundles together three specific pieces of information: Who you are, Where you are connecting, and What part of the cluster you are looking at.
+
+Think of it like a "profile" or a "preset" on a car radio. Instead of manually entering the frequency, bass, and volume every time, you just hit "Button 1."
+
+1. The Three Components of a Context
+A context is defined in your ~/.kube/config file and consists of:
+
+Cluster: The URL of the API server (e.g., rancher-desktop or a cloud URL like https://12.34.56.78).
+
+User: Your credentials (e.g., your admin certificate, a token, or your username/password).
+
+Namespace: The specific "folder" or logical partition inside the cluster you want to work in by default (e.g., default, development, or production).
+
+
+
+2. Why Contexts Matter
+Without contexts, every time you ran a command like kubectl get pods, you would have to type out:
+kubectl get pods --server=https://my-cluster:6443 --user=admin --namespace=prod
+
+With a context set, you just type:
+kubectl get pods
+
+## Task                            Command
+
+List all contexts               kubectl config get-contexts
+See current context             kubectl config current-context
+Switch context                  kubectl config use-context \<name\>
+Set a default namespace         kubectl config set-context --current --namespace=\<name\>
+
+
+
+kubectl config get-contexts
+
+
+
+kubectl config current-context
+
+
+
+kubectl config use-context <name>
+
+
+
+kubectl config set-context --current --namespace=<name>
