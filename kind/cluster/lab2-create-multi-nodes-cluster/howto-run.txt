@@ -1,1 +1,9 @@
 kind create cluster --config kind-config.yaml --name multi-node-cluster
+
+
+kind get clusters
+
+kubectl config get-contexts
+
+
+
